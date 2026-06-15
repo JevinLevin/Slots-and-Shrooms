@@ -6,7 +6,10 @@ public abstract class MushroomAttributeSO : ScriptableObject
     [SerializeField] private string mushroomName;
 
     [SerializeField, TextArea] private string description;
-    [SerializeField] private int SelectionCost; 
+    [SerializeField] private int selectionCost; 
+    public int SelectionCost => selectionCost;
+    [SerializeField] private int weight;
+    public int Weight => weight;
 
     public abstract void OnSelected(); 
     public abstract void OnTick();
