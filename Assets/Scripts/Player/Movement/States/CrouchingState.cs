@@ -39,10 +39,19 @@ public class CrouchingState : InputMoveState
     {
         base.CheckTransitions();
 
-        if (!Input.GetKey(KeyCode.LeftControl))
+        if (!Input.GetKey(KeyCode.LeftControl)
+            && CanUncrouch())
         {
             if (SwitchState(stateMachine.WalkingState))
                 return;
         }
+    }
+
+    private bool CanUncrouch()
+    {
+        // Check that there arent any collisions above
+        float checkHeight = stateMachine.BasePlayerHeight - (stateMachine.BasePlayerWidth / 2);
+        return !stateMachine.CheckSphere(checkHeight);
+
     }
 }

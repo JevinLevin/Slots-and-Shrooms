@@ -141,8 +141,14 @@ public class PlayerMovement : StateMachine
 
     private bool IsOnGround()
     {
-        return Physics.CheckSphere(transform.position + Vector3.down * 0.1f, playerWidth, environmentLayer);
+        return CheckSphere(-0.1f);
     }
+
+    public bool CheckSphere(float yOffset)
+    {
+        return Physics.CheckSphere(transform.position + Vector3.up * yOffset, playerWidth, environmentLayer);
+    }
+
 
     public void SetWidth(float width)
     {
