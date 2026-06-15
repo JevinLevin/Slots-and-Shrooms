@@ -17,5 +17,10 @@ public abstract class State
     public abstract void OnTick();
     public abstract void CheckTransitions();
     public abstract bool CanEnter();
-    
+
+    protected bool SwitchState(State newState)
+    {
+        //Debug.Log($"Switching to state: {newState.GetType().Name}");
+        return stateMachine.SwitchState(newState, this);
+    }
 }
