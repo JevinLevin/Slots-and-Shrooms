@@ -25,6 +25,8 @@ public class PlayerMovement : StateMachine
     public WalkingSettings WalkingSettings;
     public JumpingState JumpingState;
     public JumpingSettings JumpingSettings;
+    public SprintingState SprintingState;
+    public SprintingSettings SprintingSettings;
 
     private Vector2 cameraRotation;
     private Vector3 currentVelocity;
@@ -41,6 +43,7 @@ public class PlayerMovement : StateMachine
 
         WalkingState = new WalkingState(this);
         JumpingState = new JumpingState(this);
+        SprintingState = new SprintingState(this);
 
         currentState = WalkingState;
     }

@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerCamera: {fileID: 1978132420}
-  gravity: 3
+  gravity: 0.5
   playerWidth: 0.35
   environmentLayer:
     serializedVersion: 2

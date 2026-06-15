@@ -20,6 +20,9 @@ public abstract class State
 
     protected bool SwitchState(State newState)
     {
+        if (newState == this)
+            return false;
+
         //Debug.Log($"Switching to state: {newState.GetType().Name}");
         return stateMachine.SwitchState(newState, this);
     }

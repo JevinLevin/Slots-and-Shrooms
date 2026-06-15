@@ -23,7 +23,11 @@ public abstract class StateMachine : MonoBehaviour
 
     public bool SwitchState(State newState, State oldState)
     {
-        // Debug.Log("Switch to " + newState.GetType().Name);
+
+        if (newState == oldState)
+            return false;
+
+        Debug.Log("Switch to " + newState.GetType().Name);
 
         if (!newState.CanEnter())
             return false;

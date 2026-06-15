@@ -25,10 +25,20 @@ public abstract class InputMoveState : MovementState
     public override void CheckTransitions()
     {
         // Check for jump
-        if(this is not JumpingState)
+        if (stateMachine.IsGrounded && Input.GetKey(KeyCode.Space))
         {
-            if (stateMachine.IsGrounded && Input.GetKeyDown(KeyCode.Space))
-                SwitchState(stateMachine.JumpingState);
+            stateMachine.JumpingState.LastSpeedMultiplier = GetSpeedMultiplier();
+            if(SwitchState(stateMachine.JumpingState))
+                return;
+        }
+
+        // Check for sprint
+        if (stateMachine.CurrentState is not JumpingState &&
+            stateMachine.IsGrounded &&
+            Input.GetKey(KeyCode.LeftShift))
+        {
+            if(SwitchState(stateMachine.SprintingState))
+                return;
         }
     }
 
