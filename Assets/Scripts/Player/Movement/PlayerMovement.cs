@@ -6,13 +6,14 @@ public class PlayerMovement : StateMachine
     private CharacterController cc;
 
     [Header("References")]
-    [SerializeField] private Camera playerCamera;
-    public Camera GetCamera => playerCamera;
+    [SerializeField] private PlayerCamera playerCamera;
+    public PlayerCamera GetCamera => playerCamera;
 
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
     [SerializeField] private float playerWidth;
     [SerializeField] private LayerMask environmentLayer;
+    [SerializeField] private float baseFOV = 70;
 
     [Header("Camera Settings")]
     [SerializeField] private Transform cameraPivot;
@@ -56,6 +57,8 @@ public class PlayerMovement : StateMachine
         Cursor.visible = false;
 
         cc.radius = playerWidth;
+
+        playerCamera.SetFOV(baseFOV);
     }
 
     protected override void Update()

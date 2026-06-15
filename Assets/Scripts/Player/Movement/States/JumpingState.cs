@@ -40,9 +40,6 @@ public class JumpingState : InputMoveState
         jumpVelocity.y = Settings.jumpHeight;
         stateMachine.ImpulseVelocity(jumpVelocity);
 
-        Debug.Log(jumpVelocity);
-        Debug.Log(stateMachine.GetVelocity);
-
         groundedTween = Tween.Delay(Settings.groundingDelay);
     }
 
