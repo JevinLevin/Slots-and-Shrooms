@@ -11,6 +11,8 @@ public class PlayerMovement : StateMachine
 
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
+    [SerializeField] private float playerWidth;
+    [SerializeField] private LayerMask environmentLayer;
 
     [Header("Camera Settings")]
     [SerializeField] private Transform cameraPivot;
@@ -29,7 +31,7 @@ public class PlayerMovement : StateMachine
     public Vector3 GetVelocity => currentVelocity;
     private Vector3 externalVelocity;
 
-    public bool IsGrounded => cc.isGrounded;
+    public bool IsGrounded => IsOnGround();
 
     protected override void Awake()
     {
@@ -49,6 +51,8 @@ public class PlayerMovement : StateMachine
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        cc.radius = playerWidth;
     }
 
     protected override void Update()
@@ -119,5 +123,10 @@ public class PlayerMovement : StateMachine
     protected override void OnStateSwitched()
     {
 
+    }
+
+    private bool IsOnGround()
+    {
+        return Physics.CheckSphere(transform.position + Vector3.down * 0.1f, playerWidth, environmentLayer);
     }
 }

@@ -49,6 +49,8 @@ public abstract class InputMoveState : MovementState
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
         Vector3 velocity = new(inputX, 0, inputY);
+        velocity.Normalize();
+
 
         velocity *= Settings.baseMoveSpeed * GetSpeedMultiplier();
         velocity *= Time.deltaTime;
@@ -56,7 +58,6 @@ public abstract class InputMoveState : MovementState
         // Rotate velocity based on look direction
         velocity = stateMachine.GetCamera.transform.TransformDirection(velocity);
 
-        velocity.Normalize();
 
         velocity.y = stateMachine.GetVelocity.y;
 

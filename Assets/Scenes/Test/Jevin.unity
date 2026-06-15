@@ -240,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 346535575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1661014505}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,17 +551,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerCamera: {fileID: 1978132420}
-  gravity: 5
+  gravity: 3
+  playerWidth: 0.35
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 1
   cameraPivot: {fileID: 1661014505}
   sensitivity: 5
   verticalClamp: 80
   MovementSettings:
-    baseMoveSpeed: 3
+    baseMoveSpeed: 5
   WalkingSettings:
     speedMultiplier: 1
   JumpingSettings:
     speedMultiplier: 1
-    jumpHeight: 1
+    jumpHeight: 0.1
 --- !u!4 &1869614881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5481134001095052596, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
@@ -604,7 +608,7 @@ GameObject:
   - component: {fileID: 1978132420}
   - component: {fileID: 1978132419}
   - component: {fileID: 1978132422}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -777,13 +781,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6585342497403005945, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020722616905621795, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       propertyPath: m_Name
       value: DebugModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020722616905621795, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4261541152690655563, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
