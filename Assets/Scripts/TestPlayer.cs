@@ -11,6 +11,7 @@ public class TestPlayer : MonoBehaviour, IHasHealth
 
     public void OnHit(int damage)
     {
+        EventManager.Instance.OnHit(gameObject); 
         health -= damage;
         if(health <= 0) Die();
     }

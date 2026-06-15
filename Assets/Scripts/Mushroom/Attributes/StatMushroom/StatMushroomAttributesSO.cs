@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StatShroom", menuName = "MushroomSOs/StatShroom")]
-public class StatMushroomSO : MushroomAttributeSO
+public class StatMushroomAttributesSO : MushroomAttributeSO
 {
     [Header("Stat Settings")]
     public StatType stat;

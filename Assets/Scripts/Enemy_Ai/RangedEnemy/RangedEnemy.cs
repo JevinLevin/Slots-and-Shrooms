@@ -10,8 +10,7 @@ public class RangedEnemy : EnemyBaseClass
 
     protected override void Attack()
     {
-        Instantiate(projectile, shootPoint.position, Quaternion.identity);
-        EnemyProjectile enemyProjectile = projectile.GetComponent<EnemyProjectile>();
+        EnemyProjectile enemyProjectile = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<EnemyProjectile>();
         enemyProjectile.SetFowardDirection(transform.forward);
         enemyProjectile.SetProjectileDamadge(projectileDamage);
         enemyProjectile.SetProjectileSpeed(projectileSpeed);

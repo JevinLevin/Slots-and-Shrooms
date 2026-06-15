@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b303e6204aa4e43a94d32edc8a277e, type: 3}
   m_Name: TestOnHitShroom
   m_EditorClassIdentifier: Assembly-CSharp::TestOnHit
-  mushroomName: 
-  description: 
-  SelectionCost: 0
+  attributeName: ONHIT
+  type: 0
+  description: asdasd
+  selectionCost: 7
+  weight: 2

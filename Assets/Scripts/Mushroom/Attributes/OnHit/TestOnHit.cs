@@ -5,7 +5,7 @@ public class TestOnHit : OnHitMushroomAttributeSO
 {
     public override void OnHit(GameObject objHit)
     {
-        Debug.Log($"Hit {objHit.name}");
+        Debug.Log($"Hit");
     }
 
     public override void OnSelected()

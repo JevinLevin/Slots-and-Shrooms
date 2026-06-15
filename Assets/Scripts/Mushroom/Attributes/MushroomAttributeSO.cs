@@ -1,9 +1,15 @@
 using UnityEngine;
 
+public enum AttributeType { Stat, Onhit, Passive }
+
 public abstract class MushroomAttributeSO : ScriptableObject
 {
     [Header("Base Settings")]
-    [SerializeField] private string mushroomName;
+    [SerializeField] private string attributeName;
+    public string AttributeName => attributeName;
+
+    [SerializeField] private AttributeType type;
+    public AttributeType Type => type;
 
     [SerializeField, TextArea] private string description;
     [SerializeField] private int selectionCost; 

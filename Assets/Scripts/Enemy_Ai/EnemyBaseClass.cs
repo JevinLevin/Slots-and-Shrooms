@@ -10,7 +10,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     [SerializeField] private float attackCD;
     private float currentAttackCD; 
 
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
     private Transform player;
 
     private void Awake()
@@ -26,11 +26,16 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         else
         {
             inRange = false;
-            if(!agent.hasPath) MoveTowardsPlayer(); 
+            MoveTowardsPlayer(); 
         }
 
         if (!inRange) return;
         agent.ResetPath();
+
+        Vector3 towardsPlayer = player.position - transform.position;
+        towardsPlayer.y = 0;
+        transform.rotation = Quaternion.LookRotation(towardsPlayer);
+
         currentAttackCD += Time.deltaTime;
         if(currentAttackCD >= attackCD)
         {

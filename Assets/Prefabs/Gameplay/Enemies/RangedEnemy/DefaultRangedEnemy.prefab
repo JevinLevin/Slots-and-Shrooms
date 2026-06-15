@@ -159,7 +159,7 @@ MonoBehaviour:
   projectile: {fileID: 1530739407838434846, guid: bf7bd93dfadb7dc459b7e61e8d7c16ee, type: 3}
   shootPoint: {fileID: 1259051471326927930}
   projectileDamage: 3
-  projectileSpeed: 2
+  projectileSpeed: 7
 --- !u!1 &4663767563014295419
 GameObject:
   m_ObjectHideFlags: 0

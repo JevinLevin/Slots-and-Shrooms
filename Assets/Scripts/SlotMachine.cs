@@ -14,10 +14,12 @@ public class SlotMachine : MonoBehaviour, IInteractable
         {
             maxWeight += rarityStat.weight; 
         }
-    }
+    }   
 
-    public void OnInteract()
+    public void OnInteract(Interactor interactor)
     {
+        Debug.Log("HERE");
+
         MushroomRarityStats pickedRarity = new MushroomRarityStats(); 
         int rarityRoll = Random.Range(0, maxWeight);
         int runningTotal = 0; 
@@ -41,6 +43,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
             maxAttributesWeight += attribute.Weight; 
         }
 
+        int dam = 0; 
         bool pointsSpent = false;
         while (!pointsSpent)
         {
@@ -49,16 +52,25 @@ public class SlotMachine : MonoBehaviour, IInteractable
             foreach (MushroomAttributeSO attribute in attributes)
             {
                 attributeRunningTotal += attribute.Weight; 
-                if(runningTotal >= roll)
+                if(attributeRunningTotal >= roll)
                 {
                     points -= attribute.SelectionCost;
+                    if(points <= 0) pointsSpent = true;
                     mushroomAttributes.Add(attribute);
+                    Debug.Log(attribute.AttributeName); 
                     break; 
                 }
+            }
+            dam++;
+            if(dam > 10)
+            {
+                Debug.Log("DAMED");
+                break;
             }
         }
 
         Mushroom mushroom = new Mushroom(mushroomAttributes);
+        interactor.GetComponent<MushroomInventory>().AddMushroom(mushroom);
     }
 }
  

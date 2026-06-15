@@ -26,7 +26,10 @@ public class EventManager : MonoBehaviour
 
     public void OnHit(GameObject ObjHit)
     {
-        if (onHit != null) onHit(ObjHit); 
+        if (onHit != null)
+        {
+            onHit(ObjHit);
+        }
     }
     public void OnTick()
     {
