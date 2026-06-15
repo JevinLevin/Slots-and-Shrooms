@@ -43,7 +43,9 @@ public abstract class InputMoveState : MovementState
         }
 
         // Check for crouch
-        if(stateMachine.IsGrounded 
+        if(stateMachine.CurrentState is not SprintingState
+            && stateMachine.CurrentState is not SprintingState
+            && stateMachine.IsGrounded 
             && Input.GetKey(KeyCode.LeftControl))
         {
             if (SwitchState(stateMachine.CrouchingState))

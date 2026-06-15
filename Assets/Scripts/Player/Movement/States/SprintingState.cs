@@ -40,5 +40,12 @@ public class SprintingState : InputMoveState
             SwitchState(stateMachine.WalkingState);
             return;
         }
+
+        // Check for slide
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (SwitchState(stateMachine.SlidingState))
+                return;
+        }
     }
 }
