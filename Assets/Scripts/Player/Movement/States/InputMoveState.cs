@@ -35,7 +35,8 @@ public abstract class InputMoveState : MovementState
         // Check for sprint
         if (stateMachine.CurrentState is not JumpingState 
             && stateMachine.IsGrounded
-            && Input.GetKey(KeyCode.LeftShift))
+            && Input.GetKey(KeyCode.LeftShift)
+            && (Input.GetAxisRaw("Vertical") > 0))
         {
             if(SwitchState(stateMachine.SprintingState))
                 return;

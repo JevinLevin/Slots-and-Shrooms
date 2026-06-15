@@ -35,6 +35,7 @@ public class PlayerMovement : StateMachine
     private Vector3 externalVelocity;
 
     public bool IsGrounded => IsOnGround();
+    public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
 
     protected override void Awake()
     {

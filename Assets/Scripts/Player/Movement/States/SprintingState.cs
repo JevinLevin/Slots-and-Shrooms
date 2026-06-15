@@ -35,7 +35,7 @@ public class SprintingState : InputMoveState
     public override void CheckTransitions()
     {
         base.CheckTransitions();
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) || !stateMachine.IsMovingForwards)
         {
             SwitchState(stateMachine.WalkingState);
             return;
