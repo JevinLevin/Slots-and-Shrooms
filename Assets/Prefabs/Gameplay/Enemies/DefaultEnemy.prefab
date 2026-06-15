@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5008171027561829451}
   - component: {fileID: 6527410809047499025}
   - component: {fileID: 2597353116959406788}
-  - component: {fileID: 4461061266371979331}
+  - component: {fileID: 6927525892445829225}
   m_Layer: 0
   m_Name: DefaultEnemy
   m_TagString: Untagged
@@ -138,7 +138,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4461061266371979331
+--- !u!114 &6927525892445829225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,15 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 176596268285746649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 384da6790165af64e96b406262d6501f, type: 3}
+  m_Script: {fileID: 11500000, guid: 24375e31e3d9958449beb145f6a585b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBaseClass
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   health: 3
   speed: 3
   range: 1
   attackCD: 2
-  attackCollider: {fileID: 4663767563014295419}
   agent: {fileID: 2597353116959406788}
+  attackCollider: {fileID: 4663767563014295419}
 --- !u!1 &4663767563014295419
 GameObject:
   m_ObjectHideFlags: 0

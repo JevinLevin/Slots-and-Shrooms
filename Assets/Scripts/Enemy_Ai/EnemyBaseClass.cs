@@ -1,8 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBaseClass : MonoBehaviour, IHasHealth
+public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 {
     [SerializeField] private int health;
     [SerializeField] private float speed;
@@ -11,16 +10,14 @@ public class EnemyBaseClass : MonoBehaviour, IHasHealth
     [SerializeField] private float attackCD;
     private float currentAttackCD; 
 
-    [SerializeField] private GameObject attackCollider; 
-
     [SerializeField] private NavMeshAgent agent;
     private Transform player;
 
     private void Awake()
     {
-        attackCollider.SetActive(false);
         currentAttackCD = 0;
         player = GameObject.FindWithTag("Player").transform; 
+        agent.speed = speed;
     }
 
     private void Update()
@@ -43,20 +40,11 @@ public class EnemyBaseClass : MonoBehaviour, IHasHealth
     }
 
     protected virtual void MoveTowardsPlayer() => agent.SetDestination(player.position);
-    protected virtual void Attack()
-    {
-        StartCoroutine(BaseAttack());
-    }
-
-    private IEnumerator BaseAttack()
-    {
-        attackCollider.SetActive(true); 
-        yield return new WaitForSeconds(0.2f);
-        attackCollider.SetActive(false);
-    }
+    protected abstract void Attack(); 
 
     public virtual void OnHit(int damage)
     {
+        EventManager.Instance.OnHit(gameObject); 
         health -= damage;
         if (health <= 0) Die(); 
     }
