@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965136142648790306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2427259328638562815}
   - {fileID: 780107154306427}
-  m_Father: {fileID: 1428775012299039846}
+  m_Father: {fileID: 1301766835835382733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2146207065977086235
 GameObject:
@@ -62,7 +62,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5080432821137614041}
+  - {fileID: 1301766835835382733}
   m_Father: {fileID: 5481134001095052596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3095865078569769193
@@ -153,8 +153,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa6020ec18718b459662543e6ed4211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
+  heightOffsetRoot: {fileID: 1301766835835382733}
   defaultFOVAdjustTime: 0.25
   FOVAdjustEase: 6
+  defaultHeightAdjustTime: 0.15
+  HeightAdjustEase: 6
+--- !u!1 &5834489482070755798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301766835835382733}
+  m_Layer: 6
+  m_Name: HeightOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301766835835382733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834489482070755798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5080432821137614041}
+  m_Father: {fileID: 1428775012299039846}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6585342497403005945
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +329,7 @@ MonoBehaviour:
   playerCamera: {fileID: 4060266593726686953}
   gravity: 0.5
   playerWidth: 0.35
+  playerHeight: 2
   environmentLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -312,6 +348,9 @@ MonoBehaviour:
   SprintingSettings:
     speedMultiplier: 2
     fovOffset: 15
+  CrouchingSettings:
+    speedMultiplier: 1
+    heightOffset: -0.75
 --- !u!143 &2622318947003998142
 CharacterController:
   m_ObjectHideFlags: 0

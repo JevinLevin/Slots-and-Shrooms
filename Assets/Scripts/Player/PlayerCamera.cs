@@ -1,17 +1,26 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using PrimeTween;
+using System;
 
 [RequireComponent(typeof(CinemachineCamera))]
 public class PlayerCamera : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform heightOffsetRoot;
+
+    [Header("Attributes")]
     [SerializeField] private float defaultFOVAdjustTime = 0.25f;
     [SerializeField] private Ease FOVAdjustEase = Ease.OutQuad;
+
+    [SerializeField] private float defaultHeightAdjustTime = 0.25f;
+    [SerializeField] private Ease HeightAdjustEase = Ease.OutQuad;
 
     private CinemachineCamera cam;
     private float baseFOV;
     private float currentFOV => cam.Lens.FieldOfView;
     private Tween FOVTween;
+    private Tween heightTween;
 
     private void Awake()
     {
@@ -36,14 +45,11 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetFOVOverTime(float target, float duration = 0)
     {
-        if (FOVTween.isAlive)
-            FOVTween.Stop();
-
         if (duration == 0)
             duration = defaultFOVAdjustTime;
-
         float current = currentFOV;
-        FOVTween = Tween.Custom(current, target, duration, value => cam.Lens.FieldOfView = value, FOVAdjustEase);
+
+        SetValueOverTime(target, current, duration, FOVAdjustEase, FOVTween, newValue => cam.Lens.FieldOfView = newValue);
     }
     public void ResetFOV()
     {
@@ -52,5 +58,27 @@ public class PlayerCamera : MonoBehaviour
     public void ResetFOVOverTime()
     {
         SetFOVOverTime(baseFOV);
+    }
+
+    public void SetHeightOffset(float value)
+    {
+        heightOffsetRoot.transform.localPosition = new Vector3(0, value, 0);
+    }
+
+    public void SetHeightOffsetOverTime(float value, float duration = 0)
+    {
+        if (duration == 0)
+            duration = defaultHeightAdjustTime;
+        float current = heightOffsetRoot.transform.localPosition.y;
+
+        SetValueOverTime(value, current, duration, HeightAdjustEase, heightTween, newValue => SetHeightOffset(newValue));
+    }
+
+    private void SetValueOverTime(float target, float current, float duration, Ease ease, Tween targetTween, Action<float> setValue)
+    {
+        if (targetTween.isAlive)
+            targetTween.Stop();
+
+        targetTween = Tween.Custom(current, target, duration, setValue, ease);
     }
 }

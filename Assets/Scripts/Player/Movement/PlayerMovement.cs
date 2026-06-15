@@ -12,6 +12,7 @@ public class PlayerMovement : StateMachine
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
     [SerializeField] private float playerWidth;
+    [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private float baseFOV = 70;
 
@@ -28,6 +29,8 @@ public class PlayerMovement : StateMachine
     public JumpingSettings JumpingSettings;
     public SprintingState SprintingState;
     public SprintingSettings SprintingSettings;
+    public CrouchingState CrouchingState;
+    public CrouchingSettings CrouchingSettings;
 
     private Vector2 cameraRotation;
     private Vector3 currentVelocity;
@@ -36,6 +39,8 @@ public class PlayerMovement : StateMachine
 
     public bool IsGrounded => IsOnGround();
     public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
+    public float BasePlayerWidth => playerWidth;
+    public float BasePlayerHeight => playerHeight;
 
     protected override void Awake()
     {
@@ -46,6 +51,7 @@ public class PlayerMovement : StateMachine
         WalkingState = new WalkingState(this);
         JumpingState = new JumpingState(this);
         SprintingState = new SprintingState(this);
+        CrouchingState = new CrouchingState(this);
 
         currentState = WalkingState;
     }
@@ -57,7 +63,8 @@ public class PlayerMovement : StateMachine
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
-        cc.radius = playerWidth;
+        ResetWidth();
+        ResetHeight();
 
         playerCamera.SetFOV(baseFOV);
     }
@@ -135,5 +142,24 @@ public class PlayerMovement : StateMachine
     private bool IsOnGround()
     {
         return Physics.CheckSphere(transform.position + Vector3.down * 0.1f, playerWidth, environmentLayer);
+    }
+
+    public void SetWidth(float width)
+    {
+        cc.radius = width;
+    }
+    public void ResetWidth()
+    {
+        SetWidth(playerWidth);
+    }
+    public void SetHeight(float height)
+    {
+        cc.height = height;
+        cc.center = new(0, height/2, 0);
+    }
+    public void ResetHeight()
+    {
+        SetHeight(playerHeight);
+
     }
 }

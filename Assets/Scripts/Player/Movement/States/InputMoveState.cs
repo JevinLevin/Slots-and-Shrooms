@@ -36,9 +36,17 @@ public abstract class InputMoveState : MovementState
         if (stateMachine.CurrentState is not JumpingState 
             && stateMachine.IsGrounded
             && Input.GetKey(KeyCode.LeftShift)
-            && (Input.GetAxisRaw("Vertical") > 0))
+            && stateMachine.IsMovingForwards)
         {
             if(SwitchState(stateMachine.SprintingState))
+                return;
+        }
+
+        // Check for crouch
+        if(stateMachine.IsGrounded 
+            && Input.GetKey(KeyCode.LeftControl))
+        {
+            if (SwitchState(stateMachine.CrouchingState))
                 return;
         }
     }
