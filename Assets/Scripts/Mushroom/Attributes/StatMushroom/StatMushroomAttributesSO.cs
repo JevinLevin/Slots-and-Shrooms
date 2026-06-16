@@ -5,11 +5,14 @@ public class StatMushroomAttributesSO : MushroomAttributeSO
 {
     [Header("Stat Settings")]
     public StatType stat;
-    public Vector2 valueRange; 
+    public Vector2 valueRange;
+
+    private float setValue; 
+    public float SetValue => setValue;
 
     public override void OnSelected()
     {
-        throw new System.NotImplementedException();
+        setValue = Random.Range(valueRange.x, valueRange.y);
     }
 
     public override void OnTick()

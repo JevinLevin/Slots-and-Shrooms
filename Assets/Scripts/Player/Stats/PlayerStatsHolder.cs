@@ -35,7 +35,7 @@ public class PlayerStatsHolder : MonoBehaviour
     public float AttackSpeed => attackSpeed;
 
     public void AddToHealth(int additionalHealth) { health += additionalHealth; }
-    public void AddToSpeed(int additionalSpeed) { speed += additionalSpeed; }
+    public void AddToSpeed(float additionalSpeed) { speed += additionalSpeed; }
     public void AddToAttackDamage(int additionalAttackDamage) { attackDamage += additionalAttackDamage; }
-    public void AddToAttackSpeed(int additionalAttackSpeed) { attackSpeed += additionalAttackSpeed; }
+    public void AddToAttackSpeed(float additionalAttackSpeed) { attackSpeed += additionalAttackSpeed; }
 }

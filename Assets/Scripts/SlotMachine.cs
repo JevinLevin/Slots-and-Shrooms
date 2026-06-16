@@ -56,8 +56,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
                 {
                     points -= attribute.SelectionCost;
                     if(points <= 0) pointsSpent = true;
+
+                    attribute.OnSelected();
                     mushroomAttributes.Add(attribute);
-                    Debug.Log(attribute.AttributeName); 
                     break; 
                 }
             }

@@ -60,6 +60,7 @@ public class MushroomInventory : MonoBehaviour
             switch (attribute)
             {
                 case StatMushroomAttributesSO stat:
+                    AddStatToPlayer(stat);
                     statMushroomSOs.Add(stat);
                     break;
                 case OnHitMushroomAttributeSO onHit:
@@ -71,6 +72,27 @@ public class MushroomInventory : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+    private void AddStatToPlayer(StatMushroomAttributesSO stat)
+    {
+        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance; 
+
+        switch (stat.stat)
+        {
+            case StatType.Health:
+                statHolder.AddToHealth((int)stat.SetValue); 
+                break;
+            case StatType.Speed:
+                statHolder.AddToSpeed(stat.SetValue);
+                break;
+            case StatType.AttackDamage:
+                break;
+            case StatType.AttackSpeed:
+                break;
+            default:
+                break;
         }
     }
 }
