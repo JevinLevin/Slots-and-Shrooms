@@ -80,11 +80,11 @@ public class PlayerMovement : StateMachine
     {
         base.Update();
 
-        CameraRotation();
+        ApplyRotation();
         ApplyVelocity();
     }
 
-    private void CameraRotation()
+    private void ApplyRotation()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
@@ -94,8 +94,11 @@ public class PlayerMovement : StateMachine
 
         var xQuat = Quaternion.AngleAxis(cameraRotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(cameraRotation.y, Vector3.left);
-
-        cameraPivot.localRotation = xQuat * yQuat;
+ 
+        // Rotate camera vertically
+        cameraPivot.localRotation = Quaternion.Euler(Vector3.up) * yQuat;
+        // Rotate player horizontally
+        transform.localRotation = Quaternion.Euler(Vector3.left) * xQuat;
     }
 
     private void ApplyVelocity()
