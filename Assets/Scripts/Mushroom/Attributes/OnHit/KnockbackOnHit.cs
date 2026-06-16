@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KnockbackAttribute", menuName = "AttributeSOs/KnockbackAttribute")]
-
 public class KnockbackOnHit : OnHitMushroomAttributeSO
 {
     [Header("Knockback Settings")]
