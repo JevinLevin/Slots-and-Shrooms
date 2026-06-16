@@ -24,7 +24,7 @@ public class PlayerStatsHolder : MonoBehaviour
 
     [SerializeField] private PlayerStat[] playerBaseStats;
     public PlayerStat[] PlayerBaseStats => playerBaseStats; 
-    [SerializeField] private List<PlayerStat> playerStats;
+    private List<PlayerStat> playerStats;
 
     private void Start()
     {

@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Medium Improvement to Attack Speed
   selectionCost: 15
   weight: 5
-  statType: 9
+  statType: 0
   valueRange: {x: 3, y: 4}

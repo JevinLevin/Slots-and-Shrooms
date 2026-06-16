@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Medium improvement to health
   selectionCost: 15
   weight: 5
-  statType: 1
+  statType: 0
   valueRange: {x: 20, y: 35}
