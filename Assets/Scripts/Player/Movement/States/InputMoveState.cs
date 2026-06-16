@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementSettings : StateSettings
 {
     public float baseMoveSpeed = 10;
+    public float aimingSpeedMultiplier = 0.5f;
 }
 
 public abstract class InputMoveState : MovementState
@@ -25,7 +26,7 @@ public abstract class InputMoveState : MovementState
     public override void CheckTransitions()
     {
         // Check for jump
-        if (stateMachine.IsGrounded && Input.GetKey(KeyCode.Space))
+        if (stateMachine.IsGrounded && stateMachine.IsHoldingJump)
         {
             stateMachine.JumpingState.LastSpeedMultiplier = GetSpeedMultiplier();
             if(SwitchState(stateMachine.JumpingState))
@@ -35,8 +36,7 @@ public abstract class InputMoveState : MovementState
         // Check for sprint
         if (stateMachine.CurrentState is not JumpingState 
             && stateMachine.IsGrounded
-            && Input.GetKey(KeyCode.LeftShift)
-            && stateMachine.IsMovingForwards)
+            && stateMachine.IsHoldingSprint)
         {
             if(SwitchState(stateMachine.SprintingState))
                 return;
@@ -46,7 +46,7 @@ public abstract class InputMoveState : MovementState
         if(stateMachine.CurrentState is not SprintingState
             && stateMachine.CurrentState is not SprintingState
             && stateMachine.IsGrounded 
-            && Input.GetKey(KeyCode.LeftControl))
+            && stateMachine.IsHoldingCrouch)
         {
             if (SwitchState(stateMachine.CrouchingState))
                 return;
@@ -55,6 +55,10 @@ public abstract class InputMoveState : MovementState
 
     public override void OnEnter()
     {
+        if(!stateMachine.PlayerShooter.IsAiming 
+           && stateMachine.CurrentState is not SprintingState
+           && stateMachine.CurrentState is not JumpingState)
+            stateMachine.GetCamera.ResetFOVOverTime();
     }
 
     public override void OnExit()
@@ -72,8 +76,11 @@ public abstract class InputMoveState : MovementState
         Vector3 velocity = new(inputX, 0, inputY);
         velocity.Normalize();
 
-
-        velocity *= Settings.baseMoveSpeed * GetSpeedMultiplier();
+        float multiplier = GetSpeedMultiplier();
+        if (stateMachine.PlayerShooter.IsAiming)
+            multiplier *= Settings.aimingSpeedMultiplier;
+        
+        velocity *= Settings.baseMoveSpeed * multiplier;
         velocity *= Time.deltaTime;
 
         // Rotate velocity based on look direction

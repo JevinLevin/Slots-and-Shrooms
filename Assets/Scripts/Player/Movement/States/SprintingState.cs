@@ -20,29 +20,35 @@ public class SprintingState : InputMoveState
     {
     }
 
+    public override bool CanEnter()
+    {
+        return !stateMachine.PlayerShooter.IsAiming;
+    }
+
     public override void OnEnter()
     {
         base.OnEnter();
         stateMachine.GetCamera.AdjustFOVOverTime(Settings.fovOffset);
+        stateMachine.PlayerAnimator.ToggleRunning(true);
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        stateMachine.GetCamera.ResetFOVOverTime();
+        stateMachine.PlayerAnimator.ToggleRunning(false);
     }
 
     public override void CheckTransitions()
     {
         base.CheckTransitions();
-        if (!Input.GetKey(KeyCode.LeftShift) || !stateMachine.IsMovingForwards)
+        if (!stateMachine.IsHoldingSprint || stateMachine.PlayerShooter.IsAiming)
         {
             SwitchState(stateMachine.WalkingState);
             return;
         }
 
         // Check for slide
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (stateMachine.IsPressingCrouch)
         {
             if (SwitchState(stateMachine.SlidingState))
                 return;

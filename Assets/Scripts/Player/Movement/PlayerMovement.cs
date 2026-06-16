@@ -8,6 +8,10 @@ public class PlayerMovement : StateMachine
     [Header("References")]
     [SerializeField] private PlayerCamera playerCamera;
     public PlayerCamera GetCamera => playerCamera;
+    [SerializeField] private PlayerShooter playerShooter;
+    public PlayerShooter PlayerShooter => playerShooter;
+    [SerializeField] private PlayerAnimator playerAnimator;
+    public PlayerAnimator PlayerAnimator => playerAnimator;
 
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
@@ -20,9 +24,14 @@ public class PlayerMovement : StateMachine
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private float sensitivity = 5;
     [SerializeField] private float verticalClamp = 80;
+    [SerializeField] private Transform legsPivot;
+    public Transform GetLegsPivot => legsPivot;
 
     [Header("States")]
+
     public MovementSettings MovementSettings;
+    public IdleState IdleState;
+    public IdleSettings IdleSettings;
     public WalkingState WalkingState;
     public WalkingSettings WalkingSettings;
     public JumpingState JumpingState;
@@ -40,7 +49,12 @@ public class PlayerMovement : StateMachine
     private Vector3 externalVelocity;
 
     public bool IsGrounded => IsOnGround();
-    public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
+    public bool IsMoving => Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0 || Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0;
+    public bool IsHoldingSprint => Input.GetKey(KeyCode.LeftShift);
+    public bool IsPressingSprint => Input.GetKey(KeyCode.LeftShift);
+    public bool IsHoldingCrouch => Input.GetKey(KeyCode.LeftControl);
+    public bool IsPressingCrouch => Input.GetKeyDown(KeyCode.LeftControl);
+    public bool IsHoldingJump => Input.GetKey(KeyCode.Space);
     public float BasePlayerWidth => playerWidth;
     public float BasePlayerHeight => playerHeight;
 
@@ -50,21 +64,19 @@ public class PlayerMovement : StateMachine
 
         cc = GetComponent<CharacterController>();
 
+        IdleState = new IdleState(this);
         WalkingState = new WalkingState(this);
         JumpingState = new JumpingState(this);
         SprintingState = new SprintingState(this);
         CrouchingState = new CrouchingState(this);
         SlidingState = new SlidingState(this);
 
-        currentState = WalkingState;
+        currentState = IdleState;
     }
 
     protected override void Start()
     {
         base.Start();
-
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
 
         ResetWidth();
         ResetHeight();
@@ -76,11 +88,11 @@ public class PlayerMovement : StateMachine
     {
         base.Update();
 
-        CameraRotation();
+        ApplyRotation();
         ApplyVelocity();
     }
 
-    private void CameraRotation()
+    private void ApplyRotation()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
@@ -90,15 +102,18 @@ public class PlayerMovement : StateMachine
 
         var xQuat = Quaternion.AngleAxis(cameraRotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(cameraRotation.y, Vector3.left);
-
-        cameraPivot.localRotation = xQuat * yQuat;
+ 
+        // Rotate camera vertically
+        cameraPivot.localRotation = Quaternion.Euler(Vector3.up) * yQuat;
+        // Rotate player horizontally
+        transform.localRotation = Quaternion.Euler(Vector3.left) * xQuat;
     }
 
     private void ApplyVelocity()
     {
         // Add gravity
         if (!cc.isGrounded)
-            currentVelocity += Vector3.down * gravity * Time.deltaTime;
+            currentVelocity += Vector3.down * (gravity * Time.deltaTime);
 
         Vector3 finalVelocity = currentVelocity + externalVelocity;
         MovePlayer(finalVelocity);
