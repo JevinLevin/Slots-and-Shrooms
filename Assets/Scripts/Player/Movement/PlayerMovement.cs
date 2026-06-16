@@ -70,9 +70,6 @@ public class PlayerMovement : StateMachine
     {
         base.Start();
 
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-
         ResetWidth();
         ResetHeight();
 

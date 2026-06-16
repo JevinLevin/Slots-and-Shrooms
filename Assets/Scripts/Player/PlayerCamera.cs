@@ -27,6 +27,12 @@ public class PlayerCamera : MonoBehaviour
         cam = GetComponent<CinemachineCamera>();
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     public void SetFOV(float fov)
     {
         baseFOV = fov;

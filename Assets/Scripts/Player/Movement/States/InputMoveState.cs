@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementSettings : StateSettings
 {
     public float baseMoveSpeed = 10;
+    public float aimingSpeedMultiplier = 0.5f;
 }
 
 public abstract class InputMoveState : MovementState
@@ -75,8 +76,11 @@ public abstract class InputMoveState : MovementState
         Vector3 velocity = new(inputX, 0, inputY);
         velocity.Normalize();
 
-
-        velocity *= Settings.baseMoveSpeed * GetSpeedMultiplier();
+        float multiplier = GetSpeedMultiplier();
+        if (stateMachine.PlayerShooter.IsAiming)
+            multiplier *= Settings.aimingSpeedMultiplier;
+        
+        velocity *= Settings.baseMoveSpeed * multiplier;
         velocity *= Time.deltaTime;
 
         // Rotate velocity based on look direction
