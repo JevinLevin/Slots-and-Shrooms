@@ -19,18 +19,15 @@ public class PlayerAnimator : MonoBehaviour
     public void ToggleWalking(bool value)
     {
         handsAnimator.SetBool(IsWalking, value);
-        legsAnimator.SetBool(IsWalking, value);
     }
 
     public void ToggleRunning(bool value)
     {
         handsAnimator.SetBool(IsRunning, value);
-        legsAnimator.SetBool(IsRunning, value);
     }
 
     public void ToggleSliding(bool value)
     {
-        handsAnimator.SetBool(IsSliding, value);
         legsAnimator.SetBool(IsSliding, value);
     }
 
