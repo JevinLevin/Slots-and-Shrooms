@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "ThornsAttribute", menuName = "AttributeSOs/ThornsAttribute")]
 public class ThornsOnHit : OnHitMushroomAttributeSO
 {
     [Header("Thorns Settings")]

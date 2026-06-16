@@ -8,7 +8,7 @@ public class EnemyWeaponBase : MonoBehaviour
         IHasHealth playerHealth = other.GetComponent<IHasHealth>();
         if (playerHealth != null)
         {
-            playerHealth.OnHit(attackDamage); 
+            playerHealth.OnHit(attackDamage, gameObject); 
         }
     }
 }
