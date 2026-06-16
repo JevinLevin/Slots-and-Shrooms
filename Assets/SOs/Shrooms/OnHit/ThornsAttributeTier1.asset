@@ -17,4 +17,4 @@ MonoBehaviour:
   description: Enemies that hit you take damage
   selectionCost: 3
   weight: 15
-  damage: 5
+  damage: 1

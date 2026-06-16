@@ -18,8 +18,6 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     public void OnInteract(Interactor interactor)
     {
-        Debug.Log("HERE");
-
         MushroomRarityStats pickedRarity = new MushroomRarityStats(); 
         int rarityRoll = Random.Range(0, maxWeight);
         int runningTotal = 0; 
@@ -62,10 +60,11 @@ public class SlotMachine : MonoBehaviour, IInteractable
                     break; 
                 }
             }
+
             dam++;
-            if(dam > 10)
+            if(dam > 100)
             {
-                Debug.Log("DAMED");
+                Debug.LogError("Too many attempts to add attribute to mushroom");
                 break;
             }
         }

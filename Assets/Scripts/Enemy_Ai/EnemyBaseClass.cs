@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 {
-    [SerializeField] private int health;
+    [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float range;
     private bool inRange; 
