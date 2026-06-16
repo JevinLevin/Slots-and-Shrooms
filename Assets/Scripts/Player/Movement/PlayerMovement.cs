@@ -24,6 +24,8 @@ public class PlayerMovement : StateMachine
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private float sensitivity = 5;
     [SerializeField] private float verticalClamp = 80;
+    [SerializeField] private Transform legsPivot;
+    public Transform GetLegsPivot => legsPivot;
 
     [Header("States")]
 

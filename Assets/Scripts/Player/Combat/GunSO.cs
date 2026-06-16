@@ -10,6 +10,7 @@ public class GunSO : ScriptableObject
     public string gunDesc;
 
     [Header("Functionality")]
+    public float baseDamage = 1;
     [Tooltip("Bullets fired per second")]
     public float fireRate = 10;
     public float magSize = 16;

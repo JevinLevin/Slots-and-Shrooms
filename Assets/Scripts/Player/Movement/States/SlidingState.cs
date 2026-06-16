@@ -71,6 +71,7 @@ public class SlidingState : MovementState
         stateMachine.ResetHeight();
         reslideTween = Tween.Delay(Settings.reslideDelay);
         stateMachine.PlayerAnimator.ToggleSliding(false);
+        stateMachine.GetLegsPivot.localEulerAngles = Vector3.zero;
     }
 
     public override void OnInit()
@@ -87,9 +88,9 @@ public class SlidingState : MovementState
         slideTimer += Time.deltaTime;
         slideProgress = slideTimer / Settings.slideDuration;
 
-        Debug.Log(slideProgress);
-        Debug.Log(currentT);
-        Debug.Log(currentSpeed);
+        // Lock legs pivot world direction to stay the same
+        stateMachine.GetLegsPivot.transform.forward = slideDirection;
+
     }
 
 }

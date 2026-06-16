@@ -27,6 +27,8 @@ public class PlayerShooter : MonoBehaviour
     public bool IsHoldingShoot => Input.GetMouseButton(0);
 
     public bool CanShoot => !shootDelayTween.isAlive;
+
+    public float GetCurrentWeaponDamage => currentGun.baseDamage;
     
     private void Update()
     {
@@ -100,9 +102,15 @@ public class PlayerShooter : MonoBehaviour
         Ray bulletRay = new Ray(bulletOrigin, bulletDirection);
         if (Physics.Raycast(bulletRay, out var bulletHit, currentGun.bulletMaxRange, shotHitLayer))
         {
+
             // Check for blocking objects
             if (Physics.Linecast(bulletOrigin, bulletHit.point, shotBlockingLayer))
                 return;
+
+            if (bulletHit.collider.TryGetComponent<IHasHealth>(out var enemyHealth))
+            {
+                enemyHealth.OnHit((int)GetCurrentWeaponDamage);
+            }
         }
     }
 
