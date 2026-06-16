@@ -10,7 +10,7 @@ public class TestOnHit : OnHitMushroomAttributeSO
 
     public override void OnSelected()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void OnTick()

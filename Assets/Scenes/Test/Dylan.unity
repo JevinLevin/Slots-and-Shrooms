@@ -463,6 +463,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ee1f8c47014994d9e2a88759b93f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MushroomInventory
+--- !u!114 &383106437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383106422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd3ea8cd41fd2d4480fb895acbfa5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsHolder
+  playerBaseStats:
+    health: 0
+    speed: 0
+    attackDamage: 0
+    attackSpeed: 0
+  health: 0
+  speed: 0
+  attackDamage: 0
+  attackSpeed: 0
 --- !u!1001 &881894374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,11 +575,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlotMachine
   attributes:
   - {fileID: 11400000, guid: e99f3f8c699c94349b26933e87b111a5, type: 2}
-  - {fileID: 11400000, guid: 47caffe13fdb3a2408c8874b6e64143a, type: 2}
+  - {fileID: 11400000, guid: 36ff333c256bcff4ea1914170b653e05, type: 2}
+  - {fileID: 11400000, guid: 161c53811acf7eb4d851d1631298799d, type: 2}
+  - {fileID: 11400000, guid: 816f284f9dbc68c4b9be09072d234b94, type: 2}
+  - {fileID: 11400000, guid: 1503558ba754a074aa395f944a5b2a36, type: 2}
+  - {fileID: 11400000, guid: 8d7d934341afbde46a8a8c9152e81ee7, type: 2}
+  - {fileID: 11400000, guid: 98605f78fa10f84438674232e56207f2, type: 2}
+  - {fileID: 11400000, guid: 64e4385c9239eb54d9b1712ef073c405, type: 2}
   rarityStats:
   - rarity: Common
     weight: 2
-    points: 2
+    points: 20
 --- !u!65 &1026472983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -767,6 +794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 383106433}
+    - targetCorrespondingSourceObject: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 383106437}
   m_SourcePrefab: {fileID: 100100000, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

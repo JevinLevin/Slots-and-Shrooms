@@ -88,8 +88,10 @@ public class MushroomInventory : MonoBehaviour
                 statHolder.AddToSpeed(stat.SetValue);
                 break;
             case StatType.AttackDamage:
+                statHolder.AddToAttackDamage((int)stat.SetValue);
                 break;
             case StatType.AttackSpeed:
+                statHolder.AddToAttackSpeed(stat.SetValue);
                 break;
             default:
                 break;

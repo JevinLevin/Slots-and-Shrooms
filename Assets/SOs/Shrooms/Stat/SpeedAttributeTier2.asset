@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f62a7240615380541958e5f0fd578ea2, type: 3}
-  m_Name: StatShroom
-  m_EditorClassIdentifier: Assembly-CSharp::StatMushroomSO
-  attributeName: STAT
+  m_Name: SpeedAttributeTier2
+  m_EditorClassIdentifier: Assembly-CSharp::StatMushroomAttributesSO
+  attributeName: SpeedTier2
   type: 0
-  description: ast
-  selectionCost: 4
-  weight: 1
-  stat: 0
-  valueRange: {x: 1, y: 3}
+  description: Medium improvement to speed
+  selectionCost: 15
+  weight: 5
+  stat: 1
+  valueRange: {x: 1, y: 1.6}
