@@ -1179,22 +1179,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4013495933471432624, guid: 2e8698787cb945d4287da7aed23a2562, type: 3}
-      propertyPath: showTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013495933471432624, guid: 2e8698787cb945d4287da7aed23a2562, type: 3}
-      propertyPath: fadeInTime
-      value: 0.066
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013495933471432624, guid: 2e8698787cb945d4287da7aed23a2562, type: 3}
-      propertyPath: fadeOutEase
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013495933471432624, guid: 2e8698787cb945d4287da7aed23a2562, type: 3}
-      propertyPath: fadeOutTime
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 6058276885753181735, guid: 2e8698787cb945d4287da7aed23a2562, type: 3}
       propertyPath: m_Pivot.x
       value: 0

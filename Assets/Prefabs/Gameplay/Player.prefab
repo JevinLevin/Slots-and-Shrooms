@@ -370,7 +370,7 @@ MonoBehaviour:
     m_Bits: 1
   baseFOV: 68
   cameraPivot: {fileID: 5080432821137614041}
-  sensitivity: 5
+  sensitivity: 2.5
   verticalClamp: 80
   legsPivot: {fileID: 2464301782677686023}
   MovementSettings:

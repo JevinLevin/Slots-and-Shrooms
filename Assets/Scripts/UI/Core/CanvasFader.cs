@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using PrimeTween;
 using UnityEngine;
 using EditorAttributes;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class CanvasFader : MonoBehaviour
@@ -11,6 +12,7 @@ public class CanvasFader : MonoBehaviour
     [SerializeField, Range(0, 1)] public float minAlpha = 0.0f;
     [SerializeField, Range(0, 1)] public float maxAlpha = 1.0f;
     [SerializeField, Tooltip("How long to stay at max alpha during full play")] private float showTime = 2;
+    [SerializeField] private bool changeBlockRaycasts = false;
 
     [Header("Fade In")]
     [SerializeField] private float fadeInTime = 0.5f;
@@ -36,6 +38,8 @@ public class CanvasFader : MonoBehaviour
     private bool usingScaling => scaleIn || scaleOut;
     private Transform ScalingTransform => scaleTransform ? scaleTransform : canvasGroup.transform;
 
+    public Action OnFadeInStart;
+    public Action OnFadeInEnd;
     public Action OnFadeOutStart;
     public Action OnFadeOutEnd;
 
@@ -48,7 +52,9 @@ public class CanvasFader : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = minAlpha;
+        ToggleBlockRaycasts(false);
     }
+    
 
     private void OnDisable()
     {
@@ -113,16 +119,26 @@ public class CanvasFader : MonoBehaviour
 
     private Tween FadeIn()
     {
-        return Tween.Alpha(canvasGroup, maxAlpha, fadeInTime, fadeInEase);
+        OnFadeInStart?.Invoke();
+        ToggleBlockRaycasts(true);
+        return Tween.Alpha(canvasGroup, maxAlpha, fadeInTime, fadeInEase).OnComplete(
+            () =>
+            {
+            // Have to delay a frame or else IsFading condition isnt set to false
+                Tween.Delay(0.01f, () => OnFadeInEnd?.Invoke());
+            });
     }
 
     private Tween FadeOut()
     {
         OnFadeOutStart?.Invoke();
         return Tween.Alpha(canvasGroup, minAlpha, fadeOutTime, fadeOutEase).OnComplete(
-            // Have to delay a frame or else IsFading condition isnt set to false
-            () => Tween.Delay(0.01f, ()=> OnFadeOutEnd?.Invoke())
-            );
+            () =>
+            {
+                // Have to delay a frame or else IsFading condition isnt set to false
+                Tween.Delay(0.01f, () => OnFadeOutEnd?.Invoke());
+                ToggleBlockRaycasts(false);
+            });
     }
 
     private Tween ScaleIn()
@@ -145,4 +161,10 @@ public class CanvasFader : MonoBehaviour
     public void PlayFull() => Play(FadeType.Full);
     public void PlayIn() => Play(FadeType.In);
     public void PlayOut() => Play(FadeType.Out);
+
+    private void ToggleBlockRaycasts(bool value)
+    {
+        if(changeBlockRaycasts)
+            canvasGroup.blocksRaycasts = value;
+    }
 }
