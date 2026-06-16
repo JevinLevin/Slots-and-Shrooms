@@ -3,15 +3,19 @@ using PrimeTween;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private PlayerCamera playerCamera;
+    [SerializeField] private Transform recoilRoot;
     [SerializeField] private Gun gun;
+    [SerializeField] private GunSO currentGun;
+
+    [Header("Attributes")]
     [SerializeField] private float aimingFOV = 45f;
     [SerializeField] private LayerMask shotBlockingLayer;
     [SerializeField] private LayerMask shotHitLayer;
-    [SerializeField] private GunSO currentGun;
 
 
     private Tween shootDelayTween;
@@ -57,17 +61,19 @@ public class PlayerShooter : MonoBehaviour
             int shotsLeft = currentGun.bulletsPerShot;
             while (shotsLeft > 0)
             {
-                ShootBullet(currentGun.bulletSpreadAngleMax);
+                float spreadAngle = IsAiming ? currentGun.bulletAimingSpreadAngleMax : currentGun.bulletHipfireSpreadAngleMax;
+                ShootBullet(spreadAngle);
                 shotsLeft--;
             }
         }
+
+        shootDelayTween = Tween.Delay(currentGun.ShotDelay);
+        StartCoroutine(nameof(ApplyRecoil));
         
     }
 
     private void ShootBullet(float spreadAngleMax = 0)
     {
-        Debug.Log("shoot");
-
         Vector3 bulletDirection = playerCamera.transform.forward;
         if (spreadAngleMax > 0)
         {
@@ -91,6 +97,25 @@ public class PlayerShooter : MonoBehaviour
             // Check for blocking objects
             if (Physics.Linecast(bulletOrigin, bulletHit.point, shotBlockingLayer))
                 return;
+        }
+    }
+
+    private IEnumerator ApplyRecoil()
+    {
+        float recoilDuration = Mathf.Max(currentGun.recoilRecoveryTime, currentGun.ShotDelay);
+        float recoilTime = 0;
+
+        while(recoilTime < recoilDuration)
+        {
+            float t = recoilTime / recoilDuration;
+            float recoilPower = currentGun.recoilCurve.Evaluate(t) * currentGun.recoilVerticalAngle;
+
+            // Apply current recoil this frame to tranform
+            recoilRoot.localRotation = Quaternion.AngleAxis(recoilPower, Vector3.left);
+
+            recoilTime += Time.deltaTime;
+
+            yield return null;
         }
     }
 }
