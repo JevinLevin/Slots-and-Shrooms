@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Medium improvement to speed
   selectionCost: 15
   weight: 5
-  stat: 1
+  statType: 8
   valueRange: {x: 1, y: 1.6}

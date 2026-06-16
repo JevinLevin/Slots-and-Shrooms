@@ -47,9 +47,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     protected virtual void MoveTowardsPlayer() => agent.SetDestination(player.position);
     protected abstract void Attack(); 
 
-    public virtual void OnHit(int damage)
+    public virtual void OnHit(int damage, GameObject attacker)
     {
-        EventManager.Instance.OnHit(gameObject); 
+        EventManager.Instance.OnHit(gameObject, attacker); 
         health -= damage;
         if (health <= 0) Die(); 
     }

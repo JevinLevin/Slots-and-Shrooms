@@ -20,9 +20,9 @@ public class MushroomInventory : MonoBehaviour
         foreach(var passiveEffect in passiveMushroomAttributeSOs) passiveEffect.OnTick();
     }
 
-    private void OnHit(GameObject hitObj)
+    private void OnHit(GameObject hitObj, GameObject attacker)
     {
-        foreach(var onHitEffect in onHitAttributes) onHitEffect.OnHit(hitObj);
+        foreach(var onHitEffect in onHitAttributes) onHitEffect.OnHit(hitObj, attacker);
     }
 
     public void AddMushroom(Mushroom mushroom)

@@ -9,9 +9,9 @@ public class TestPlayer : MonoBehaviour, IHasHealth
         Destroy(gameObject);
     }
 
-    public void OnHit(int damage)
+    public void OnHit(int damage, GameObject attacker)
     {
-        EventManager.Instance.OnHit(gameObject); 
+        EventManager.Instance.OnHit(gameObject, attacker); 
         health -= damage;
         if(health <= 0) Die();
     }
