@@ -71,7 +71,7 @@ public class PlayerCamera : MonoBehaviour
             duration = defaultHeightAdjustTime;
         float current = heightOffsetRoot.transform.localPosition.y;
 
-        SetValueOverTime(value, current, duration, HeightAdjustEase, heightTween, newValue => SetHeightOffset(newValue));
+        SetValueOverTime(value, current, duration, HeightAdjustEase, heightTween, SetHeightOffset);
     }
 
     private void SetValueOverTime(float target, float current, float duration, Ease ease, Tween targetTween, Action<float> setValue)

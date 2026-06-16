@@ -20,6 +20,11 @@ public class SprintingState : InputMoveState
     {
     }
 
+    public override bool CanEnter()
+    {
+        return !stateMachine.PlayerShooter.IsAiming;
+    }
+
     public override void OnEnter()
     {
         base.OnEnter();
@@ -34,7 +39,7 @@ public class SprintingState : InputMoveState
     public override void CheckTransitions()
     {
         base.CheckTransitions();
-        if (!stateMachine.IsHoldingSprint || !stateMachine.IsMovingForwards)
+        if (!stateMachine.IsHoldingSprint || stateMachine.PlayerShooter.IsAiming)
         {
             SwitchState(stateMachine.WalkingState);
             return;

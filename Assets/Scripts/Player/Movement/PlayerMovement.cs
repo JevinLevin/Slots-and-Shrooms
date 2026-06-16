@@ -8,6 +8,8 @@ public class PlayerMovement : StateMachine
     [Header("References")]
     [SerializeField] private PlayerCamera playerCamera;
     public PlayerCamera GetCamera => playerCamera;
+    [SerializeField] private PlayerShooter playerShooter;
+    public PlayerShooter PlayerShooter => playerShooter;
 
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
@@ -42,6 +44,7 @@ public class PlayerMovement : StateMachine
     public bool IsGrounded => IsOnGround();
     public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
     public bool IsHoldingSprint => Input.GetKey(KeyCode.LeftShift);
+    public bool IsPressingSprint => Input.GetKey(KeyCode.LeftShift);
     public bool IsHoldingCrouch => Input.GetKey(KeyCode.LeftControl);
     public bool IsPressingCrouch => Input.GetKeyDown(KeyCode.LeftControl);
     public bool IsHoldingJump => Input.GetKey(KeyCode.Space);

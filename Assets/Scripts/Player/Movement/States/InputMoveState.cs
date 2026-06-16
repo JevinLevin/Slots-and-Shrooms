@@ -35,8 +35,7 @@ public abstract class InputMoveState : MovementState
         // Check for sprint
         if (stateMachine.CurrentState is not JumpingState 
             && stateMachine.IsGrounded
-            && stateMachine.IsHoldingSprint
-            && stateMachine.IsMovingForwards)
+            && stateMachine.IsHoldingSprint)
         {
             if(SwitchState(stateMachine.SprintingState))
                 return;
@@ -55,7 +54,8 @@ public abstract class InputMoveState : MovementState
 
     public override void OnEnter()
     {
-        if(stateMachine.CurrentState is not SprintingState
+        if(!stateMachine.PlayerShooter.IsAiming 
+           && stateMachine.CurrentState is not SprintingState
            && stateMachine.CurrentState is not JumpingState)
             stateMachine.GetCamera.ResetFOVOverTime();
     }
