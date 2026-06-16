@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public Vector3 foward;
-    public float speed;
-    public int damage;
+    private GameObject objFiredFrom; 
+    private Vector3 foward;
+    private float speed;
+    private int damage;
 
     [SerializeField] float decayTime = 5f; 
 
@@ -15,6 +16,7 @@ public class EnemyProjectile : MonoBehaviour
         if(decayTime <= 0) Destroy(gameObject);
     }
 
+    public void SetObjFiredFrom(GameObject objFiredFrom) { this.objFiredFrom = objFiredFrom; }
     public void SetFowardDirection(Vector3 direction) { foward = direction; }
     public void SetProjectileSpeed(float speed) { this.speed = speed; }
     public void SetProjectileDamadge(int damadge) { this.damage = damadge; }
@@ -24,7 +26,7 @@ public class EnemyProjectile : MonoBehaviour
         IHasHealth health = other.GetComponent<IHasHealth>();
         if (health != null && other.gameObject.CompareTag("Player"))
         {
-            health.OnHit(damage, gameObject);
+            health.OnHit(damage, objFiredFrom);
             Destroy(gameObject);
         }
     }

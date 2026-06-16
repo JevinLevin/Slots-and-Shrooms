@@ -9,6 +9,7 @@ public class ThornsOnHit : OnHitMushroomAttributeSO
     public override void OnHit(GameObject objHit, GameObject attacker)
     {
         if (!objHit.CompareTag("Player")) return;
+        Debug.Log(attacker.name); 
         IHasHealth health = attacker.GetComponent<IHasHealth>();
         health.OnHit(damage, attacker); 
     }

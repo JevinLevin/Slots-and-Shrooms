@@ -589,6 +589,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98605f78fa10f84438674232e56207f2, type: 2}
   - {fileID: 11400000, guid: 64e4385c9239eb54d9b1712ef073c405, type: 2}
   - {fileID: 11400000, guid: a66e95e25b564664da4600387bcb465a, type: 2}
+  - {fileID: 11400000, guid: 0400bcb28edab4e4a957c22f6eb71540, type: 2}
   rarityStats:
   - rarity: Common
     weight: 2
