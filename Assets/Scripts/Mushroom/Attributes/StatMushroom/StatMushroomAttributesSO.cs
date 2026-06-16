@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatMushroomAttributesSO : MushroomAttributeSO
 {
     [Header("Stat Settings")]
-    public StatType stat;
+    public StatType statType;
     public Vector2 valueRange;
 
     private float setValue; 

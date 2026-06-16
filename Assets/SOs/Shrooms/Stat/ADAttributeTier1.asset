@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Minor Improvement to Attack Damadge
   selectionCost: 5
   weight: 10
-  stat: 2
+  statType: 13
   valueRange: {x: 1, y: 5}

@@ -475,15 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd3ea8cd41fd2d4480fb895acbfa5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsHolder
-  playerBaseStats:
-    health: 0
-    speed: 0
-    attackDamage: 0
-    attackSpeed: 0
-  health: 0
-  speed: 0
-  attackDamage: 0
-  attackSpeed: 0
+  playerBaseStats: []
+  playerStats: []
 --- !u!1001 &881894374
 PrefabInstance:
   m_ObjectHideFlags: 0

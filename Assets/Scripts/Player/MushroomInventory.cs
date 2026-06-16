@@ -77,24 +77,7 @@ public class MushroomInventory : MonoBehaviour
 
     private void AddStatToPlayer(StatMushroomAttributesSO stat)
     {
-        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance; 
-
-        switch (stat.stat)
-        {
-            case StatType.Health:
-                statHolder.AddToHealth((int)stat.SetValue); 
-                break;
-            case StatType.Speed:
-                statHolder.AddToSpeed(stat.SetValue);
-                break;
-            case StatType.AttackDamage:
-                statHolder.AddToAttackDamage((int)stat.SetValue);
-                break;
-            case StatType.AttackSpeed:
-                statHolder.AddToAttackSpeed(stat.SetValue);
-                break;
-            default:
-                break;
-        }
+        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance;
+        statHolder.AddStat(stat); 
     }
 }

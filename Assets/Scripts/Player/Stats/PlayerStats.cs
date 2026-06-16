@@ -1,10 +1,8 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public struct PlayerStats
 {
-    public int health;
-    public float speed;
-    public float attackDamage;
-    public float attackSpeed;
+    public PlayerStat[] playerStats;
 }
