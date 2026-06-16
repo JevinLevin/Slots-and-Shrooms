@@ -25,7 +25,7 @@ public abstract class InputMoveState : MovementState
     public override void CheckTransitions()
     {
         // Check for jump
-        if (stateMachine.IsGrounded && Input.GetKey(KeyCode.Space))
+        if (stateMachine.IsGrounded && stateMachine.IsHoldingJump)
         {
             stateMachine.JumpingState.LastSpeedMultiplier = GetSpeedMultiplier();
             if(SwitchState(stateMachine.JumpingState))
@@ -35,7 +35,7 @@ public abstract class InputMoveState : MovementState
         // Check for sprint
         if (stateMachine.CurrentState is not JumpingState 
             && stateMachine.IsGrounded
-            && Input.GetKey(KeyCode.LeftShift)
+            && stateMachine.IsHoldingSprint
             && stateMachine.IsMovingForwards)
         {
             if(SwitchState(stateMachine.SprintingState))
@@ -46,7 +46,7 @@ public abstract class InputMoveState : MovementState
         if(stateMachine.CurrentState is not SprintingState
             && stateMachine.CurrentState is not SprintingState
             && stateMachine.IsGrounded 
-            && Input.GetKey(KeyCode.LeftControl))
+            && stateMachine.IsHoldingCrouch)
         {
             if (SwitchState(stateMachine.CrouchingState))
                 return;
@@ -55,6 +55,9 @@ public abstract class InputMoveState : MovementState
 
     public override void OnEnter()
     {
+        if(stateMachine.CurrentState is not SprintingState
+           && stateMachine.CurrentState is not JumpingState)
+            stateMachine.GetCamera.ResetFOVOverTime();
     }
 
     public override void OnExit()

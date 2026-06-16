@@ -41,6 +41,10 @@ public class PlayerMovement : StateMachine
 
     public bool IsGrounded => IsOnGround();
     public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
+    public bool IsHoldingSprint => Input.GetKey(KeyCode.LeftShift);
+    public bool IsHoldingCrouch => Input.GetKey(KeyCode.LeftControl);
+    public bool IsPressingCrouch => Input.GetKeyDown(KeyCode.LeftControl);
+    public bool IsHoldingJump => Input.GetKey(KeyCode.Space);
     public float BasePlayerWidth => playerWidth;
     public float BasePlayerHeight => playerHeight;
 
@@ -98,7 +102,7 @@ public class PlayerMovement : StateMachine
     {
         // Add gravity
         if (!cc.isGrounded)
-            currentVelocity += Vector3.down * gravity * Time.deltaTime;
+            currentVelocity += Vector3.down * (gravity * Time.deltaTime);
 
         Vector3 finalVelocity = currentVelocity + externalVelocity;
         MovePlayer(finalVelocity);

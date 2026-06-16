@@ -1,12 +1,14 @@
 using System;
+using PrimeTween;
 using UnityEngine;
 
 [Serializable]
 public class SlidingSettings : StateSettings
 {
     public float slideDuration = 2;
-    public Vector2 slideSpeedRange = new(5, 0.25f);
+    public Vector2 slideSpeedRange = new(0.25f, 2f);
     public AnimationCurve slideCurve;
+    public float reslideDelay = 0.25f;
 
 }
 public class SlidingState : MovementState
@@ -21,15 +23,16 @@ public class SlidingState : MovementState
     private Vector3 slideDirection;
     private float slideTimer;
     private float slideProgress;
+    private Tween reslideTween;
 
     public override bool CanEnter()
     {
-        return true;
+        return !reslideTween.isAlive;
     }
 
     public override void CheckTransitions()
     {
-        if(!Input.GetKey(KeyCode.LeftControl))
+        if(!stateMachine.IsHoldingCrouch)
         {
             SwitchState(stateMachine.WalkingState);
             return;
@@ -41,7 +44,7 @@ public class SlidingState : MovementState
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(stateMachine.IsHoldingJump)
         {
             stateMachine.JumpingState.LastSpeedMultiplier = stateMachine.SprintingSettings.speedMultiplier;
             SwitchState(stateMachine.JumpingState);
@@ -65,6 +68,7 @@ public class SlidingState : MovementState
     {
         stateMachine.GetCamera.SetHeightOffsetOverTime(0);
         stateMachine.ResetHeight();
+        reslideTween = Tween.Delay(Settings.reslideDelay);
     }
 
     public override void OnInit()
@@ -74,12 +78,13 @@ public class SlidingState : MovementState
     public override void OnTick()
     {
         float currentT = Settings.slideCurve.Evaluate(slideProgress);
-        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.y, Settings.slideSpeedRange.x, currentT);
+        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.x, Settings.slideSpeedRange.y, 1-currentT) * Time.deltaTime;
         Vector3 currentVelocity = slideDirection * currentSpeed;
         stateMachine.SetVelocity(currentVelocity);
 
         slideTimer += Time.deltaTime;
         slideProgress = slideTimer / Settings.slideDuration;
+
         Debug.Log(slideProgress);
         Debug.Log(currentT);
         Debug.Log(currentSpeed);

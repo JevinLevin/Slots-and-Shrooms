@@ -29,20 +29,19 @@ public class SprintingState : InputMoveState
     public override void OnExit()
     {
         base.OnExit();
-        stateMachine.GetCamera.ResetFOVOverTime();
     }
 
     public override void CheckTransitions()
     {
         base.CheckTransitions();
-        if (!Input.GetKey(KeyCode.LeftShift) || !stateMachine.IsMovingForwards)
+        if (!stateMachine.IsHoldingSprint || !stateMachine.IsMovingForwards)
         {
             SwitchState(stateMachine.WalkingState);
             return;
         }
 
         // Check for slide
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (stateMachine.IsPressingCrouch)
         {
             if (SwitchState(stateMachine.SlidingState))
                 return;

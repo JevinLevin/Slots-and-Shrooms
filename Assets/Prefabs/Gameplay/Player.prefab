@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerCamera: {fileID: 4060266593726686953}
-  gravity: 0.5
+  gravity: 0.25
   playerWidth: 0.35
   playerHeight: 2
   environmentLayer:
@@ -342,9 +342,10 @@ MonoBehaviour:
   WalkingSettings:
     speedMultiplier: 1
   JumpingSettings:
-    speedMultiplier: 0.5
-    jumpHeight: 0.1
+    speedMultiplier: 1
+    jumpHeight: 0.075
     groundingDelay: 0.1
+    rejumpDelay: 0.05
   SprintingSettings:
     speedMultiplier: 2
     fovOffset: 15
@@ -352,23 +353,23 @@ MonoBehaviour:
     speedMultiplier: 1
     heightOffset: -0.75
   SlidingSettings:
-    slideDuration: 2
-    slideSpeedRange: {x: 5, y: 0.25}
+    slideDuration: 1.5
+    slideSpeedRange: {x: 15, y: 3}
     slideCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        value: 1.0033798
+        inSlope: -0.09820853
+        outSlope: -0.09820853
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.13761468
       - serializedVersion: 3
         time: 1
-        value: 0.1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -378,6 +379,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    reslideDelay: 0.25
 --- !u!143 &2622318947003998142
 CharacterController:
   m_ObjectHideFlags: 0

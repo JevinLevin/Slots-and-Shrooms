@@ -921,22 +921,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2191283333182096976, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
-      propertyPath: SlidingSettings.slideSpeedRange.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191283333182096976, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
-      propertyPath: SlidingSettings.slideCurve.m_Curve.Array.data[0].inSlope
-      value: -2.5392857
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191283333182096976, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
-      propertyPath: SlidingSettings.slideCurve.m_Curve.Array.data[0].outSlope
-      value: -2.5392857
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191283333182096976, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
-      propertyPath: SlidingSettings.slideCurve.m_Curve.Array.data[0].outWeight
-      value: 0.06666667
-      objectReference: {fileID: 0}
     - target: {fileID: 5481134001095052596, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
