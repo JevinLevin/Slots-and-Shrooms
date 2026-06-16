@@ -1,39 +1,44 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
     public static readonly int IsAiming = Animator.StringToHash("IsAiming");
     public static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    public static readonly int IsSliding = Animator.StringToHash("IsSliding");
 
-    private Animator animator;
+    [SerializeField] private Animator handsAnimator;
+    [SerializeField] private Animator legsAnimator;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     public void ToggleAiming(bool value)
     {
-        animator.SetBool(IsAiming, value);
+        handsAnimator.SetBool(IsAiming, value);
     }
 
     public void ToggleWalking(bool value)
     {
-        animator.SetBool(IsWalking, value);
+        handsAnimator.SetBool(IsWalking, value);
+        legsAnimator.SetBool(IsWalking, value);
     }
 
     public void ToggleRunning(bool value)
     {
-        animator.SetBool(IsRunning, value);
+        handsAnimator.SetBool(IsRunning, value);
+        legsAnimator.SetBool(IsRunning, value);
+    }
+
+    public void ToggleSliding(bool value)
+    {
+        handsAnimator.SetBool(IsSliding, value);
+        legsAnimator.SetBool(IsSliding, value);
     }
 
     public void PlayShoot(bool aiming)
     {
         if(aiming)
-            animator.CrossFadeInFixedTime("Shoot", 0.1f);
+            handsAnimator.CrossFadeInFixedTime("Shoot", 0.1f);
         else
-            animator.CrossFadeInFixedTime("ShootHip", 0.1f);
+            handsAnimator.CrossFadeInFixedTime("ShootHip", 0.1f);
     }
 }

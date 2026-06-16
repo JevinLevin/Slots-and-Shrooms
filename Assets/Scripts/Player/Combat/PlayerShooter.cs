@@ -12,6 +12,7 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] private Transform recoilRoot;
     [SerializeField] private Gun gun;
     [SerializeField] private GunSO currentGun;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     [Header("Attributes")]
     [SerializeField] private float aimingFOV = 45f;
@@ -73,6 +74,7 @@ public class PlayerShooter : MonoBehaviour
         shootDelayTween = Tween.Delay(currentGun.ShotDelay);
         StartCoroutine(nameof(ApplyRecoil));
         playerAnimator.PlayShoot(IsAiming);
+        muzzleFlash.Play();
         
     }
 

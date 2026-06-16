@@ -56,6 +56,7 @@ public class SlidingState : MovementState
     {
         stateMachine.GetCamera.SetHeightOffsetOverTime(stateMachine.CrouchingSettings.heightOffset);
         stateMachine.SetHeight(stateMachine.BasePlayerHeight + stateMachine.CrouchingSettings.heightOffset);
+        stateMachine.PlayerAnimator.ToggleSliding(true);
 
         slideDirection = stateMachine.GetCamera.transform.forward;
         slideDirection.y = 0;
@@ -69,6 +70,7 @@ public class SlidingState : MovementState
         stateMachine.GetCamera.SetHeightOffsetOverTime(0);
         stateMachine.ResetHeight();
         reslideTween = Tween.Delay(Settings.reslideDelay);
+        stateMachine.PlayerAnimator.ToggleSliding(false);
     }
 
     public override void OnInit()
