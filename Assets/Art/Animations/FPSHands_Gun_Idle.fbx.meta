@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 433577282c01b084485450ad0b4cc59b
+guid: f7306aa2409284445b5db35ab10f8e1c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas
+    second: {fileID: 2100000, guid: a8e8d39f9f6717f428cfa9ff1cf51a2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas.001
+    second: {fileID: 2100000, guid: a8e8d39f9f6717f428cfa9ff1cf51a2a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -79,7 +89,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

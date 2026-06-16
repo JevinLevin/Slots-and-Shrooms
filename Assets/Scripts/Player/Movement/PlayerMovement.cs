@@ -10,6 +10,8 @@ public class PlayerMovement : StateMachine
     public PlayerCamera GetCamera => playerCamera;
     [SerializeField] private PlayerShooter playerShooter;
     public PlayerShooter PlayerShooter => playerShooter;
+    [SerializeField] private PlayerAnimator playerAnimator;
+    public PlayerAnimator PlayerAnimator => playerAnimator;
 
     [Header("Generic Settings")]
     [SerializeField] private float gravity;
@@ -24,7 +26,10 @@ public class PlayerMovement : StateMachine
     [SerializeField] private float verticalClamp = 80;
 
     [Header("States")]
+
     public MovementSettings MovementSettings;
+    public IdleState IdleState;
+    public IdleSettings IdleSettings;
     public WalkingState WalkingState;
     public WalkingSettings WalkingSettings;
     public JumpingState JumpingState;
@@ -42,7 +47,7 @@ public class PlayerMovement : StateMachine
     private Vector3 externalVelocity;
 
     public bool IsGrounded => IsOnGround();
-    public bool IsMovingForwards => (Input.GetAxisRaw("Vertical") > 0);
+    public bool IsMoving => Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0 || Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0;
     public bool IsHoldingSprint => Input.GetKey(KeyCode.LeftShift);
     public bool IsPressingSprint => Input.GetKey(KeyCode.LeftShift);
     public bool IsHoldingCrouch => Input.GetKey(KeyCode.LeftControl);
@@ -57,13 +62,14 @@ public class PlayerMovement : StateMachine
 
         cc = GetComponent<CharacterController>();
 
+        IdleState = new IdleState(this);
         WalkingState = new WalkingState(this);
         JumpingState = new JumpingState(this);
         SprintingState = new SprintingState(this);
         CrouchingState = new CrouchingState(this);
         SlidingState = new SlidingState(this);
 
-        currentState = WalkingState;
+        currentState = IdleState;
     }
 
     protected override void Start()

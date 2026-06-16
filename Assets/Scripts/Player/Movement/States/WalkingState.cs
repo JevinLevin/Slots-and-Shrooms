@@ -18,4 +18,27 @@ public class WalkingState : InputMoveState
     public WalkingState(StateMachine stateMachine) : base(stateMachine)
     {
     }
+
+    public override void CheckTransitions()
+    {
+        base.CheckTransitions();
+        // Check for idle
+        if (!stateMachine.IsMoving)
+        {
+            if (SwitchState(stateMachine.IdleState))
+                return;
+        }
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        stateMachine.PlayerAnimator.ToggleWalking(true);
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        stateMachine.PlayerAnimator.ToggleWalking(false);
+    }
 }

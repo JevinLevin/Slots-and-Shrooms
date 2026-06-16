@@ -29,11 +29,13 @@ public class SprintingState : InputMoveState
     {
         base.OnEnter();
         stateMachine.GetCamera.AdjustFOVOverTime(Settings.fovOffset);
+        stateMachine.PlayerAnimator.ToggleRunning(true);
     }
 
     public override void OnExit()
     {
         base.OnExit();
+        stateMachine.PlayerAnimator.ToggleRunning(false);
     }
 
     public override void CheckTransitions()

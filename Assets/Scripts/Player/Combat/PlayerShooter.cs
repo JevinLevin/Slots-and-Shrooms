@@ -8,6 +8,7 @@ using System.Collections;
 public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private PlayerCamera playerCamera;
+    [SerializeField] private PlayerAnimator playerAnimator;
     [SerializeField] private Transform recoilRoot;
     [SerializeField] private Gun gun;
     [SerializeField] private GunSO currentGun;
@@ -42,14 +43,16 @@ public class PlayerShooter : MonoBehaviour
     {
         IsAiming = true;
         playerCamera.SetFOVOverTime(aimingFOV, 0f);
+        playerAnimator.ToggleAiming(true);
     }
 
     private void StopAiming()
     {
         IsAiming = false;
         playerCamera.ResetFOVOverTime();
+        playerAnimator.ToggleAiming(false);
     }
-    
+
     private void Shoot()
     {
         if (currentGun.bulletsPerShot == 1)
@@ -69,6 +72,7 @@ public class PlayerShooter : MonoBehaviour
 
         shootDelayTween = Tween.Delay(currentGun.ShotDelay);
         StartCoroutine(nameof(ApplyRecoil));
+        playerAnimator.PlayShoot(IsAiming);
         
     }
 
