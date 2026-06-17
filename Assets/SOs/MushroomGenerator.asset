@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8110cdb93fc91f45902d6c99db621a6, type: 3}
   m_Name: MushroomGenerator
   m_EditorClassIdentifier: Assembly-CSharp::MushroomGeneratorSO
-  attributes: []
+  attributes:
+  - {fileID: 11400000, guid: 40cbbc84b4d87f44c9aba45af4d0a0dc, type: 2}
+  - {fileID: 11400000, guid: a66e95e25b564664da4600387bcb465a, type: 2}
+  - {fileID: 11400000, guid: 0400bcb28edab4e4a957c22f6eb71540, type: 2}
+  - {fileID: 11400000, guid: 210410987ed057642b4f32d8775332c1, type: 2}
+  - {fileID: 11400000, guid: 1503558ba754a074aa395f944a5b2a36, type: 2}
+  - {fileID: 11400000, guid: 8d7d934341afbde46a8a8c9152e81ee7, type: 2}
+  - {fileID: 11400000, guid: 98605f78fa10f84438674232e56207f2, type: 2}
+  - {fileID: 11400000, guid: 64e4385c9239eb54d9b1712ef073c405, type: 2}
+  - {fileID: 11400000, guid: e99f3f8c699c94349b26933e87b111a5, type: 2}
+  - {fileID: 11400000, guid: 36ff333c256bcff4ea1914170b653e05, type: 2}
+  - {fileID: 11400000, guid: 161c53811acf7eb4d851d1631298799d, type: 2}
+  - {fileID: 11400000, guid: 816f284f9dbc68c4b9be09072d234b94, type: 2}
   rarityStats: []
