@@ -11,7 +11,7 @@ public abstract class MushroomAttributeSO : ScriptableObject
     [SerializeField] private AttributeType type;
     public AttributeType Type => type;
 
-    [SerializeField, TextArea] private string description;
+    [SerializeField, TextArea] protected string description;
     public string GetDescription => description;
     [SerializeField] private int selectionCost; 
     public int SelectionCost => selectionCost;

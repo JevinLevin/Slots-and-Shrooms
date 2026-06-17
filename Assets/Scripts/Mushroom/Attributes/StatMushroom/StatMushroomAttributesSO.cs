@@ -13,6 +13,7 @@ public class StatMushroomAttributesSO : MushroomAttributeSO
     public override void OnSelected()
     {
         setValue = Random.Range(valueRange.x, valueRange.y);
+        description = $"add {Mathf.Round(setValue)}% to {statType}";
     }
 
     public override void OnTick()

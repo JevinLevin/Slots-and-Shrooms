@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatMushroomAttributesSO
   attributeName: SpeedTier2
   type: 0
-  description: Medium improvement to speed
-  selectionCost: 15
-  weight: 5
-  statType: 8
-  valueRange: {x: 1, y: 1.6}
+  description: add 7% to Speed
+  selectionCost: 5
+  weight: 2
+  isBuff: 1
+  statType: 0
+  valueRange: {x: 10, y: 15}

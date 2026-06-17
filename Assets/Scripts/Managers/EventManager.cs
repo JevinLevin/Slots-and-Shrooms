@@ -23,7 +23,9 @@ public class EventManager : MonoBehaviour
     #endregion
 
     public event Action<GameObject, GameObject> onHit;
+    public event Action<GameObject> onShoot; 
     public event Action onTick;
+    public event Action<PlayerStat> statsUpdated;
 
     public void OnHit(GameObject ObjHit, GameObject attacker)
     {
@@ -32,8 +34,19 @@ public class EventManager : MonoBehaviour
             onHit(ObjHit, attacker);
         }
     }
+    public void OnShoot(GameObject shooter)
+    {
+        if (onShoot != null)
+        {
+            onShoot(shooter);
+        }
+    }
     public void OnTick()
     {
         if (onTick != null) onTick();
+    }
+    public void StatsUpdated(PlayerStat stat)
+    {
+        if(statsUpdated != null) statsUpdated(stat);
     }
 }

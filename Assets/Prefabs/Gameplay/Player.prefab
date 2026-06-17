@@ -404,9 +404,9 @@ MonoBehaviour:
   sensitivity: 200
   verticalClamp: 80
   legsPivot: {fileID: 2464301782677686023}
-  walkingAudio: {fileID: 0}
-  jumpingAudio: {fileID: 0}
-  slidingAudio: {fileID: 0}
+  walkingAudio: {fileID: 8300000, guid: 30498139316120448ab9b6fa9fbb9677, type: 3}
+  jumpingAudio: {fileID: 8300000, guid: 29ca5d86e866636438fd7c25bab3695c, type: 3}
+  slidingAudio: {fileID: 8300000, guid: 791aadd786195c64abafd94718cd9a76, type: 3}
   MovementSettings:
     baseMoveSpeed: 5
     aimingSpeedMultiplier: 0.5
@@ -520,7 +520,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1403,7 +1403,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1937,7 +1937,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

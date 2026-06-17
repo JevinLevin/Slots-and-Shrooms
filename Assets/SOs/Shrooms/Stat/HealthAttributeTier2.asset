@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatMushroomAttributesSO
   attributeName: HealthTier2
   type: 0
-  description: Medium improvement to health
-  selectionCost: 15
+  description: 
+  selectionCost: 10
   weight: 5
-  statType: 0
-  valueRange: {x: 20, y: 35}
+  isBuff: 1
+  statType: 1
+  valueRange: {x: 15, y: 30}

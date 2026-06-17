@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 1
   description: Chance to fire lightning at an additional enemy OnHit. Lightning also
     applies OnHit
-  selectionCost: 5
+  selectionCost: 10
   weight: 10
   isBuff: 1
   radius: 30

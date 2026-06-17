@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f62a7240615380541958e5f0fd578ea2, type: 3}
-  m_Name: ASAttributeTier1
+  m_Name: SprintSpeed
   m_EditorClassIdentifier: Assembly-CSharp::StatMushroomAttributesSO
-  attributeName: ASTier1
+  attributeName: SprintSpeed
   type: 0
-  description: Minor Improvement to Attack Speed
+  description: 
   selectionCost: 5
-  weight: 10
-  statType: 0
-  valueRange: {x: 1, y: 2}
+  weight: 5
+  isBuff: 1
+  statType: 3
+  valueRange: {x: 10, y: 15}
