@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 3695643150813599455}
   - {fileID: 5757914891346950190}
   - {fileID: 7227352202482255581}
+  camera: {fileID: 5644678552010679003}
   slotsPerSecond: 10
   spinStartStopDelayRange: {x: 0.25, y: 1}
   spinStartStopNextDelayRange: {x: 0.4, y: 0.75}

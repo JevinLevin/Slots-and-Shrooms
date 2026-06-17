@@ -19,6 +19,8 @@ public class PlayerMovement : StateMachine
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private float baseFOV = 70;
+    [SerializeField] private bool disableSprinting;
+    [SerializeField] private bool disableJumping;
 
     [Header("Camera Settings")]
     [SerializeField] private Transform cameraPivot;
@@ -57,6 +59,8 @@ public class PlayerMovement : StateMachine
     public bool IsHoldingJump => Input.GetKey(KeyCode.Space);
     public float BasePlayerWidth => playerWidth;
     public float BasePlayerHeight => playerHeight;
+    public bool DisableSprinting => disableSprinting;
+    public bool DisableJumping => disableJumping;
 
     protected override void Awake()
     {

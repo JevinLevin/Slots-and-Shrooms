@@ -5,11 +5,13 @@ using PrimeTween;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using Unity.Cinemachine;
 
 public class SlotMachine : MonoBehaviour, IInteractable
 {
     
     [SerializeField] private SlotMachineDisc[] discs;
+    [SerializeField] private CinemachineCamera camera;
 
     [Header("Spinning")] 
     [Tooltip("How many slots to pass per second")]
@@ -44,11 +46,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
         {
             maxWeight += rarityStat.weight; 
         }
-    }
-
-    private void Start()
-    {
-        StartSpinning();
+        camera.enabled = false;
     }
 
     public void OnInteract(Interactor interactor)
@@ -111,6 +109,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     private void StartSpinning()
     {
+        camera.enabled = true;
+        camera.Priority = 1000;
+
         spinningDiscs = new();   
         foreach (var disc in discs)
         {

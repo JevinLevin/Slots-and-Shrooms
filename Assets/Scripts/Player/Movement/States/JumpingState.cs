@@ -31,7 +31,7 @@ public class JumpingState : InputMoveState
 
     public override bool CanEnter()
     {
-        return stateMachine.IsGrounded && !rejumpTween.isAlive;
+        return stateMachine.IsGrounded && !rejumpTween.isAlive && !stateMachine.DisableJumping;
     }
 
     public override void OnEnter()

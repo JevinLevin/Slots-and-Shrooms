@@ -394,7 +394,7 @@ MonoBehaviour:
   playerHeight: 2
   environmentLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   baseFOV: 68
   cameraPivot: {fileID: 5080432821137614041}
   sensitivity: 2.5
