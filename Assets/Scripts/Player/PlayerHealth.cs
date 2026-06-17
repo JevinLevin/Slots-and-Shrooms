@@ -28,11 +28,12 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnHit(float damage, GameObject attacker)
     {
-        throw new System.NotImplementedException();
+        health -= damage;
+        if (health < 0) Die(); 
     }
 }
