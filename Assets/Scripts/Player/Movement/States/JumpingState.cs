@@ -44,7 +44,11 @@ public class JumpingState : InputMoveState
 
         groundedTween = Tween.Delay(Settings.groundingDelay);
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
-        movementAudio.Stop();
+        movementAudio.volume = 0.2f;
+        movementAudio.pitch = 1f;
+        movementAudio.loop = false;
+        movementAudio.clip = stateMachine.JumpingAudio;
+        movementAudio.Play();
     }
 
     public override void OnExit()
@@ -52,6 +56,12 @@ public class JumpingState : InputMoveState
         base.OnExit();
 
         rejumpTween = Tween.Delay(Settings.rejumpDelay);
+
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.volume = 0.2f;
+        movementAudio.pitch = 1f;
+        movementAudio.clip = stateMachine.JumpingAudio;
+        movementAudio.Play();
     }
 
     public override void CheckTransitions()

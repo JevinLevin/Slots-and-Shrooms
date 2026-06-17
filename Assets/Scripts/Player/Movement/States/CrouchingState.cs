@@ -29,6 +29,7 @@ public class CrouchingState : InputMoveState
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
         movementAudio.pitch = 0.6f;
         movementAudio.volume = 0.1f;
+        movementAudio.loop = true;
         movementAudio.clip = stateMachine.WalkingAudio;
         movementAudio.Play();
     }

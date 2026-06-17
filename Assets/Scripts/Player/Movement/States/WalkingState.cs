@@ -37,7 +37,8 @@ public class WalkingState : InputMoveState
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
         movementAudio.volume = 0.1f; 
         movementAudio.pitch = 1f;
-        movementAudio.clip = stateMachine.WalkingAudio; 
+        movementAudio.clip = stateMachine.WalkingAudio;
+        movementAudio.loop = true;
         movementAudio.Play();
     }
 

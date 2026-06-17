@@ -33,6 +33,7 @@ public class SprintingState : InputMoveState
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
         movementAudio.pitch = 1.4f;
         movementAudio.volume = 0.1f;
+        movementAudio.loop = true;
         movementAudio.clip = stateMachine.WalkingAudio;
         movementAudio.Play();
     }

@@ -66,7 +66,8 @@ public class SlidingState : MovementState
 
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
         movementAudio.pitch = 1f;
-        movementAudio.volume = 0.15f; 
+        movementAudio.volume = 0.15f;
+        movementAudio.loop = true;
         movementAudio.clip = stateMachine.SLidingAudio;
         movementAudio.Play();
     }
