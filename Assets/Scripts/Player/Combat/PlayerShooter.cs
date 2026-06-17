@@ -85,7 +85,7 @@ public class PlayerShooter : MonoBehaviour
                 EventManager.Instance.OnShoot(gameObject);
             }
         }
-        else
+        else if(!currentGun.GunData.overheat)
         {
             StartReload();
         }

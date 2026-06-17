@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Gun : MonoBehaviour
 {
+    private static readonly int OverheatProgress1 = Shader.PropertyToID("_OverheatProgress");
+    
     [SerializeField] private PlayerCamera playerCamera;
     [SerializeField] private Transform recoilRoot;
     [SerializeField] private GunSO gunData;
@@ -14,21 +16,42 @@ public class Gun : MonoBehaviour
     [SerializeField] private LayerMask shotBlockingLayer;
     [SerializeField] private LayerMask shotHitLayer;
     [SerializeField] private GameObject cameraTarget;
-    
+    [SerializeField] private Material gunMaterial;
+     
 
     private Tween shootDelayTween;
     private int ammoRemaining;
+    private float overheatValue;
     
     public float GetCurrentWeaponDamage => GunData.baseDamage;
-    public bool CanShoot => !shootDelayTween.isAlive;
+    public bool CanShoot => !shootDelayTween.isAlive && !IsOverheated;
     public bool HasAmmo => gunData.magSize == -1 || ammoRemaining > 0;
     public int GetAmmoLeft => ammoRemaining;
+    public float OverheatProgress => overheatValue / gunData.overheatMax;
+    public bool IsOverheated { get; private set; }
     
     public static Action<int> OnGunAmmoChanged;
+    public static Action OnGunOverheatStart;
+    public static Action OnGunOverheatEnd;
+    public static Action<float> OnGunOverheatUpdate;
 
     private void Awake()
     {
         ammoRemaining = gunData.magSize;
+    }
+
+    private void Update()
+    {
+        if(gunData && gunData.overheat)
+            UpdateOverheat();
+    }
+
+    private void UpdateOverheat()
+    {
+        float drainValue = IsOverheated ? gunData.overheatedDrainPerSecond : gunData.overheatDrainPerSecond;
+        overheatValue = Mathf.Max(0, overheatValue - (drainValue * Time.deltaTime));
+        gunMaterial.SetFloat(OverheatProgress1, OverheatProgress);
+        OnGunOverheatUpdate?.Invoke(OverheatProgress);
     }
 
     public void ToggleGun(bool value)
@@ -57,8 +80,10 @@ public class Gun : MonoBehaviour
             }
         }
 
-        ammoRemaining--;
-        OnGunAmmoChanged?.Invoke(ammoRemaining);
+        if(!gunData.overheat)
+            AdjustAmmo(-1);
+        else
+            AddOverheat();
         muzzleFlash.Play();
         shootDelayTween = Tween.Delay(GunData.ShotDelay);
         StartCoroutine(nameof(ApplyRecoil));
@@ -71,6 +96,29 @@ public class Gun : MonoBehaviour
     {
         ammoRemaining += amount;
         OnGunAmmoChanged?.Invoke(ammoRemaining);
+    }
+
+    public void AddOverheat()
+    {
+        overheatValue += gunData.overheatPerShot;
+        if (OverheatProgress >= 1)
+        {
+            StartCoroutine(nameof(Overheated));
+        }
+    }
+
+    private IEnumerator Overheated()
+    {
+        IsOverheated = true;
+        OnGunOverheatStart?.Invoke();
+
+        while (overheatValue > 0)
+        {
+            yield return null;
+        }
+        
+        IsOverheated = false;
+        OnGunOverheatEnd?.Invoke();
     }
 
     private void ShootBullet(float spreadAngleMax = 0)

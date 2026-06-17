@@ -1390,6 +1390,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   cameraTarget: {fileID: 8436804605956134451}
+  gunMaterial: {fileID: 0}
 --- !u!82 &2261677970357602271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1830,7 +1831,7 @@ PrefabInstance:
     - target: {fileID: 3552748764180970189, guid: f7306aa2409284445b5db35ab10f8e1c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a8e8d39f9f6717f428cfa9ff1cf51a2a, type: 2}
+      objectReference: {fileID: 2100000, guid: c32c1399ae57a434f81fa2dd7edfbc02, type: 2}
     - target: {fileID: 8662617239381368188, guid: f7306aa2409284445b5db35ab10f8e1c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1924,6 +1925,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   cameraTarget: {fileID: 7783496791728365871}
+  gunMaterial: {fileID: 2100000, guid: c32c1399ae57a434f81fa2dd7edfbc02, type: 2}
 --- !u!82 &4955006988113626658
 AudioSource:
   m_ObjectHideFlags: 0

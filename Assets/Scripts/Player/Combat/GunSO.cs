@@ -1,3 +1,4 @@
+using EditorAttributes;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,10 +19,15 @@ public class GunSO : ScriptableObject
     [Tooltip("Bullets fired per second")]
     public float fireRate = 10;
     public int magSize = -1;
-    public float reloadStartDelay = 0.375f;
-    public float reloadDuration = 1f;
+    public bool overheat;
+    [ShowField(nameof(overheat))] public float overheatMax = 20;
+    [ShowField(nameof(overheat))] public float overheatPerShot = 2;
+    [ShowField(nameof(overheat))] public float overheatDrainPerSecond = 2;
+    [ShowField(nameof(overheat))] public float overheatedDrainPerSecond = 3;
+    [HideField(nameof(overheat))] public float reloadStartDelay = 0.375f;
+    [HideField(nameof(overheat))] public float reloadDuration = 1f;
     [Tooltip("What % of the reload loop animation to increase ammo count")]
-    [Range(0, 1)] public float reloadAddPercentage = 0.5f;
+    [HideField(nameof(overheat))][Range(0, 1)] public float reloadAddPercentage = 0.5f;
     public int bulletsPerShot = 1;
     public float bulletHipfireSpreadAngleMax = 0;
     public float bulletAimingSpreadAngleMax = 0;

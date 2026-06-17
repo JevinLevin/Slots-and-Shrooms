@@ -19,7 +19,14 @@ MonoBehaviour:
   baseDamage: 2
   fireRate: 3
   magSize: -1
+  overheat: 1
+  overheatMax: 20
+  overheatPerShot: 2.75
+  overheatDrainPerSecond: 2
+  overheatedDrainPerSecond: 3
+  reloadStartDelay: 0.375
   reloadDuration: 1
+  reloadAddPercentage: 0.5
   bulletsPerShot: 1
   bulletHipfireSpreadAngleMax: 0
   bulletAimingSpreadAngleMax: 0
