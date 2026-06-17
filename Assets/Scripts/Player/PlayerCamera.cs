@@ -6,7 +6,9 @@ using System;
 [RequireComponent(typeof(CinemachineCamera))]
 public class PlayerCamera : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] 
+    [SerializeField] private Transform cameraTargetPistol;
+    [SerializeField] private Transform cameraTargetShotgun;
     [SerializeField] private Transform heightOffsetRoot;
 
     [Header("Attributes")]
@@ -31,6 +33,21 @@ public class PlayerCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void LateUpdate()
+    {
+        if (cameraTargetPistol.gameObject.activeInHierarchy)
+        {
+            transform.position = cameraTargetPistol.position;
+            transform.rotation = cameraTargetPistol.rotation;
+        }
+        else if (cameraTargetShotgun.gameObject.activeInHierarchy)
+        {
+            transform.position = cameraTargetShotgun.position;
+            transform.rotation = cameraTargetShotgun.rotation;
+        }
+
     }
 
     public void SetFOV(float fov)
