@@ -133,10 +133,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         while (spinningDiscs.Count > 0)
         {
-            spinningDiscs[0].StartStopSpinning();
-
-            while (spinningDiscs[0].IsStopping)
-                yield return null;
+            var currentDisc = spinningDiscs[0];
+            
+            currentDisc.StartStopSpinning();
             
             spinningDiscs.RemoveAt(0);
             if (spinningDiscs.Count > 0)
@@ -144,7 +143,14 @@ public class SlotMachine : MonoBehaviour, IInteractable
                 float nextDelay = Random.Range(spinStartStopNextDelayRange.x, spinStartStopNextDelayRange.y);
                 yield return new WaitForSeconds(nextDelay);
             }
+            else
+            {
+                while (currentDisc.IsStopping)
+                    yield return null;
+            }
         } 
+        
+        print("all done");
 
     }
 }

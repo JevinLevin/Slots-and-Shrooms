@@ -23,6 +23,12 @@ public class SlotMachineDisc : MonoBehaviour
         IsSpinning = true;
         IsStopping = false;
         this.slotMachine = slotMachine;
+        
+        // Update textures on initiali slots
+        slots[0].NewTexture();
+        slots[1].NewTexture();
+        slots[2].NewTexture();
+        slots[^1].NewTexture();
 
         StartCoroutine(nameof(Spinning));
     }
@@ -90,10 +96,11 @@ public class SlotMachineDisc : MonoBehaviour
         
         totalSpinAngle += angle;
         currentSpinAngle += angle;
+        
 
         // Every 36 degrees spun, a new slot appears
         int slotsPassed = (int)(currentSpinAngle / DISC_SLOT_ANGLE);
-        if (slotsPassed > 1)
+        if (slotsPassed >= 1)
         {
             currentSpinAngle %= DISC_SLOT_ANGLE;
             for(int i = 0; i < slotsPassed; i++)
@@ -105,5 +112,11 @@ public class SlotMachineDisc : MonoBehaviour
 
     private void OnSlotPassed()
     {
+        int currentSlot = (int)(totalSpinAngle / DISC_SLOT_ANGLE);
+        int slotIndex = currentSlot % DISC_SLOT_COUNT;
+        
+        // Update texture 2 slots ahead
+        int updateIndex = (slotIndex + 2) % DISC_SLOT_COUNT;
+        slots[updateIndex].NewTexture();
     }
 }

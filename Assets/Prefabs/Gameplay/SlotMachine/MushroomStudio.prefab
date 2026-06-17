@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751901146994320890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9163294120069550894}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomBase3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884873232023768601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomBase5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3155910315484836383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4504951973391917686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomStudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5569899305526232580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomBase2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2478143868688402024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8865027182865341170}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2273981002887455004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomTop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5299102582511943980}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 794316270026552071}
   - component: {fileID: 4997347718740264003}
   - component: {fileID: 5130433651672031168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e1e99c680be14784fa4d06019398d876, type: 2}
   m_TargetDisplay: 0
@@ -466,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6866679419160909710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomTop4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6348571055395565107}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomBase1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3825949153375278240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomTop3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162909726224969064}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 815653392879853911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5679170866044178372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomBase4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6988805460339958169}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MushroomTop1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,6 +733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e176662be43ecdc418f6c80352ef0057, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -794,6 +798,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9ea851fbd562daf46b78b4238429510a, type: 3}
       propertyPath: m_Name
       value: Top_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ea851fbd562daf46b78b4238429510a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -857,6 +865,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top_02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853271364d8d8794cadabdedf508bbf8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -918,6 +930,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a1775eff69fde0443b76708c4cebbab0, type: 3}
       propertyPath: m_Name
       value: Base_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1775eff69fde0443b76708c4cebbab0, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -981,6 +997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top_03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29a4906fa87c6cc4a9b2307290bf1848, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1042,6 +1062,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3d5d729243338d24691fe3bbee655e95, type: 3}
       propertyPath: m_Name
       value: Base_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d5d729243338d24691fe3bbee655e95, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1105,6 +1129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base_03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51286bc1ee7b713439bd20e862053aeb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1167,6 +1195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base_05
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de234610841b51c4386489bd74dbbdcf, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1228,6 +1260,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1e6755fc5edf280438a168c29ecf57a9, type: 3}
       propertyPath: m_Name
       value: Base_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e6755fc5edf280438a168c29ecf57a9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
