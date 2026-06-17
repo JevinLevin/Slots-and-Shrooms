@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 1333390855096686577}
   - component: {fileID: 8498870979571049953}
   - component: {fileID: 1878199314333539775}
+  - component: {fileID: 1144544856592541041}
   m_Layer: 0
   m_Name: SlotDisc
   m_TagString: Untagged
@@ -155,6 +156,29 @@ MonoBehaviour:
   - {fileID: 4213796551713758125}
   - {fileID: 6230311177661003927}
   - {fileID: 4088818092279668662}
+  mushroomGenerator: {fileID: 11400000, guid: 35d31915e0f63cd46b62647edc36b2ff, type: 2}
+--- !u!64 &1144544856592541041
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491928960613415801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -22374297322508508, guid: dd446b064ed284c4eaae1cee3491a44c, type: 3}
 --- !u!1001 &1254883676671591163
 PrefabInstance:
   m_ObjectHideFlags: 0

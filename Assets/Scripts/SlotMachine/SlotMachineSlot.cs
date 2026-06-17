@@ -7,6 +7,8 @@ public class SlotMachineSlot : MonoBehaviour
     
     [SerializeField] private MeshRenderer mushroomRenderer;
 
+    public Texture2D CurrentTexture { get; private set; }
+
 
     private void Awake()
     {
@@ -15,7 +17,8 @@ public class SlotMachineSlot : MonoBehaviour
 
     public void NewTexture()
      {
-         mushroomRenderer.material.SetTexture(BaseMap, MushroomStudio.Instance.TakeSnapshot());
+        CurrentTexture = MushroomStudio.Instance.TakeSnapshot();
+         mushroomRenderer.material.SetTexture(BaseMap, CurrentTexture);
      }
 
 }

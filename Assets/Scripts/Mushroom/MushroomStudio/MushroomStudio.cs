@@ -50,13 +50,17 @@ public class MushroomStudio : MonoBehaviour
         return output;
     }
     
-    Texture2D ToTexture2D(RenderTexture rTex)
+    public static Texture2D ToTexture2D(RenderTexture rTex)
     {
         Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBAFloat, false);
         RenderTexture.active = rTex;
         tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
         tex.Apply();
         return tex;
+    }
+    public static Sprite ConvertToSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
 
     private void DisableAllMushrooms()

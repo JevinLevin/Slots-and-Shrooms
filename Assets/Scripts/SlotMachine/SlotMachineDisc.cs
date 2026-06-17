@@ -7,10 +7,21 @@ public class SlotMachineDisc : MonoBehaviour
     public const float DISC_SLOT_ANGLE = 360 / DISC_SLOT_COUNT;
     
     [SerializeField] private SlotMachineSlot[] slots;
+    [SerializeField] private MushroomGeneratorSO mushroomGenerator;
+
     public bool IsSpinning { get; private set; }
     public bool IsStopping { get; private set; }
+    public Mushroom GetMushroomData => mushroomData;
+
+    public int GetCurrentSlotIndex()
+    {
+        int currentSlot = (int)(totalSpinAngle / DISC_SLOT_ANGLE)+1;
+        return currentSlot % DISC_SLOT_COUNT;
+    }
 
     private SlotMachine slotMachine;
+    private SlotMachineSlot winningSlot;
+    private Mushroom mushroomData;
 
     private int targetSlot;
     private float totalSpinAngle;
@@ -20,6 +31,7 @@ public class SlotMachineDisc : MonoBehaviour
     
     public void StartSpinning(SlotMachine slotMachine)
     {
+
         IsSpinning = true;
         IsStopping = false;
         this.slotMachine = slotMachine;
@@ -89,6 +101,10 @@ public class SlotMachineDisc : MonoBehaviour
     {
         IsSpinning = false;
         IsStopping = false;
+
+        winningSlot = slots[GetCurrentSlotIndex()];
+        mushroomData = mushroomGenerator.GetMushroom();
+        mushroomData.SetTexture(winningSlot.CurrentTexture);
     }
 
     private void UpdateSlots(float angle)
@@ -112,11 +128,38 @@ public class SlotMachineDisc : MonoBehaviour
 
     private void OnSlotPassed()
     {
-        int currentSlot = (int)(totalSpinAngle / DISC_SLOT_ANGLE);
-        int slotIndex = currentSlot % DISC_SLOT_COUNT;
-        
+        int slotIndex = GetCurrentSlotIndex();
+
         // Update texture 2 slots ahead
         int updateIndex = (slotIndex + 2) % DISC_SLOT_COUNT;
         slots[updateIndex].NewTexture();
+    }
+
+    private void OnMouseEnter()
+    {
+        OnHover();
+    }
+
+    private void OnMouseExit()
+    {
+        OnUnhover();
+    }
+
+    private void OnHover()
+    {
+        if (!slotMachine || !slotMachine.Activated || IsSpinning)
+            return;
+        
+        slotMachine.OnHoverDisc(this);
+    }
+
+
+    private void OnUnhover()
+    {
+        if (!slotMachine || slotMachine.CurrentHoveredDisc != this)
+            return;
+    
+        slotMachine.OnUnhoverDisc(this);
+
     }
 }
