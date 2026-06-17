@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 2191283333182096976}
   - component: {fileID: 2622318947003998142}
   - component: {fileID: 7383764531927764682}
+  - component: {fileID: 6151429970191586912}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -396,6 +397,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   baseFOV: 68
+  disableSprinting: 0
+  disableJumping: 0
   cameraPivot: {fileID: 5080432821137614041}
   sensitivity: 2.5
   verticalClamp: 80
@@ -484,6 +487,22 @@ MonoBehaviour:
   pistolAnimator: {fileID: 8927083862766613823}
   shotgunAnimator: {fileID: 5781896466634184755}
   legsAnimator: {fileID: 8465235759582101329}
+--- !u!114 &6151429970191586912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132389690728269984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3f2cfe336774846a11a5c33a6b3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  interactDist: 5
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8199245073456908854
 GameObject:
   m_ObjectHideFlags: 0

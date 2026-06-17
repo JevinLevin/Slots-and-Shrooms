@@ -12,6 +12,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
     
     [SerializeField] private SlotMachineDisc[] discs;
     [SerializeField] private CinemachineCamera camera;
+    [SerializeField] private Renderer mainSlotMachineRenderer;
+    [SerializeField] private Renderer handleRenderer;
 
     [Header("Spinning")] 
     [Tooltip("How many slots to pass per second")]
@@ -29,7 +31,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
     
     [SerializeField] private List<MushroomAttributeSO> attributes;
     [SerializeField] private List<MushroomRarityStats> rarityStats;
-    
+
+    private bool activated;
     private Vector2 rarityRange;
     private int maxWeight = 0;
     private List<SlotMachineDisc> spinningDiscs;
@@ -46,21 +49,45 @@ public class SlotMachine : MonoBehaviour, IInteractable
         {
             maxWeight += rarityStat.weight; 
         }
+        Deactivate();
+    }
+
+    private void Start()
+    {
+        Activate();
+    }
+
+    private void Activate()
+    {
+        activated = true;
+    }
+
+    private void Deactivate()
+    {
+        activated = false;
         camera.enabled = false;
     }
 
     public void OnInteract(Interactor interactor)
     {
-        Debug.Log("HERE");
+        if (!activated)
+            return;
 
-        MushroomRarityStats pickedRarity = new MushroomRarityStats(); 
+        StartSpinning();
+
+        // interactor.GetComponent<MushroomInventory>().AddMushroom(GetRandomMushroomType());
+    }
+
+    private Mushroom GetRandomMushroomType()
+    {
+        MushroomRarityStats pickedRarity = new MushroomRarityStats();
         int rarityRoll = Random.Range(0, maxWeight);
-        int runningTotal = 0; 
+        int runningTotal = 0;
 
-        foreach(MushroomRarityStats rarityStat in rarityStats)
+        foreach (MushroomRarityStats rarityStat in rarityStats)
         {
-            runningTotal += rarityStat.weight; 
-            if(runningTotal >= rarityRoll)
+            runningTotal += rarityStat.weight;
+            if (runningTotal >= rarityRoll)
             {
                 pickedRarity = rarityStat;
                 break;
@@ -71,40 +98,39 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         int points = pickedRarity.points;
         int maxAttributesWeight = 0;
-        foreach(MushroomAttributeSO attribute in attributes)
+        foreach (MushroomAttributeSO attribute in attributes)
         {
-            maxAttributesWeight += attribute.Weight; 
+            maxAttributesWeight += attribute.Weight;
         }
 
-        int dam = 0; 
+        int dam = 0;
         bool pointsSpent = false;
         while (!pointsSpent)
         {
             int roll = Random.Range(0, maxAttributesWeight);
-            int attributeRunningTotal = 0; 
+            int attributeRunningTotal = 0;
             foreach (MushroomAttributeSO attribute in attributes)
             {
-                attributeRunningTotal += attribute.Weight; 
-                if(attributeRunningTotal >= roll)
+                attributeRunningTotal += attribute.Weight;
+                if (attributeRunningTotal >= roll)
                 {
                     points -= attribute.SelectionCost;
-                    if(points <= 0) pointsSpent = true;
+                    if (points <= 0) pointsSpent = true;
 
                     attribute.OnSelected();
                     mushroomAttributes.Add(attribute);
-                    break; 
+                    break;
                 }
             }
             dam++;
-            if(dam > 10)
+            if (dam > 10)
             {
                 Debug.Log("DAMED");
                 break;
             }
         }
 
-        Mushroom mushroom = new Mushroom(mushroomAttributes);
-        interactor.GetComponent<MushroomInventory>().AddMushroom(mushroom);
+        return new Mushroom(mushroomAttributes);
     }
 
     private void StartSpinning()
@@ -149,9 +175,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
                 while (currentDisc.IsStopping)
                     yield return null;
             }
-        } 
-        
-        print("all done");
+        }
+
+        Deactivate();
 
     }
 }
