@@ -10,7 +10,7 @@ public class SlotMachineDisc : MonoBehaviour
     public bool IsSpinning { get; private set; }
     public bool IsStopping { get; private set; }
 
-    private SlotMachine slotMachine;
+    private SlotMachineStorage slotMachine;
 
     private int targetSlot;
     private float totalSpinAngle;
@@ -18,7 +18,7 @@ public class SlotMachineDisc : MonoBehaviour
     private float targetSpinAngle;
     private int slotsTillStop;
     
-    public void StartSpinning(SlotMachine slotMachine)
+    public void StartSpinning(SlotMachineStorage slotMachine)
     {
         IsSpinning = true;
         IsStopping = false;
