@@ -2,17 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomInventory : MonoBehaviour
+[CreateAssetMenu(fileName = "MushroomInventory", menuName = "MushroomInventory")]
+public class MushroomInventorySO : ScriptableObject
 {
+    [SerializeField] private PlayerStatsHolderSO playerStats;
+
     private List<Mushroom> mushroomList = new List<Mushroom>();
     private List<OnHitMushroomAttributeSO> onHitAttributes = new List<OnHitMushroomAttributeSO>();
     private List<StatMushroomAttributesSO> statMushroomSOs = new List<StatMushroomAttributesSO>();
     private List<PassiveMushroomAttributeSO> passiveMushroomAttributeSOs = new List<PassiveMushroomAttributeSO>();
 
-    private void Awake()
+    public void Initialise()
     {
         EventManager.Instance.onHit += OnHit;
         EventManager.Instance.onTick += OnTick;
+    }
+    public void Deinitialise()
+    {
+        EventManager.Instance.onHit -= OnHit;
+        EventManager.Instance.onTick -= OnTick;
     }
 
     private void OnTick()
@@ -77,7 +85,6 @@ public class MushroomInventory : MonoBehaviour
 
     private void AddStatToPlayer(StatMushroomAttributesSO stat)
     {
-        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance;
-        statHolder.AddStat(stat); 
+        playerStats.AddStat(stat); 
     }
 }

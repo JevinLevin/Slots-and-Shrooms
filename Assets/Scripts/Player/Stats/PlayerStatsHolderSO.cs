@@ -2,31 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerStatsHolder : MonoBehaviour
+[CreateAssetMenu(fileName = "PlayerStats", menuName = "PlayerStats")]
+public class PlayerStatsHolderSO : ScriptableObject
 {
-    #region Singleton
-    public static PlayerStatsHolder Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            Instance = this;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
-    #endregion
 
     [SerializeField] private PlayerStat[] playerBaseStats;
     public PlayerStat[] PlayerBaseStats => playerBaseStats; 
     private List<PlayerStat> playerStats;
 
-    private void Start()
+    public void Initialise()
     {
         playerStats = playerBaseStats.Select
             (x => new PlayerStat
