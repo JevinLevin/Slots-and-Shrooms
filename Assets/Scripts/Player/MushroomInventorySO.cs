@@ -8,7 +8,7 @@ public class MushroomInventorySO : ScriptableObject
     [SerializeField] private PlayerStatsHolderSO playerStats;
 
     private List<Mushroom> mushroomList = new List<Mushroom>();
-    private List<OnHitMushroomAttributeSO> onHitAttributes = new List<OnHitMushroomAttributeSO>();
+    [SerializeField] private List<OnHitMushroomAttributeSO> onHitAttributes = new List<OnHitMushroomAttributeSO>();
     private List<StatMushroomAttributesSO> statMushroomSOs = new List<StatMushroomAttributesSO>();
     private List<PassiveMushroomAttributeSO> passiveMushroomAttributeSOs = new List<PassiveMushroomAttributeSO>();
 
@@ -33,7 +33,7 @@ public class MushroomInventorySO : ScriptableObject
     }
 
     private void OnHit(GameObject hitObj, GameObject attacker)
-    {
+    { 
         foreach(var onHitEffect in onHitAttributes) onHitEffect.OnHit(hitObj, attacker);
     }
 
