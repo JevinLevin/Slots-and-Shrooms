@@ -15,6 +15,7 @@ MonoBehaviour:
   attributeName: ThornsAttributeTier1
   type: 1
   description: Enemies that hit you take damage
-  selectionCost: 3
+  selectionCost: 10
   weight: 15
+  isBuff: 1
   damage: 1

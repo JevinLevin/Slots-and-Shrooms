@@ -15,7 +15,7 @@ MonoBehaviour:
   attributeName: KnockbackTier1
   type: 1
   description: Knocks hit enemy backwards
-  selectionCost: 5
+  selectionCost: 10
   weight: 20
   isBuff: 1
   strength: 5

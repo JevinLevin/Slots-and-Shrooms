@@ -15,7 +15,7 @@ MonoBehaviour:
   attributeName: TowageTier1
   type: 1
   description: Pulls enemies towards you OnHit
-  selectionCost: 5
+  selectionCost: 10
   weight: 10
   isBuff: 1
   strength: 3
