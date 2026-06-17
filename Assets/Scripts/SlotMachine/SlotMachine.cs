@@ -37,8 +37,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
     
     public bool IsSpinning { get; private set; }
     public bool Activated { get; private set; }
-    private Vector2 rarityRange;
-    private int maxWeight = 0;
+    public bool IsChoosing { get; private set; }
+    public bool IsReplacing { get; private set; }
     private List<SlotMachineDisc> spinningDiscs;
     private uint originalLayer;
     public SlotMachineDisc CurrentHoveredDisc { get; private set; }
@@ -70,11 +70,13 @@ public class SlotMachine : MonoBehaviour, IInteractable
         OnSlotMachineActivate?.Invoke();
         Activated = true;
         ToggleOutline(true);
+        foreach (var disc in discs)
+            disc.ResetDisc();
     }
 
     private void Deactivate()
     {
-        OnSlotMachineDeactivate?.Invoke();
+        Tween.Delay(0.2f, () => OnSlotMachineDeactivate?.Invoke());
         Activated = false;
         camera.enabled = false;
         GameManager.Instance.ToggleCursor(false);
@@ -161,9 +163,12 @@ public class SlotMachine : MonoBehaviour, IInteractable
         OnSlotMachineStopSpinning?.Invoke();
 
         IsSpinning = false;
+        IsChoosing = true;
 
         //Deactivate();
     }
+
+
 
     public void OnHoverDisc(SlotMachineDisc disc)
     {
@@ -176,6 +181,26 @@ public class SlotMachine : MonoBehaviour, IInteractable
             return;
         CurrentHoveredDisc = null;
         mushroomInfoUI.HideMushroomInfo();
+    }
+    public void OnSelectDisc(SlotMachineDisc slotMachineDisc)
+    {
+        StartReplacing();
+    }
+
+    private void StartReplacing()
+    {
+        IsChoosing = false;
+        IsReplacing = true;
+        InventoryUI.Instance.TryReplace(CurrentHoveredDisc.GetMushroomData, StopReplacing);
+    }
+
+    private void StopReplacing()
+    {
+        IsReplacing = false;
+        Deactivate();
+
+        // Test repeating it
+        Tween.Delay(1, Activate);
     }
 }
  

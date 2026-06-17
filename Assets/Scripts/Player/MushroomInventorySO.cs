@@ -12,6 +12,10 @@ public class MushroomInventorySO : ScriptableObject
     private List<StatMushroomAttributesSO> statMushroomSOs = new List<StatMushroomAttributesSO>();
     private List<PassiveMushroomAttributeSO> passiveMushroomAttributeSOs = new List<PassiveMushroomAttributeSO>();
 
+    public List<Mushroom> GetMushrooms => mushroomList;
+    public Action<Mushroom> OnMushroomAdded;
+    public Action<Mushroom> OnMushroomRemoved;
+
     public void Initialise()
     {
         EventManager.Instance.onHit += OnHit;
@@ -37,6 +41,7 @@ public class MushroomInventorySO : ScriptableObject
     {
         mushroomList.Add(mushroom);
         UnpackMushRoom(mushroom);
+        OnMushroomAdded?.Invoke(mushroom);
     }
 
     public void RemoveMushroom(int index)
@@ -59,6 +64,7 @@ public class MushroomInventorySO : ScriptableObject
             }
         }
         mushroomList.Remove(mushroomList[index]);
+        OnMushroomRemoved?.Invoke(mushroomList[index]);
     }
 
     private void UnpackMushRoom(Mushroom mushroom)

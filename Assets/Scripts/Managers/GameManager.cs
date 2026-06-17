@@ -73,13 +73,13 @@ public class GameManager : MonoBehaviour
     private void SetCursor()
     {
         Cursor.visible = cursorState;
-        Cursor.lockState = cursorState ? CursorLockMode.None : CursorLockMode.Confined;
+        Cursor.lockState = cursorState ? CursorLockMode.None : CursorLockMode.Locked;
     }
     
     private void ForceSetCursor(bool value)
     {
         Cursor.visible = value;
-        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Confined;
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void StartLoadGame()

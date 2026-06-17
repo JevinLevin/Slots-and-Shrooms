@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -32,7 +33,17 @@ public class SlotMachineDisc : MonoBehaviour
     private float currentSpinAngle;
     private float targetSpinAngle;
     private int slotsTillStop;
-    
+
+    public void ResetDisc()
+    {
+        transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+        targetSlot = 0;
+        totalSpinAngle = 0;
+        currentSpinAngle = 0;
+        targetSpinAngle = 0;
+        slotsTillStop = 0;
+    }
+
     public void StartSpinning(SlotMachine slotMachine)
     {
 
@@ -100,7 +111,7 @@ public class SlotMachineDisc : MonoBehaviour
 
         targetSpinAngle = totalSpinAngle + remainingSpinAngle;
     }
-    
+
     public void StopSpinning()
     {
         IsSpinning = false;
@@ -158,7 +169,7 @@ public class SlotMachineDisc : MonoBehaviour
 
     private void OnHover()
     {
-        if (!slotMachine || !slotMachine.Activated || IsSpinning)
+        if (!slotMachine || !slotMachine.Activated || IsSpinning || slotMachine.IsReplacing || !slotMachine.IsChoosing)
             return;
         
         outline.SetOutline(true, GetOutlineColor);
@@ -173,12 +184,32 @@ public class SlotMachineDisc : MonoBehaviour
 
     private void OnUnhover()
     {
-        if (!slotMachine || slotMachine.CurrentHoveredDisc != this)
+        if (!slotMachine || slotMachine.CurrentHoveredDisc != this || slotMachine.IsReplacing || !slotMachine.IsChoosing)
             return;
 
+        Unhover();
+
+    }
+
+    private void Unhover()
+    {
         outline.SetOutline(false);
 
         slotMachine.OnUnhoverDisc(this);
+    }
 
+    private void OnMouseDown()
+    {
+        OnSelect();
+    }
+
+    private void OnSelect()
+    {
+        if (!slotMachine || slotMachine.CurrentHoveredDisc != this || slotMachine.IsReplacing)
+            return;
+
+        slotMachine.OnSelectDisc(this);
+
+        Unhover();
     }
 }
