@@ -50,8 +50,11 @@ public class MushroomInfoUI : MonoBehaviour
         activeTexts.Add(newText);
     }
 
-    public void HideMushroomInfo()
+    public void HideMushroomInfo(bool instant = false)
     {
-        canvasFader.PlayOut();
+        if(!instant)
+            canvasFader.PlayOut();
+        else
+            canvasFader.PlayInstant(CanvasFader.FadeType.Out);
     }
 }

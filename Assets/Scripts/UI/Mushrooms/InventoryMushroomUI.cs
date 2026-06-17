@@ -37,7 +37,10 @@ public class InventoryMushroomUI : MonoBehaviour, IPointerEnterHandler, IPointer
         hovering = true;
 
         outline.enabled = true;
-        replaceText.enabled = true;
+        if(button.enabled)
+            replaceText.enabled = true;
+        if(mushroomData != null)
+            inventoryUI.ShowInfo(mushroomData);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -49,6 +52,8 @@ public class InventoryMushroomUI : MonoBehaviour, IPointerEnterHandler, IPointer
 
         outline.enabled = false;
         replaceText.enabled = false;
+        if(mushroomData != null)
+            inventoryUI.HideInfo();
     }
 
     public void Refresh()

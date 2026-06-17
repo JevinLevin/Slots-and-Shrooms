@@ -4,6 +4,7 @@ using System;
 
 public class InventoryUI : MonoBehaviour
 {
+    [SerializeField] private MushroomInfoUI mushroomInfoUI;
     [SerializeField] private Popup popup;
     [SerializeField] private MushroomInventorySO mushroomInventory;
     [SerializeField] private InventoryMushroomUI inventoryMushroomPrefab;
@@ -15,6 +16,9 @@ public class InventoryUI : MonoBehaviour
     private bool replacing;
     private Mushroom replacingMushroom;
     private Action onReplaceEndCallback;
+
+    private bool PressingInventoryButton => Input.GetKeyDown(KeyCode.I);
+    private bool PressingEscButton => Input.GetKeyDown(KeyCode.Escape);
 
     #region Singleton
     public static InventoryUI Instance { get; private set; }
@@ -36,6 +40,14 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         Initialise();
+    }
+
+    private void Update()
+    {
+        if(!popup.IsDisplaying && PressingInventoryButton)
+            popup.Display();
+        else if(popup.IsDisplaying && (PressingInventoryButton || PressingEscButton) && !replacing)
+            popup.Hide();
     }
 
     private void OnEnable()
@@ -141,5 +153,15 @@ public class InventoryUI : MonoBehaviour
         RemoveMushroom(mushroomData);
         AddMushroom(replacingMushroom);
         EndReplace();
+    }
+
+    public void ShowInfo(Mushroom mushroomData)
+    {
+        mushroomInfoUI.ShowMushroomInfo(mushroomData);
+    }
+
+    public void HideInfo()
+    {
+        mushroomInfoUI.HideMushroomInfo();
     }
 }

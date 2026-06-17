@@ -13,6 +13,7 @@ public class CanvasFader : MonoBehaviour
     [SerializeField, Range(0, 1)] public float maxAlpha = 1.0f;
     [SerializeField, Tooltip("How long to stay at max alpha during full play")] private float showTime = 2;
     [SerializeField] private bool changeBlockRaycasts = false;
+    [SerializeField] private bool ignoreTimeScale = true;
 
     [Header("Fade In")]
     [SerializeField] private float fadeInTime = 0.5f;
@@ -74,7 +75,7 @@ public class CanvasFader : MonoBehaviour
         if (fadeSequence.isAlive)
             fadeSequence.Stop();
 
-        fadeSequence = Sequence.Create();
+        fadeSequence = Sequence.Create(1, CycleMode.Restart, Ease.Linear, ignoreTimeScale);
 
         if (fadeType is FadeType.Full or FadeType.In)
         {

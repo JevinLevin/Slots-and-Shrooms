@@ -108,8 +108,8 @@ public class PlayerMovement : StateMachine
 
     private void ApplyRotation()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
         cameraRotation.x += mouseX * sensitivity;
         cameraRotation.y += mouseY * sensitivity;
         cameraRotation.y = Mathf.Clamp(cameraRotation.y, -verticalClamp, verticalClamp);

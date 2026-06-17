@@ -401,7 +401,7 @@ MonoBehaviour:
   disableSprinting: 0
   disableJumping: 0
   cameraPivot: {fileID: 5080432821137614041}
-  sensitivity: 2.5
+  sensitivity: 200
   verticalClamp: 80
   legsPivot: {fileID: 2464301782677686023}
   walkingAudio: {fileID: 0}

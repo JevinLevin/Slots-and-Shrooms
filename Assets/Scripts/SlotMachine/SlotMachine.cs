@@ -192,6 +192,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
         IsChoosing = false;
         IsReplacing = true;
         InventoryUI.Instance.TryReplace(CurrentHoveredDisc.GetMushroomData, StopReplacing);
+        mushroomInfoUI.HideMushroomInfo(true);
     }
 
     private void StopReplacing()

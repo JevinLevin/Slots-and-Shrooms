@@ -70,8 +70,8 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0.5019608, b: 0.8901961, a: 1}
   slotsPerSecond: 10
   spinStartStopDelayRange: {x: 0.25, y: 1}
-  spinStartStopNextDelayRange: {x: 0.4, y: 0.75}
-  spinStopDelayRange: {x: 4, y: 8}
+  spinStartStopNextDelayRange: {x: 0.2, y: 0.375}
+  spinStopDelayRange: {x: 4, y: 7}
   spinStopCurve:
     serializedVersion: 2
     m_Curve:
