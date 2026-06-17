@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ee1f8c47014994d9e2a88759b93f65, type: 3}
   m_Name: MushroomInventory
   m_EditorClassIdentifier: Assembly-CSharp::MushroomInventorySO
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}

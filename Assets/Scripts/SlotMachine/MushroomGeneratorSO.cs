@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using EditorAttributes;
+using System.Linq;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "MushroomGenerator", menuName = "MushroomGenerator")]
 public class MushroomGeneratorSO : ScriptableObject 
 {
-    [SerializeField] private List<MushroomAttributeSO> attributes;
+    [SerializeField, ReadOnly] private MushroomAttributeSO[] attributes;
     [SerializeField] private List<MushroomRarityStats> rarityStats;
     private Vector2 rarityRange;
     int maxWeight = 0;
@@ -75,4 +81,18 @@ public class MushroomGeneratorSO : ScriptableObject
         Mushroom mushroom = new Mushroom(mushroomAttributes);
         return mushroom;
     }
+
+#if UNITY_EDITOR
+
+    [Button]
+    private void Editor_StoreAllAttribute()
+    {
+        //https://stackoverflow.com/questions/29526625/how-to-find-all-assets-of-a-type
+        attributes = AssetDatabase
+            .FindAssets($"t:{typeof(MushroomAttributeSO).Name}")
+            .Select(AssetDatabase.GUIDToAssetPath)
+            .Select(AssetDatabase.LoadAssetAtPath<MushroomAttributeSO>)
+            .ToArray();
+    }
+#endif
 }

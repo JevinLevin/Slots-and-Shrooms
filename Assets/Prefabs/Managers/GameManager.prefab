@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   transitionCanvas: {fileID: 6834094864982388637}
   gameSceneName: Ingame
+  playerStats: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
+  mushroomGenerator: {fileID: 11400000, guid: 35d31915e0f63cd46b62647edc36b2ff, type: 2}
+  mushroomInventory: {fileID: 11400000, guid: a7e461eedc5eee54a895d20c8dea7cd1, type: 2}
 --- !u!1 &5245630013231465460
 GameObject:
   m_ObjectHideFlags: 0
