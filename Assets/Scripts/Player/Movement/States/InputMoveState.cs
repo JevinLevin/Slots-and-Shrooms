@@ -44,7 +44,6 @@ public abstract class InputMoveState : MovementState
 
         // Check for crouch
         if(stateMachine.CurrentState is not SprintingState
-            && stateMachine.CurrentState is not SprintingState
             && stateMachine.IsGrounded 
             && stateMachine.IsHoldingCrouch)
         {

@@ -23,6 +23,7 @@ public class IdleState : InputMoveState
 
     public override void CheckTransitions()
     {
+        base.CheckTransitions();
         if (stateMachine.IsMoving)
             SwitchState(stateMachine.WalkingState);
     }
