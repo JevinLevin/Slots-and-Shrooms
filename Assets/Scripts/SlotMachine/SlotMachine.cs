@@ -57,11 +57,11 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private void Awake()
     {
         originalLayer = mainSlotMachineRenderer.renderingLayerMask;
-        Deactivate();
     }
 
     private void Start()
     {
+        Deactivate();
         Activate();
     }
 

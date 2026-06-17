@@ -52,17 +52,17 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable()
     {
-        mushroomInventory.OnMushroomAdded += AddMushroom;
-        mushroomInventory.OnMushroomRemoved += RemoveMushroom;
+        mushroomInventory.OnMushroomAdded += AddMushroomUI;
+        mushroomInventory.OnMushroomRemoved += RemoveMushroomUI;
     }
 
     private void OnDisable()
     {
-        mushroomInventory.OnMushroomAdded -= AddMushroom;
-        mushroomInventory.OnMushroomRemoved -= RemoveMushroom;
+        mushroomInventory.OnMushroomAdded -= AddMushroomUI;
+        mushroomInventory.OnMushroomRemoved -= RemoveMushroomUI;
     }
 
-    private void RemoveMushroom(Mushroom mushroomData)
+    private void RemoveMushroomUI(Mushroom mushroomData)
     {
         // Find inventory mushroom with matching data
         foreach(var inventoryMushroom in inventoryMushrooms)
@@ -77,14 +77,14 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void AddMushroom(Mushroom mushroomData)
+    private void AddMushroomUI(Mushroom mushroomData)
     {
         inventoryMushrooms.Add(CreateInventoryMushroom(mushroomData));
     }
 
     public void OnClickAdd()
     {
-        AddMushroom(replacingMushroom);
+        mushroomInventory.AddMushroom(replacingMushroom);
         EndReplace();
     }
 
@@ -117,7 +117,7 @@ public class InventoryUI : MonoBehaviour
         // If no mushrooms yet then nothing to replace
         if (inventoryMushrooms.Count == 0)
         {
-            AddMushroom(replacingMushroom);
+            AddMushroomUI(replacingMushroom);
             callback?.Invoke();
             return;
         }
@@ -150,8 +150,8 @@ public class InventoryUI : MonoBehaviour
 
     public void OnClickReplace(Mushroom mushroomData)
     {
-        RemoveMushroom(mushroomData);
-        AddMushroom(replacingMushroom);
+        mushroomInventory.RemoveMushroom(mushroomData);
+        mushroomInventory.AddMushroom(replacingMushroom);
         EndReplace();
     }
 

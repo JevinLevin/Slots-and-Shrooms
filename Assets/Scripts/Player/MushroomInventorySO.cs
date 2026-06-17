@@ -44,6 +44,10 @@ public class MushroomInventorySO : ScriptableObject
         OnMushroomAdded?.Invoke(mushroom);
     }
 
+    public void RemoveMushroom(Mushroom mushroom)
+    {
+        RemoveMushroom(mushroomList.FindIndex(check => check == mushroom));
+    }
     public void RemoveMushroom(int index)
     {
         foreach(var attribute in mushroomList[index].Attributes)
