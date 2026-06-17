@@ -25,8 +25,6 @@ public class MushroomStudio : MonoBehaviour
             Instance = this;
         }
 
-        DontDestroyOnLoad(this.gameObject);
-
         Initialise();
     }
     #endregion
