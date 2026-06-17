@@ -25,7 +25,7 @@ public class MushroomInventorySO : ScriptableObject
 
     private void OnTick()
     {
-        foreach(var passiveEffect in passiveMushroomAttributeSOs) passiveEffect.OnTick();
+        foreach(var passiveEffect in passiveMushroomAttributeSOs) passiveEffect.PassiveAbillity();
     }
 
     private void OnHit(GameObject hitObj, GameObject attacker)

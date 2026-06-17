@@ -70,6 +70,7 @@ public class PlayerShooter : MonoBehaviour
         if (shootSuccessful)
         {
             playerAnimator.PlayShoot(IsAiming);
+            EventManager.Instance.OnShoot(gameObject); 
         }
     }
 

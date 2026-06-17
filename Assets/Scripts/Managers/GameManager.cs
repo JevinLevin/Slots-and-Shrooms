@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
+    }
+
     private void Initialise()
     {
         PrimeTweenConfig.warnEndValueEqualsCurrent = false;
