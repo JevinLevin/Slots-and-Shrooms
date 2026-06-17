@@ -8,6 +8,7 @@ public class SlotMachineSlot : MonoBehaviour
     [SerializeField] private MeshRenderer mushroomRenderer;
 
     public Texture2D CurrentTexture { get; private set; }
+    public Renderer GetRenderer => mushroomRenderer;
 
 
     private void Awake()

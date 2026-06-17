@@ -230,6 +230,8 @@ MonoBehaviour:
   outlineLayer:
     serializedVersion: 0
     m_Bits: 2
+  outlineSettings: {fileID: 11400000, guid: 41edc33fab2526349b59998725361316, type: 2}
+  outlineColor: {r: 1, g: 0.5019608, b: 0.8901961, a: 1}
   slotsPerSecond: 10
   spinStartStopDelayRange: {x: 0.25, y: 1}
   spinStartStopNextDelayRange: {x: 0.4, y: 0.75}

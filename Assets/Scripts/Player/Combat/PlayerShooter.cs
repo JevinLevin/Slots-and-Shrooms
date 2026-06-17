@@ -19,7 +19,7 @@ public class PlayerShooter : MonoBehaviour
     
     public bool IsAiming { get; private set; }
     public bool IsHoldingAim => Input.GetMouseButton(1);
-    public bool IsHoldingShoot => Input.GetMouseButton(0);
+    public bool IsHoldingShoot => !HandsDisabled && Input.GetMouseButton(0);
     public bool IsSwitchingPrimary => !HandsDisabled && (Input.mouseScrollDelta.y < 0 || Input.GetKeyDown(KeyCode.Alpha1));
     public bool IsSwitchingSecondary => !HandsDisabled && (Input.mouseScrollDelta.y > 0 || Input.GetKeyDown(KeyCode.Alpha2));
 
@@ -100,13 +100,15 @@ public class PlayerShooter : MonoBehaviour
 
     private void DisableHands()
     {
-        currentGun.ToggleGun(false);
+        if(currentGun)
+            currentGun.ToggleGun(false);
         HandsDisabled = true;
     }
 
     private void EnableHands()
     {
-        currentGun.ToggleGun(true);
+        if(currentGun)
+            currentGun.ToggleGun(true);
         HandsDisabled = false;
     }
 
