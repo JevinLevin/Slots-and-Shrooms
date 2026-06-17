@@ -25,4 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36ff333c256bcff4ea1914170b653e05, type: 2}
   - {fileID: 11400000, guid: 161c53811acf7eb4d851d1631298799d, type: 2}
   - {fileID: 11400000, guid: 816f284f9dbc68c4b9be09072d234b94, type: 2}
-  rarityStats: []
+  rarityStats:
+  - rarity: common
+    weight: 10
+    points: 25
