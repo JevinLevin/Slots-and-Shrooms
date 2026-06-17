@@ -56,6 +56,10 @@ public class Gun : MonoBehaviour
 
     private void ShootBullet(float spreadAngleMax = 0)
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = gunData.shootSoundEffect;
+        audioSource.Play();
+
         Vector3 bulletDirection = playerCamera.transform.forward;
         if (spreadAngleMax > 0)
         {

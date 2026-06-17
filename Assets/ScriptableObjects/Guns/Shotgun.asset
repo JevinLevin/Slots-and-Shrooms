@@ -15,6 +15,8 @@ MonoBehaviour:
   gunIcon: {fileID: 0}
   gunName: Shotgun
   gunDesc: BOOM
+  shootSoundEffect: {fileID: 8300000, guid: 2c0132d6e774d93418e6c313efdebae7, type: 3}
+  baseDamage: 1
   fireRate: 1
   magSize: 5
   bulletsPerShot: 10

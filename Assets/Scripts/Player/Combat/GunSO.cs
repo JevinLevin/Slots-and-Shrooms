@@ -9,6 +9,10 @@ public class GunSO : ScriptableObject
     public string gunName;
     public string gunDesc;
 
+    [Header("SoundEffects")]
+    public AudioClip shootSoundEffect;
+
+
     [Header("Functionality")]
     public float baseDamage = 1;
     [Tooltip("Bullets fired per second")]
