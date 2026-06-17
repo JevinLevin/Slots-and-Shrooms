@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotMachineStorage : MonoBehaviour 
+public class MushroomGenerator : MonoBehaviour 
 {
     [SerializeField] private List<MushroomAttributeSO> attributes;
     [SerializeField] private List<MushroomRarityStats> rarityStats;
