@@ -17,7 +17,11 @@ public class GunSO : ScriptableObject
     public float baseDamage = 1;
     [Tooltip("Bullets fired per second")]
     public float fireRate = 10;
-    public float magSize = 16;
+    public int magSize = -1;
+    public float reloadStartDelay = 0.375f;
+    public float reloadDuration = 1f;
+    [Tooltip("What % of the reload loop animation to increase ammo count")]
+    [Range(0, 1)] public float reloadAddPercentage = 0.5f;
     public int bulletsPerShot = 1;
     public float bulletHipfireSpreadAngleMax = 0;
     public float bulletAimingSpreadAngleMax = 0;

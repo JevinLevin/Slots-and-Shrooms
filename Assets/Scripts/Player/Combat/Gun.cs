@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using PrimeTween;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Gun : MonoBehaviour
 {
@@ -15,10 +17,19 @@ public class Gun : MonoBehaviour
     
 
     private Tween shootDelayTween;
+    private int ammoRemaining;
     
     public float GetCurrentWeaponDamage => GunData.baseDamage;
     public bool CanShoot => !shootDelayTween.isAlive;
+    public bool HasAmmo => gunData.magSize == -1 || ammoRemaining > 0;
+    public int GetAmmoLeft => ammoRemaining;
+    
+    public static Action<int> OnGunAmmoChanged;
 
+    private void Awake()
+    {
+        ammoRemaining = gunData.magSize;
+    }
 
     public void ToggleGun(bool value)
     {
@@ -30,7 +41,7 @@ public class Gun : MonoBehaviour
     {
         if (!CanShoot)
             return false;
-        
+
         if (GunData.bulletsPerShot == 1)
         {
             ShootBullet();
@@ -46,12 +57,20 @@ public class Gun : MonoBehaviour
             }
         }
 
+        ammoRemaining--;
+        OnGunAmmoChanged?.Invoke(ammoRemaining);
         muzzleFlash.Play();
         shootDelayTween = Tween.Delay(GunData.ShotDelay);
         StartCoroutine(nameof(ApplyRecoil));
 
         return true;
         
+    }
+
+    public void AdjustAmmo(int amount)
+    {
+        ammoRemaining += amount;
+        OnGunAmmoChanged?.Invoke(ammoRemaining);
     }
 
     private void ShootBullet(float spreadAngleMax = 0)

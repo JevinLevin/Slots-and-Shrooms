@@ -6,6 +6,7 @@ public class PlayerAnimator : MonoBehaviour
     public static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public static readonly int IsRunning = Animator.StringToHash("IsRunning");
     public static readonly int IsSliding = Animator.StringToHash("IsSliding");
+    private static readonly int IsReloading = Animator.StringToHash("IsReloading");
 
     [SerializeField] private Animator pistolAnimator;
     [SerializeField] private Animator shotgunAnimator;
@@ -57,5 +58,26 @@ public class PlayerAnimator : MonoBehaviour
             else
                 shotgunAnimator.CrossFadeInFixedTime("ShootHip", 0.1f);
         }
+    }
+    public void PlayReload()
+    {
+        if (pistolAnimator.gameObject.activeInHierarchy)
+        {
+            pistolAnimator.SetBool(IsReloading, true);
+            pistolAnimator.CrossFadeInFixedTime("ReloadStart", 0.1f);
+        }
+
+        if (shotgunAnimator.gameObject.activeInHierarchy)
+        {
+            shotgunAnimator.SetBool(IsReloading, true);
+            shotgunAnimator.CrossFadeInFixedTime("ReloadStart", 0.1f);
+        }
+    }
+    public void StopReload()
+    {
+        if(pistolAnimator.gameObject.activeInHierarchy)
+            pistolAnimator.SetBool(IsReloading, false);
+        if(shotgunAnimator.gameObject.activeInHierarchy)
+            shotgunAnimator.SetBool(IsReloading, false);
     }
 }
