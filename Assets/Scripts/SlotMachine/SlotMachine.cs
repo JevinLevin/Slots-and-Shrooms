@@ -9,7 +9,8 @@ using Unity.Cinemachine;
 
 public class SlotMachine : MonoBehaviour, IInteractable
 {
-    
+
+    [SerializeField] private MushroomInfoUI mushroomInfoUI;
     [SerializeField] private SlotMachineDisc[] discs;
     [SerializeField] private CinemachineCamera camera;
     [SerializeField] private Renderer mainSlotMachineRenderer;
@@ -30,14 +31,12 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [Tooltip("Multiplier for the stopping time, meant to account for the little animation on the spin which would cause the spinning to initially speed up.")]
     [SerializeField] private float stopTimeMultiplier = 1.5f;
     
-    [SerializeField] private List<MushroomAttributeSO> attributes;
-    [SerializeField] private List<MushroomRarityStats> rarityStats;
-
-    private bool activated;
+    public bool Activated { get; private set; }
     private Vector2 rarityRange;
     private int maxWeight = 0;
     private List<SlotMachineDisc> spinningDiscs;
     private uint originalLayer;
+    public SlotMachineDisc CurrentHoveredDisc { get; private set; }
 
     public int SlotsPerSecond => slotsPerSecond;
     public float SpinAngleSpeed => (slotsPerSecond * 36);
@@ -47,13 +46,11 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     public static Action OnSlotMachineStartSpinning;
     public static Action OnSlotMachineStopSpinning;
+    public static Action OnSlotMachineActivate;
+    public static Action OnSlotMachineDeactivate;
 
     private void Awake()
     {
-        foreach (MushroomRarityStats rarityStat in rarityStats)
-        {
-            maxWeight += rarityStat.weight; 
-        }
         originalLayer = mainSlotMachineRenderer.renderingLayerMask;
         Deactivate();
     }
@@ -65,14 +62,17 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     private void Activate()
     {
-        activated = true;
+        OnSlotMachineActivate?.Invoke();
+        Activated = true;
         ToggleOutline(true);
     }
 
     private void Deactivate()
     {
-        activated = false;
+        OnSlotMachineDeactivate?.Invoke();
+        Activated = false;
         camera.enabled = false;
+        GameManager.Instance.ToggleCursor(false);
     }
 
     private void ToggleOutline(bool value)
@@ -87,67 +87,12 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     public void OnInteract(Interactor interactor)
     {
-        if (!activated)
+        if (!Activated)
             return;
 
         StartSpinning();
 
         // interactor.GetComponent<MushroomInventory>().AddMushroom(GetRandomMushroomType());
-    }
-
-    private Mushroom GetRandomMushroomType()
-    {
-        MushroomRarityStats pickedRarity = new MushroomRarityStats();
-        int rarityRoll = Random.Range(0, maxWeight);
-        int runningTotal = 0;
-
-        foreach (MushroomRarityStats rarityStat in rarityStats)
-        {
-            runningTotal += rarityStat.weight;
-            if (runningTotal >= rarityRoll)
-            {
-                pickedRarity = rarityStat;
-                break;
-            }
-        }
-
-        List<MushroomAttributeSO> mushroomAttributes = new List<MushroomAttributeSO>();
-
-        int points = pickedRarity.points;
-        int maxAttributesWeight = 0;
-        foreach (MushroomAttributeSO attribute in attributes)
-        {
-            maxAttributesWeight += attribute.Weight;
-        }
-
-        int dam = 0;
-        bool pointsSpent = false;
-        while (!pointsSpent)
-        {
-            int roll = Random.Range(0, maxAttributesWeight);
-            int attributeRunningTotal = 0;
-            foreach (MushroomAttributeSO attribute in attributes)
-            {
-                attributeRunningTotal += attribute.Weight;
-                if (attributeRunningTotal >= roll)
-                {
-                    points -= attribute.SelectionCost;
-                    if (points <= 0) pointsSpent = true;
-
-                    attribute.OnSelected();
-                    mushroomAttributes.Add(attribute);
-                    break;
-                }
-            }
-            dam++;
-            if (dam > 10)
-            {
-                Debug.Log("DAMED");
-                break;
-            }
-        }
-
-        return new Mushroom(mushroomAttributes);
     }
 
     private void StartSpinning()
@@ -157,6 +102,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
         camera.enabled = true;
         camera.Priority = 1000;
         ToggleOutline(false);
+        GameManager.Instance.ToggleCursor(true);
 
         spinningDiscs = new();   
         foreach (var disc in discs)
@@ -164,6 +110,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
             disc.StartSpinning(this);
             spinningDiscs.Add(disc);
         }
+
 
         StartCoroutine(nameof(SpinDiscs));
     }
@@ -204,7 +151,20 @@ public class SlotMachine : MonoBehaviour, IInteractable
     {
         OnSlotMachineStopSpinning?.Invoke();
 
-        Deactivate();
+        //Deactivate();
+    }
+
+    public void OnHoverDisc(SlotMachineDisc disc)
+    {
+        CurrentHoveredDisc = disc;
+        mushroomInfoUI.ShowMushroomInfo(CurrentHoveredDisc.GetMushroomData);
+    }
+    public void OnUnhoverDisc(SlotMachineDisc disc)
+    {
+        if (CurrentHoveredDisc != disc)
+            return;
+        CurrentHoveredDisc = null;
+        mushroomInfoUI.HideMushroomInfo();
     }
 }
  

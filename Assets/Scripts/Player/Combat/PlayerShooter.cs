@@ -36,12 +36,12 @@ public class PlayerShooter : MonoBehaviour
     private void OnEnable()
     {
         SlotMachine.OnSlotMachineStartSpinning += DisableHands;
-        SlotMachine.OnSlotMachineStopSpinning += EnableHands;
+        SlotMachine.OnSlotMachineDeactivate += EnableHands;
     }
     private void OnDisable()
     {
         SlotMachine.OnSlotMachineStartSpinning -= DisableHands;
-        SlotMachine.OnSlotMachineStopSpinning -= EnableHands;
+        SlotMachine.OnSlotMachineDeactivate -= EnableHands;
     }
 
     private void Update()
