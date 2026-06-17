@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402ac7fbafec4c14b8f18067b5c2605f, type: 3}
-  m_Name: KnockbackAttributeTier1
-  m_EditorClassIdentifier: Assembly-CSharp::KnockbackOnHit
-  attributeName: KnockbackTier1
+  m_Script: {fileID: 11500000, guid: 75594b5ab7a289646a8c11ca47f17316, type: 3}
+  m_Name: TowageAttributeTier1
+  m_EditorClassIdentifier: Assembly-CSharp::TowageOnHit
+  attributeName: TowageTier1
   type: 1
-  description: Knocks hit enemy backwards
+  description: Pulls enemies towards you OnHit
   selectionCost: 20
-  weight: 20
-  strength: 5
+  weight: 10
+  strength: 3

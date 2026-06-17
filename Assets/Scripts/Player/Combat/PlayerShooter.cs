@@ -109,7 +109,7 @@ public class PlayerShooter : MonoBehaviour
 
             if (bulletHit.collider.TryGetComponent<IHasHealth>(out var enemyHealth))
             {
-                enemyHealth.OnHit((int)GetCurrentWeaponDamage);
+                enemyHealth.OnHit(GetCurrentWeaponDamage, gameObject);
             }
         }
     }

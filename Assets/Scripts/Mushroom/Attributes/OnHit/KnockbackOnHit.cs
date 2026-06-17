@@ -8,11 +8,12 @@ public class KnockbackOnHit : OnHitMushroomAttributeSO
 
     public override void OnHit(GameObject objHit, GameObject hitter)
     {
-        if (objHit.CompareTag("Player")) return; 
-        Vector3 backwards = -objHit.transform.forward;
-        backwards.y = 0f;
+        if (objHit.CompareTag("Player")) return;
+        Debug.Log("ONHIT");
+        Vector3 fowards = objHit.transform.forward;
+        fowards.y = 0f;
 
-        objHit.transform.position -= backwards * strength;
+        objHit.transform.position -= fowards * strength;
     }
 
     public override void OnSelected()
