@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class SlotMachineStorage : MonoBehaviour
+public class SlotMachine : MonoBehaviour
 {
     
     [SerializeField] private SlotMachineDisc[] discs;
