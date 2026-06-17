@@ -27,7 +27,7 @@ public class PlayerShooter : MonoBehaviour
 
     public bool HandsDisabled { get; private set; }
 
-    public static Action<GunSO, int> OnGunSwapped;
+    public static Action<Gun, int> OnGunSwapped;
     
 
 
@@ -36,7 +36,7 @@ public class PlayerShooter : MonoBehaviour
         pistol.ToggleGun(false);
         shotgun.ToggleGun(true);
         currentGun = shotgun;
-        OnGunSwapped?.Invoke(currentGun.GunData, currentGun.GetAmmoLeft);
+        OnGunSwapped?.Invoke(currentGun, currentGun.GetAmmoLeft);
     }
 
     private void OnEnable()
@@ -140,7 +140,7 @@ public class PlayerShooter : MonoBehaviour
 
         currentGun = newGun;
         currentGun.ToggleGun(true);
-        OnGunSwapped?.Invoke(currentGun.GunData, currentGun.GetAmmoLeft);
+        OnGunSwapped?.Invoke(currentGun, currentGun.GetAmmoLeft);
     }
 
     private void DisableHands()

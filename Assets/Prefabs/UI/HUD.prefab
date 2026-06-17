@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crosshair
   canvasFader: {fileID: 4013495933471432624}
+  crosshair: {fileID: 4673114623735061826}
+  crosshairOffAlpha: 0.25
   overheatProgress: {fileID: 3081165503389649114}
   overheatGradient:
     serializedVersion: 2

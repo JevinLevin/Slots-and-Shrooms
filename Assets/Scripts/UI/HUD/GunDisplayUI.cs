@@ -54,10 +54,10 @@ public class GunDisplayUI : MonoBehaviour
         }
     }
 
-    private void UpdateGunText(GunSO gunData, int ammo)
+    private void UpdateGunText(Gun gun, int ammo)
     {
-        gunName = gunData.gunName;
-        maxAmmo = gunData.magSize;
+        gunName = gun.GunData.gunName;
+        maxAmmo = gun.GunData.magSize;
         ammoCount = ammo;
         UpdateText();
     }
