@@ -28,4 +28,12 @@ public class IdleState : InputMoveState
             SwitchState(stateMachine.WalkingState);
     }
 
+    public override bool CanEnter()
+    {
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.Stop();
+
+        return base.CanEnter();
+    }
+
 }

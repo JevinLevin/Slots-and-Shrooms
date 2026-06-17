@@ -26,6 +26,11 @@ public class CrouchingState : InputMoveState
         base.OnEnter();
         stateMachine.GetCamera.SetHeightOffsetOverTime(Settings.heightOffset);
         stateMachine.SetHeight(stateMachine.BasePlayerHeight + Settings.heightOffset);
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.pitch = 0.6f;
+        movementAudio.volume = 0.1f;
+        movementAudio.clip = stateMachine.WalkingAudio;
+        movementAudio.Play();
     }
 
     public override void OnExit()

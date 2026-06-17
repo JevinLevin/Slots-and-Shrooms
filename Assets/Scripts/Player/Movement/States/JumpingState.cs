@@ -43,6 +43,8 @@ public class JumpingState : InputMoveState
         stateMachine.ImpulseVelocity(jumpVelocity);
 
         groundedTween = Tween.Delay(Settings.groundingDelay);
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.Stop();
     }
 
     public override void OnExit()

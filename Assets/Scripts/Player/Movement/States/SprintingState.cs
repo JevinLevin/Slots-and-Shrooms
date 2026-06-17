@@ -30,6 +30,11 @@ public class SprintingState : InputMoveState
         base.OnEnter();
         stateMachine.GetCamera.AdjustFOVOverTime(Settings.fovOffset);
         stateMachine.PlayerAnimator.ToggleRunning(true);
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.pitch = 1.4f;
+        movementAudio.volume = 0.1f;
+        movementAudio.clip = stateMachine.WalkingAudio;
+        movementAudio.Play();
     }
 
     public override void OnExit()

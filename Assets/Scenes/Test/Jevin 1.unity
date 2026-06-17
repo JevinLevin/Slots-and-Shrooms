@@ -772,6 +772,108 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &767656617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+  m_PrefabInstance: {fileID: 6842687559585129782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &767656623
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767656617}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &769653984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,6 +1997,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4515843784597570083, guid: e663d04a99132ca4f95c1fc27a640ba5, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
+    - target: {fileID: 4515843784597570083, guid: e663d04a99132ca4f95c1fc27a640ba5, type: 3}
+      propertyPath: mushroomGenerator
+      value: 
+      objectReference: {fileID: 11400000, guid: 35d31915e0f63cd46b62647edc36b2ff, type: 2}
+    - target: {fileID: 4515843784597570083, guid: e663d04a99132ca4f95c1fc27a640ba5, type: 3}
+      propertyPath: mushroomInventory
+      value: 
+      objectReference: {fileID: 11400000, guid: a7e461eedc5eee54a895d20c8dea7cd1, type: 2}
     - target: {fileID: 8741246843370533146, guid: e663d04a99132ca4f95c1fc27a640ba5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2045,6 +2159,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2191283333182096976, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      propertyPath: walkingAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 30498139316120448ab9b6fa9fbb9677, type: 3}
     - target: {fileID: 5481134001095052596, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2097,6 +2215,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 767656623}
     - targetCorrespondingSourceObject: {fileID: 9060501403965685696, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 648365768}

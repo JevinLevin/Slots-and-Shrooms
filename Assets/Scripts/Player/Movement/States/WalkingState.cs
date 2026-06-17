@@ -34,6 +34,11 @@ public class WalkingState : InputMoveState
     {
         base.OnEnter();
         stateMachine.PlayerAnimator.ToggleWalking(true);
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.volume = 0.1f; 
+        movementAudio.pitch = 1f;
+        movementAudio.clip = stateMachine.WalkingAudio; 
+        movementAudio.Play();
     }
 
     public override void OnExit()

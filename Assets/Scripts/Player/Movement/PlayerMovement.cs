@@ -29,6 +29,16 @@ public class PlayerMovement : StateMachine
     [SerializeField] private Transform legsPivot;
     public Transform GetLegsPivot => legsPivot;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip walkingAudio;
+    public AudioClip WalkingAudio => walkingAudio;
+
+    [SerializeField] private AudioClip jumpingAudio;
+    public AudioClip JumpingAudio => jumpingAudio;
+
+    [SerializeField] private AudioClip slidingAudio;
+    public AudioClip SLidingAudio => slidingAudio;
+
     [Header("States")]
 
     public MovementSettings MovementSettings;

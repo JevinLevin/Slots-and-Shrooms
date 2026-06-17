@@ -63,6 +63,12 @@ public class SlidingState : MovementState
         slideDirection.Normalize();
         slideTimer = 0;
         slideProgress = 0;
+
+        AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
+        movementAudio.pitch = 1f;
+        movementAudio.volume = 0.15f; 
+        movementAudio.clip = stateMachine.SLidingAudio;
+        movementAudio.Play();
     }
 
     public override void OnExit()
