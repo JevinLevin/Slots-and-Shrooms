@@ -20,8 +20,10 @@ public class PlayerShooter : MonoBehaviour
     public bool IsAiming { get; private set; }
     public bool IsHoldingAim => Input.GetMouseButton(1);
     public bool IsHoldingShoot => Input.GetMouseButton(0);
-    public bool IsSwitchingPrimary => Input.mouseScrollDelta.y < 0 || Input.GetKeyDown(KeyCode.Alpha1);
-    public bool IsSwitchingSecondary => Input.mouseScrollDelta.y > 0 || Input.GetKeyDown(KeyCode.Alpha2);
+    public bool IsSwitchingPrimary => !HandsDisabled && (Input.mouseScrollDelta.y < 0 || Input.GetKeyDown(KeyCode.Alpha1));
+    public bool IsSwitchingSecondary => !HandsDisabled && (Input.mouseScrollDelta.y > 0 || Input.GetKeyDown(KeyCode.Alpha2));
+
+    public bool HandsDisabled { get; private set; }
 
 
     private void Start()
@@ -29,6 +31,17 @@ public class PlayerShooter : MonoBehaviour
         pistol.ToggleGun(false);
         shotgun.ToggleGun(true);
         currentGun = shotgun;
+    }
+
+    private void OnEnable()
+    {
+        SlotMachine.OnSlotMachineStartSpinning += DisableHands;
+        SlotMachine.OnSlotMachineStopSpinning += EnableHands;
+    }
+    private void OnDisable()
+    {
+        SlotMachine.OnSlotMachineStartSpinning -= DisableHands;
+        SlotMachine.OnSlotMachineStopSpinning -= EnableHands;
     }
 
     private void Update()
@@ -83,6 +96,18 @@ public class PlayerShooter : MonoBehaviour
 
         currentGun = newGun;
         currentGun.ToggleGun(true);
+    }
+
+    private void DisableHands()
+    {
+        currentGun.ToggleGun(false);
+        HandsDisabled = true;
+    }
+
+    private void EnableHands()
+    {
+        currentGun.ToggleGun(true);
+        HandsDisabled = false;
     }
 
 

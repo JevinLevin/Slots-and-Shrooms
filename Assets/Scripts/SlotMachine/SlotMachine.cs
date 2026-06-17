@@ -14,6 +14,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [SerializeField] private CinemachineCamera camera;
     [SerializeField] private Renderer mainSlotMachineRenderer;
     [SerializeField] private Renderer handleRenderer;
+    [SerializeField] private RenderingLayerMask outlineLayer;
 
     [Header("Spinning")] 
     [Tooltip("How many slots to pass per second")]
@@ -36,6 +37,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private Vector2 rarityRange;
     private int maxWeight = 0;
     private List<SlotMachineDisc> spinningDiscs;
+    private uint originalLayer;
 
     public int SlotsPerSecond => slotsPerSecond;
     public float SpinAngleSpeed => (slotsPerSecond * 36);
@@ -43,12 +45,16 @@ public class SlotMachine : MonoBehaviour, IInteractable
     public AnimationCurve GetStopCurve => spinStopCurve;
     public float StopTimeMultiplier => stopTimeMultiplier;
 
+    public static Action OnSlotMachineStartSpinning;
+    public static Action OnSlotMachineStopSpinning;
+
     private void Awake()
     {
         foreach (MushroomRarityStats rarityStat in rarityStats)
         {
             maxWeight += rarityStat.weight; 
         }
+        originalLayer = mainSlotMachineRenderer.renderingLayerMask;
         Deactivate();
     }
 
@@ -60,12 +66,23 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private void Activate()
     {
         activated = true;
+        ToggleOutline(true);
     }
 
     private void Deactivate()
     {
         activated = false;
         camera.enabled = false;
+    }
+
+    private void ToggleOutline(bool value)
+    {
+        mainSlotMachineRenderer.renderingLayerMask = value
+            ? originalLayer | 1u << outlineLayer - 1
+            : originalLayer;
+        handleRenderer.renderingLayerMask = value
+            ? originalLayer | 1u << outlineLayer - 1
+            : originalLayer;
     }
 
     public void OnInteract(Interactor interactor)
@@ -135,8 +152,11 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     private void StartSpinning()
     {
+        OnSlotMachineStartSpinning?.Invoke();
+
         camera.enabled = true;
         camera.Priority = 1000;
+        ToggleOutline(false);
 
         spinningDiscs = new();   
         foreach (var disc in discs)
@@ -177,8 +197,14 @@ public class SlotMachine : MonoBehaviour, IInteractable
             }
         }
 
-        Deactivate();
+        StopSpinning();
+    }
 
+    private void StopSpinning()
+    {
+        OnSlotMachineStopSpinning?.Invoke();
+
+        Deactivate();
     }
 }
  
