@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4498544169067243408}
   - component: {fileID: 1010968449305932171}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlotMushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4489764333281098535}
   - component: {fileID: 1007341601192047630}
   - component: {fileID: 3046351588843880397}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

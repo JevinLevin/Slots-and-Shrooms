@@ -8,14 +8,18 @@ public class SlotMachineDisc : MonoBehaviour
     
     [SerializeField] private SlotMachineSlot[] slots;
     [SerializeField] private MushroomGeneratorSO mushroomGenerator;
+    [SerializeField] private Outlinable outline;
+    [SerializeField] private Color invalidColor;
+    [SerializeField] private Color validColor;
 
     public bool IsSpinning { get; private set; }
     public bool IsStopping { get; private set; }
+    public Color GetOutlineColor => slotMachine.IsSpinning ? invalidColor : validColor;
     public Mushroom GetMushroomData => mushroomData;
 
-    public int GetCurrentSlotIndex()
+    public int GetCurrentSlotIndex(float angleOffset = 0)
     {
-        int currentSlot = (int)(totalSpinAngle / DISC_SLOT_ANGLE)+1;
+        int currentSlot = (int)((totalSpinAngle + angleOffset) / DISC_SLOT_ANGLE);
         return currentSlot % DISC_SLOT_COUNT;
     }
 
@@ -102,7 +106,7 @@ public class SlotMachineDisc : MonoBehaviour
         IsSpinning = false;
         IsStopping = false;
 
-        winningSlot = slots[GetCurrentSlotIndex()];
+        winningSlot = slots[GetCurrentSlotIndex(DISC_SLOT_ANGLE / 2)];
         mushroomData = mushroomGenerator.GetMushroom();
         mushroomData.SetTexture(winningSlot.CurrentTexture);
     }
@@ -130,12 +134,17 @@ public class SlotMachineDisc : MonoBehaviour
     {
         int slotIndex = GetCurrentSlotIndex();
 
+        outline.OverrideRenderer(slots[slotIndex].GetRenderer);
+
+
         // Update texture 2 slots ahead
         int updateIndex = (slotIndex + 2) % DISC_SLOT_COUNT;
+
         slots[updateIndex].NewTexture();
+
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         OnHover();
     }
@@ -145,11 +154,19 @@ public class SlotMachineDisc : MonoBehaviour
         OnUnhover();
     }
 
+
+
     private void OnHover()
     {
         if (!slotMachine || !slotMachine.Activated || IsSpinning)
             return;
         
+        outline.SetOutline(true, GetOutlineColor);
+
+        // Dont rehover
+        if (slotMachine.CurrentHoveredDisc == this)
+            return;
+
         slotMachine.OnHoverDisc(this);
     }
 
@@ -158,7 +175,9 @@ public class SlotMachineDisc : MonoBehaviour
     {
         if (!slotMachine || slotMachine.CurrentHoveredDisc != this)
             return;
-    
+
+        outline.SetOutline(false);
+
         slotMachine.OnUnhoverDisc(this);
 
     }

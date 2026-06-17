@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using Unity.Cinemachine;
+using LineworkLite.FreeOutline;
 
 public class SlotMachine : MonoBehaviour, IInteractable
 {
@@ -16,6 +17,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [SerializeField] private Renderer mainSlotMachineRenderer;
     [SerializeField] private Renderer handleRenderer;
     [SerializeField] private RenderingLayerMask outlineLayer;
+    [SerializeField] private FreeOutlineSettings outlineSettings;
+    [SerializeField] private Color outlineColor;
+
 
     [Header("Spinning")] 
     [Tooltip("How many slots to pass per second")]
@@ -31,6 +35,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [Tooltip("Multiplier for the stopping time, meant to account for the little animation on the spin which would cause the spinning to initially speed up.")]
     [SerializeField] private float stopTimeMultiplier = 1.5f;
     
+    public bool IsSpinning { get; private set; }
     public bool Activated { get; private set; }
     private Vector2 rarityRange;
     private int maxWeight = 0;
@@ -83,6 +88,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
         handleRenderer.renderingLayerMask = value
             ? originalLayer | 1u << outlineLayer - 1
             : originalLayer;
+        if(value)
+            outlineSettings.Outlines[0].color = outlineColor;
     }
 
     public void OnInteract(Interactor interactor)
@@ -98,6 +105,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private void StartSpinning()
     {
         OnSlotMachineStartSpinning?.Invoke();
+
+        IsSpinning = true;
 
         camera.enabled = true;
         camera.Priority = 1000;
@@ -150,6 +159,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private void StopSpinning()
     {
         OnSlotMachineStopSpinning?.Invoke();
+
+        IsSpinning = false;
 
         //Deactivate();
     }
