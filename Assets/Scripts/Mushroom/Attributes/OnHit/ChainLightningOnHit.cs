@@ -10,7 +10,8 @@ public class ChainLightningOnHit : OnHitMushroomAttributeSO
     [SerializeField] private float damage;
     [SerializeField, Range(0,100)] private int chance;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject visuals; 
+    [SerializeField] private GameObject visuals;
+    [SerializeField] private AudioClip sound; 
 
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
 
@@ -42,7 +43,10 @@ public class ChainLightningOnHit : OnHitMushroomAttributeSO
             lineRenderer.SetPosition(0, objHitHeadPos);
             lineRenderer.SetPosition(1, colliderHeadPos);
 
-            Destroy(vfx, 0.17f);
+            AudioSource lightningAudio = vfx.GetComponent<AudioSource>();
+            lightningAudio.Play();
+
+            Destroy(vfx, lightningAudio.clip.length);
 
             break;
         }
