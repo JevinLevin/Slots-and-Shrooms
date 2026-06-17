@@ -8,6 +8,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private MushroomInventorySO mushroomInventory;
     [SerializeField] private InventoryMushroomUI inventoryMushroomPrefab;
     [SerializeField] private Transform inventoryMushroomRoot;
+    [SerializeField] private InventoryMushroomUI addUI;
 
     private List<InventoryMushroomUI> inventoryMushrooms = new();
 
@@ -81,6 +82,7 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryMushrooms.Add(CreateInventoryMushroom(mushroomData));
         }
+        addUI.gameObject.SetActive(false);
     }
 
     public void Refresh()
@@ -115,6 +117,9 @@ public class InventoryUI : MonoBehaviour
         foreach (var inventoryMushroom in inventoryMushrooms)
             inventoryMushroom.StartReplacing();
 
+        addUI.gameObject.SetActive(true);
+        addUI.StartReplacing();
+        
         popup.Display();
     }
 
@@ -127,6 +132,8 @@ public class InventoryUI : MonoBehaviour
         popup.Hide();
 
         onReplaceEndCallback?.Invoke();
+        addUI.gameObject.SetActive(false);
+        addUI.StopReplacing();
     }
 
     public void OnClickReplace(Mushroom mushroomData)

@@ -74,6 +74,7 @@ public class InventoryMushroomUI : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnClickAdd()
     {
+        print("try add");
         inventoryUI.OnClickAdd();
     }
 }
