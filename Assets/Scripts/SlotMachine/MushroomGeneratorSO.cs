@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomGenerator : MonoBehaviour 
+[CreateAssetMenu(fileName = "MushroomGenerator", menuName = "MushroomGenerator")]
+public class MushroomGeneratorSO : ScriptableObject 
 {
     [SerializeField] private List<MushroomAttributeSO> attributes;
     [SerializeField] private List<MushroomRarityStats> rarityStats;
     private Vector2 rarityRange;
     int maxWeight = 0;
 
-    private void Awake()
+    public void Initialise()
     {
+        maxWeight = 0;
         foreach (MushroomRarityStats rarityStat in rarityStats)
         {
             maxWeight += rarityStat.weight;

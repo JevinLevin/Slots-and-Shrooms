@@ -58,6 +58,12 @@ MonoBehaviour:
   - {fileID: 3695643150813599455}
   - {fileID: 5757914891346950190}
   - {fileID: 7227352202482255581}
+  camera: {fileID: 5644678552010679003}
+  mainSlotMachineRenderer: {fileID: 676224137306398122}
+  handleRenderer: {fileID: 1491309835584816928}
+  outlineLayer:
+    serializedVersion: 0
+    m_Bits: 2
   slotsPerSecond: 10
   spinStartStopDelayRange: {x: 0.25, y: 1}
   spinStartStopNextDelayRange: {x: 0.4, y: 0.75}
@@ -989,6 +995,16 @@ PrefabInstance:
       addedObject: {fileID: 8841471583318836555}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd446b064ed284c4eaae1cee3491a44c, type: 3}
+--- !u!23 &676224137306398122 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1830210006666222264, guid: dd446b064ed284c4eaae1cee3491a44c, type: 3}
+  m_PrefabInstance: {fileID: 8069227836746643682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1491309835584816928 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8883796202532798402, guid: dd446b064ed284c4eaae1cee3491a44c, type: 3}
+  m_PrefabInstance: {fileID: 8069227836746643682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7525830032418627337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dd446b064ed284c4eaae1cee3491a44c, type: 3}

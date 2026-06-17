@@ -14,7 +14,11 @@ public class Interactor : MonoBehaviour
             {
                 if(hit.collider == null) return;
                 IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                if(interactable == null) return;
+                if (interactable == null)
+                    interactable = hit.collider.gameObject.GetComponentInChildren<IInteractable>();
+                if(interactable == null)
+                    interactable = hit.collider.gameObject.GetComponentInParent<IInteractable>();
+                if (interactable == null) return;
                 interactable.OnInteract(this); 
             }
         }

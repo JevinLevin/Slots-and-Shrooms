@@ -22,7 +22,7 @@ public class SprintingState : InputMoveState
 
     public override bool CanEnter()
     {
-        return !stateMachine.PlayerShooter.IsAiming;
+        return !stateMachine.PlayerShooter.IsAiming && !stateMachine.DisableSprinting;
     }
 
     public override void OnEnter()

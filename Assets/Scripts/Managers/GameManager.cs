@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private CanvasFader transitionCanvas;
     [SerializeField] private string gameSceneName;
-    
+    [SerializeField] private PlayerStatsHolderSO playerStats;
+    [SerializeField] private MushroomGeneratorSO mushroomGenerator;
+    [SerializeField] private MushroomInventorySO mushroomInventory;
+
     #region Singleton
     public static GameManager Instance { get; private set; }
     private void Awake()
@@ -33,8 +36,20 @@ public class GameManager : MonoBehaviour
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
         PrimeTweenConfig.warnZeroDuration = false;
         PrimeTweenConfig.SetTweensCapacity(400);
+
+        playerStats.Initialise();
+        mushroomGenerator.Initialise();
+        mushroomInventory.Initialise();
     }
-    
+
+    private void OnDestroy()
+    {
+        if (Instance != this)
+            return;
+
+        mushroomInventory.Deinitialise();
+    }
+
     private bool cursorDisabled;
     private bool cursorState = true;
     public void ForceDisableCursor(bool value)
