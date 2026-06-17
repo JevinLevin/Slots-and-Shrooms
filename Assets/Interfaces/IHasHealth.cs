@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IHasHealth
 {
-    public void OnHit(int damage);
+    public void OnHit(float damage, GameObject attacker);
     public void Die();
 }

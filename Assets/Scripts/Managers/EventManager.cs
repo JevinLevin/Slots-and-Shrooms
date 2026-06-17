@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -21,14 +22,14 @@ public class EventManager : MonoBehaviour
     }
     #endregion
 
-    public event Action<GameObject> onHit;
+    public event Action<GameObject, GameObject> onHit;
     public event Action onTick;
 
-    public void OnHit(GameObject ObjHit)
+    public void OnHit(GameObject ObjHit, GameObject attacker)
     {
         if (onHit != null)
         {
-            onHit(ObjHit);
+            onHit(ObjHit, attacker);
         }
     }
     public void OnTick()

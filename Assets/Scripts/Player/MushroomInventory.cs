@@ -20,9 +20,9 @@ public class MushroomInventory : MonoBehaviour
         foreach(var passiveEffect in passiveMushroomAttributeSOs) passiveEffect.OnTick();
     }
 
-    private void OnHit(GameObject hitObj)
+    private void OnHit(GameObject hitObj, GameObject attacker)
     {
-        foreach(var onHitEffect in onHitAttributes) onHitEffect.OnHit(hitObj);
+        foreach(var onHitEffect in onHitAttributes) onHitEffect.OnHit(hitObj, attacker);
     }
 
     public void AddMushroom(Mushroom mushroom)
@@ -77,24 +77,7 @@ public class MushroomInventory : MonoBehaviour
 
     private void AddStatToPlayer(StatMushroomAttributesSO stat)
     {
-        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance; 
-
-        switch (stat.stat)
-        {
-            case StatType.Health:
-                statHolder.AddToHealth((int)stat.SetValue); 
-                break;
-            case StatType.Speed:
-                statHolder.AddToSpeed(stat.SetValue);
-                break;
-            case StatType.AttackDamage:
-                statHolder.AddToAttackDamage((int)stat.SetValue);
-                break;
-            case StatType.AttackSpeed:
-                statHolder.AddToAttackSpeed(stat.SetValue);
-                break;
-            default:
-                break;
-        }
+        PlayerStatsHolder statHolder = PlayerStatsHolder.Instance;
+        statHolder.AddStat(stat); 
     }
 }

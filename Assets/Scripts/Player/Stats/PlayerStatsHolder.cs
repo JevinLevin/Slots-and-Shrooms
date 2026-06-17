@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerStatsHolder : MonoBehaviour
@@ -20,22 +22,41 @@ public class PlayerStatsHolder : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private PlayerStats playerBaseStats;
-    public PlayerStats PlayerBaseStats => playerBaseStats; 
-    private int health;
-    public int Health => health;
+    [SerializeField] private PlayerStat[] playerBaseStats;
+    public PlayerStat[] PlayerBaseStats => playerBaseStats; 
+    private List<PlayerStat> playerStats;
 
-    private float speed;
-    public float Speed => speed;
+    private void Start()
+    {
+        playerStats = playerBaseStats.Select
+            (x => new PlayerStat
+            {
+                type = x.type,
+                value = x.value
+            }
+            ).ToList();
+    }
 
-    private float attackDamage;
-    public float AttackDamage => attackDamage;
+    public void AddStat(StatMushroomAttributesSO statAttribute)
+    {
+        foreach(PlayerStat playerStat  in playerStats)
+        {
+            if (playerStat.type == statAttribute.statType)
+            {
+                playerStat.value += statAttribute.SetValue;
+                break;
+            }
+        }
+    }
 
-    private float attackSpeed;
-    public float AttackSpeed => attackSpeed;
+    public PlayerStat ReadStat(StatType statType)
+    {
+        foreach (PlayerStat playerStat in playerStats)
+        {
+            if (playerStat.type == statType) return playerStat; 
+        }
 
-    public void AddToHealth(int additionalHealth) { health += additionalHealth; }
-    public void AddToSpeed(float additionalSpeed) { speed += additionalSpeed; }
-    public void AddToAttackDamage(int additionalAttackDamage) { attackDamage += additionalAttackDamage; }
-    public void AddToAttackSpeed(float additionalAttackSpeed) { attackSpeed += additionalAttackSpeed; }
+        Debug.LogError($"StatType: {statType} not found");
+        return null;
+    }
 }

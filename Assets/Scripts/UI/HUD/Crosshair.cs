@@ -14,7 +14,7 @@ public class Crosshair : MonoBehaviour
         EventManager.Instance.onHit -= HitmarkerPlay;
     }
 
-    private void HitmarkerPlay(GameObject obj)
+    private void HitmarkerPlay(GameObject obj, GameObject attacker)
     {
         canvasFader.PlayFull();
     }
