@@ -22,8 +22,13 @@ public class PlayerShooter : MonoBehaviour
     public bool IsHoldingShoot => !HandsDisabled && Input.GetMouseButton(0);
     public bool IsSwitchingPrimary => !HandsDisabled && (Input.mouseScrollDelta.y < 0 || Input.GetKeyDown(KeyCode.Alpha1));
     public bool IsSwitchingSecondary => !HandsDisabled && (Input.mouseScrollDelta.y > 0 || Input.GetKeyDown(KeyCode.Alpha2));
+    public bool IsPressingReload => Input.GetKeyDown(KeyCode.R);
+    public bool IsReloading { get; private set; }
 
     public bool HandsDisabled { get; private set; }
+
+    public static Action<GunSO, int> OnGunSwapped;
+    
 
 
     private void Start()
@@ -31,6 +36,7 @@ public class PlayerShooter : MonoBehaviour
         pistol.ToggleGun(false);
         shotgun.ToggleGun(true);
         currentGun = shotgun;
+        OnGunSwapped?.Invoke(currentGun.GunData, currentGun.GetAmmoLeft);
     }
 
     private void OnEnable()
@@ -53,25 +59,62 @@ public class PlayerShooter : MonoBehaviour
             SwapWeapon(pistol);
         
         
-        if(IsHoldingAim && !IsAiming)
+        if(IsHoldingAim && !IsAiming && !IsReloading)
             StartAiming();
         else if(!IsHoldingAim && IsAiming)
             StopAiming();
 
-        if (IsHoldingShoot)
+        if (IsHoldingShoot && !IsReloading)
             TryShoot();
+        
+        if(IsPressingReload && !IsReloading && currentGun.GetAmmoLeft < currentGun.GunData.magSize)
+            StartReload();
 
     }
 
     private void TryShoot()
     {
-        bool shootSuccessful = currentGun.TryShoot(IsAiming);
-
-        if (shootSuccessful)
+        // If they have ammo
+        if(currentGun.HasAmmo)
         {
-            playerAnimator.PlayShoot(IsAiming);
-            EventManager.Instance.OnShoot(gameObject); 
+            bool shootSuccessful = currentGun.TryShoot(IsAiming);
+
+            if (shootSuccessful)
+            {
+                playerAnimator.PlayShoot(IsAiming);
+                EventManager.Instance.OnShoot(gameObject);
+            }
         }
+        else
+        {
+            StartReload();
+        }
+    }
+
+    private void StartReload()
+    {
+        StartCoroutine(nameof(Reloading));
+    }
+
+    private IEnumerator Reloading()
+    {
+        IsReloading = true;        
+        playerAnimator.PlayReload();
+
+        yield return new WaitForSeconds(currentGun.GunData.reloadStartDelay);
+
+        while (currentGun.GetAmmoLeft < currentGun.GunData.magSize)
+        {
+
+            yield return new WaitForSeconds(currentGun.GunData.reloadDuration * currentGun.GunData.reloadAddPercentage);
+            
+            currentGun.AdjustAmmo(1);
+            
+            yield return new WaitForSeconds(currentGun.GunData.reloadDuration * (1-currentGun.GunData.reloadAddPercentage));
+        }
+
+        playerAnimator.StopReload();
+        IsReloading = false;        
     }
 
     private void StartAiming()
@@ -97,6 +140,7 @@ public class PlayerShooter : MonoBehaviour
 
         currentGun = newGun;
         currentGun.ToggleGun(true);
+        OnGunSwapped?.Invoke(currentGun.GunData, currentGun.GetAmmoLeft);
     }
 
     private void DisableHands()

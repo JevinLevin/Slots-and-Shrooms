@@ -19,6 +19,9 @@ MonoBehaviour:
   baseDamage: 1
   fireRate: 1
   magSize: 5
+  reloadStartDelay: 0.375
+  reloadDuration: 0.58333
+  reloadAddPercentage: 0.5
   bulletsPerShot: 10
   bulletHipfireSpreadAngleMax: 45
   bulletAimingSpreadAngleMax: 30
