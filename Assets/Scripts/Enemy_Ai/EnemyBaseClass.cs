@@ -8,10 +8,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     [SerializeField] private float range;
     private bool inRange; 
     [SerializeField] private float attackCD;
-    private float currentAttackCD; 
+    private float currentAttackCD;
+    private bool canAttack = true;
 
     [SerializeField] protected NavMeshAgent agent;
     private Transform player;
+
+    [SerializeField] private AudioClip deathSound; 
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         currentAttackCD += Time.deltaTime;
         if(currentAttackCD >= attackCD)
         {
+            if (!canAttack) return; 
             Attack();
             currentAttackCD = 0; 
         }
@@ -58,6 +62,14 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 
     public virtual void Die()
     {
-        Destroy(gameObject);
+        canAttack = false;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = deathSound; 
+        audioSource.Play();
+
+        Destroy(gameObject, audioSource.clip.length);
     }
 }

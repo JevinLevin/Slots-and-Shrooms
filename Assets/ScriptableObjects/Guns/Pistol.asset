@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Pistol
   gunDesc: pew pew
   shootSoundEffect: {fileID: 8300000, guid: adffc827130a0e04f9101a1326c53fc4, type: 3}
-  baseDamage: 1
+  baseDamage: 2
   fireRate: 3
   magSize: 16
   bulletsPerShot: 1
