@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Medium Improvement to Attack Damadge
   selectionCost: 15
   weight: 5
-  stat: 2
+  statType: 0
   valueRange: {x: 6, y: 10}

@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Minor health increase
   selectionCost: 5
   weight: 10
-  stat: 0
+  statType: 0
   valueRange: {x: 5, y: 15}

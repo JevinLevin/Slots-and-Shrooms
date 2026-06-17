@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 {
-    [SerializeField] private int health;
+    [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float range;
     private bool inRange; 
@@ -47,11 +47,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     protected virtual void MoveTowardsPlayer() => agent.SetDestination(player.position);
     protected abstract void Attack(); 
 
-    public virtual void OnHit(int damage)
+    public virtual void OnHit(float damage, GameObject attacker)
     {
-        EventManager.Instance.OnHit(gameObject); 
+        //EventManager.Instance.OnHit(gameObject, attacker);  
         health -= damage;
-        if (health <= 0) Die(); 
+        Debug.Log($"{gameObject.name} hp = {health}");
+        if (health <= 0) Die();
+        EventManager.Instance.OnHit(gameObject, attacker);
     }
 
     public virtual void Die()

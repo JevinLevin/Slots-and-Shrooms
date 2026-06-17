@@ -2,5 +2,5 @@ using UnityEngine;
 
 public abstract class OnHitMushroomAttributeSO : MushroomAttributeSO
 {
-    public abstract void OnHit(GameObject objHit);
+    public abstract void OnHit(GameObject objHit, GameObject attacker);
 }

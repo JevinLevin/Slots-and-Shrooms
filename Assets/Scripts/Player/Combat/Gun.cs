@@ -83,7 +83,7 @@ public class Gun : MonoBehaviour
 
             if (bulletHit.collider.TryGetComponent<IHasHealth>(out var enemyHealth))
             {
-                enemyHealth.OnHit((int)GetCurrentWeaponDamage);
+                enemyHealth.OnHit(GetCurrentWeaponDamage, playerCamera.gameObject);
             }
         }
     }
