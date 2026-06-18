@@ -4,9 +4,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHasHealth
 {
     [SerializeField] private PlayerStatsHolderSO statHolder; 
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float regenRate; 
+    private float maxHealth;
+    private float regenRate; 
     private float health;
+
+    private float regenTimer = 0; 
 
     private void Awake()
     {
@@ -24,6 +26,16 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
         if(stat.type == StatType.RegenRate) regenRate = statHolder.ReadStat(StatType.RegenRate).value;
 
 
+    }
+
+    private void Update()
+    {
+        regenTimer += Time.deltaTime; 
+        if(regenTimer > 1)
+        {
+            health += regenRate;
+            regenTimer = 0;
+        }
     }
 
     public void Die()
