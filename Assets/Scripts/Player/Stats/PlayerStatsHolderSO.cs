@@ -8,26 +8,24 @@ public class PlayerStatsHolderSO : ScriptableObject
 
     [SerializeField] private PlayerStat[] playerBaseStats;
     public PlayerStat[] PlayerBaseStats => playerBaseStats; 
-    private List<PlayerStat> playerStats;
+    public List<PlayerStat> playerStats;
 
     public void Initialise()
     {
         playerStats = playerBaseStats.Select
             (x => new PlayerStat
-            {
-                type = x.type,
-                value = x.value
-            }
+            (x.type, x.value)
             ).ToList();
+        
     }
 
-    public void AddStat(StatMushroomAttributesSO statAttribute)
+    public void AddStat(PlayerStat statAttribute)
     {
         foreach(PlayerStat playerStat  in playerStats)
         {
-            if (playerStat.type == statAttribute.statType)
+            if (playerStat.type == statAttribute.type)
             {
-                playerStat.value += statAttribute.SetValue;
+                playerStat.value += statAttribute.value;
                 break;
             }
         }

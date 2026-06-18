@@ -9,7 +9,7 @@ public class MushroomInventorySO : ScriptableObject
 
     private List<Mushroom> mushroomList = new List<Mushroom>();
     [SerializeField] private List<OnHitMushroomAttributeSO> onHitAttributes = new List<OnHitMushroomAttributeSO>();
-    private List<StatMushroomAttributesSO> statMushroomSOs = new List<StatMushroomAttributesSO>();
+    [SerializeField] private List<PlayerStat> playerStatsList = new List<PlayerStat>();
     private List<PassiveMushroomAttributeSO> passiveMushroomAttributeSOs = new List<PassiveMushroomAttributeSO>();
 
     public List<Mushroom> GetMushrooms => mushroomList;
@@ -25,6 +25,7 @@ public class MushroomInventorySO : ScriptableObject
     {
         EventManager.Instance.onHit -= OnHit;
         EventManager.Instance.onTick -= OnTick;
+        ClearMushrooms(); 
     }
 
     private void OnTick()
@@ -55,7 +56,12 @@ public class MushroomInventorySO : ScriptableObject
             switch (attribute)
             {
                 case StatMushroomAttributesSO stat:
-                    statMushroomSOs.Remove(stat);
+                    foreach (PlayerStat playerStat in mushroomList[index].StatList)
+                    {
+                        PlayerStat reverseStat = new PlayerStat(playerStat.type, playerStat.value); 
+                        playerStats.AddStat(reverseStat);
+                    }
+
                     break;
                 case OnHitMushroomAttributeSO onHit:
                     onHitAttributes.Remove(onHit);
@@ -78,8 +84,9 @@ public class MushroomInventorySO : ScriptableObject
             switch (attribute)
             {
                 case StatMushroomAttributesSO stat:
-                    AddStatToPlayer(stat);
-                    statMushroomSOs.Add(stat);
+                    PlayerStat playerStat = new PlayerStat(stat.statType, stat.SetValue);
+                    playerStatsList.Add(playerStat);
+                    AddStatToPlayer(playerStat);
                     break;
                 case OnHitMushroomAttributeSO onHit:
                     onHitAttributes.Add(onHit);
@@ -93,8 +100,16 @@ public class MushroomInventorySO : ScriptableObject
         }
     }
 
-    private void AddStatToPlayer(StatMushroomAttributesSO stat)
+    private void AddStatToPlayer(PlayerStat stat)
     {
         playerStats.AddStat(stat); 
+    }
+
+    public void ClearMushrooms()
+    {
+        mushroomList.Clear();
+        onHitAttributes.Clear();
+        playerStatsList.Clear();
+        passiveMushroomAttributeSOs.Clear(); 
     }
 }
