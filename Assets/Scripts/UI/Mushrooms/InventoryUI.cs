@@ -17,7 +17,7 @@ public class InventoryUI : MonoBehaviour
     private Mushroom replacingMushroom;
     private Action onReplaceEndCallback;
 
-    private bool PressingInventoryButton => Input.GetKeyDown(KeyCode.I);
+    private bool PressingInventoryButton => Input.GetKeyDown(KeyCode.I) && !SlotMachine.IsSlotMachineBeingUsed;
     private bool PressingEscButton => Input.GetKeyDown(KeyCode.Escape);
 
     #region Singleton

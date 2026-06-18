@@ -91,4 +91,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         enemyAnimator.PlayDeath(deathDuration);
         Destroy(gameObject, deathDuration);
     }
+
+    public virtual void Despawn()
+    {
+        Destroy(gameObject);
+    }
 }

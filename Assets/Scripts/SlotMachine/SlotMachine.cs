@@ -53,6 +53,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
     public static Action OnSlotMachineStopSpinning;
     public static Action OnSlotMachineActivate;
     public static Action OnSlotMachineDeactivate;
+    public static bool IsSlotMachineBeingUsed;
+
+    private Action finishCallback;
 
     private void Awake()
     {
@@ -62,11 +65,16 @@ public class SlotMachine : MonoBehaviour, IInteractable
     private void Start()
     {
         Deactivate();
-        Activate();
+        // Activate();
     }
 
-    private void Activate()
+    public void Activate(Vector3 position, Vector3 direction, Action finishCallback = null)
     {
+        this.finishCallback = finishCallback;
+        transform.position = position;
+        transform.forward = direction;
+        gameObject.SetActive(true);
+
         OnSlotMachineActivate?.Invoke();
         Activated = true;
         ToggleOutline(true);
@@ -74,12 +82,20 @@ public class SlotMachine : MonoBehaviour, IInteractable
             disc.ResetDisc();
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
+
+
         Tween.Delay(0.2f, () => OnSlotMachineDeactivate?.Invoke());
         Activated = false;
         camera.enabled = false;
         GameManager.Instance.ToggleCursor(false);
+
+        finishCallback?.Invoke();
+
+        gameObject.SetActive(false);
+
+        IsSlotMachineBeingUsed = false;
     }
 
     private void ToggleOutline(bool value)
@@ -106,6 +122,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     private void StartSpinning()
     {
+        IsSlotMachineBeingUsed = true;
+
         OnSlotMachineStartSpinning?.Invoke();
 
         IsSpinning = true;
@@ -201,7 +219,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
         Deactivate();
 
         // Test repeating it
-        Tween.Delay(1, Activate);
+        // Tween.Delay(1, Activate);
     }
 }
  

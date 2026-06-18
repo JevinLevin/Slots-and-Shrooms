@@ -1,9 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private SlotMachine slotMachine;
+    [SerializeField] GameObject player;
+
     [Header("Time Attributes")] 
     [SerializeField] private int waveDuration = 60;
     
@@ -35,18 +39,60 @@ public class WaveManager : MonoBehaviour
     public void GameStart()
     {
         CurrentWave = 0;
-        WaveTime = waveDuration;
         
         StartCoroutine(nameof(PlayWave));
     }
 
     private IEnumerator PlayWave()
     {
+        yield return null;
+
+        WaveStart();
+
         while (WaveTime > 0)
         {
             yield return new WaitForSeconds(1);
             WaveTime--;
         }
+
+        WaveEnd();
+    }
+
+    private void WaveStart()
+    {
+        WaveTime = waveDuration;
+
+        EnemyManager.Instance.StartWave();
+    }
+
+    private void WaveEnd()
+    {
+        EnemyManager.Instance.EndWave();
+
+        SpawnSlotMachine();
+    }
+
+    private void WaveNext()
+    {
+        CurrentWave++;
+
+        StartCoroutine(nameof(PlayWave));
+    }
+
+    private void SpawnSlotMachine()
+    {
+        // Position infront of player
+        Vector3 targetPos = player.transform.position + (player.transform.forward * 1.5f);
+        // Get position on nav mesh
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            targetPos = hit.position;
+        }
+
+        Vector3 targetDirection = (player.transform.position - targetPos).normalized;
+
+        slotMachine.Activate(targetPos, targetDirection, WaveNext);
     }
 
     private int GetWaveEnemyCount()

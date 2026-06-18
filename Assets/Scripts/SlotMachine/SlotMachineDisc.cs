@@ -36,7 +36,7 @@ public class SlotMachineDisc : MonoBehaviour
 
     public void ResetDisc()
     {
-        transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+        transform.localRotation = Quaternion.identity;
         targetSlot = 0;
         totalSpinAngle = 0;
         currentSpinAngle = 0;
@@ -83,7 +83,7 @@ public class SlotMachineDisc : MonoBehaviour
 
             float currentAngle = Mathf.LerpUnclamped(startSpinAngle, targetSpinAngle, 1-stopProgress);
 
-            transform.rotation = Quaternion.AngleAxis(currentAngle, Vector3.right);
+            transform.localRotation = Quaternion.AngleAxis(currentAngle, Vector3.right);
 
             float angleOffset = currentAngle - totalSpinAngle;
             
