@@ -18,7 +18,13 @@ MonoBehaviour:
   shootSoundEffect: {fileID: 8300000, guid: 2c0132d6e774d93418e6c313efdebae7, type: 3}
   baseDamage: 1
   fireRate: 1
+  startingAmmo: 15
   magSize: 5
+  overheat: 0
+  overheatMax: 20
+  overheatPerShot: 2
+  overheatDrainPerSecond: 2
+  overheatedDrainPerSecond: 3
   reloadStartDelay: 0.375
   reloadDuration: 0.58333
   reloadAddPercentage: 0.5
@@ -61,3 +67,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  playerStats: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
+  damageStat: 13
+  fireRateStat: 14
+  recoilStat: 15
+  overheatMaxStat: 10
+  overheatRegenStat: 11
+  spreadStat: 16
+  bulletCountStat: 17
+  magStat: 18

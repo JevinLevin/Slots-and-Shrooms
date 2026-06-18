@@ -25,13 +25,14 @@ public class Gun : MonoBehaviour
     private int magAmmo;
     private int totalAmmo;
     private float overheatValue;
-    
-    public float GetCurrentWeaponDamage => GunData.baseDamage;
+
+    public int GetMagSize => Mathf.RoundToInt(gunData.magSize * gunData.GetMagMultiplier);
+    public float GetCurrentWeaponDamage => GunData.baseDamage * gunData.GetDamageMultiplier;
     public bool CanShoot => !shootDelayTween.isAlive && !IsOverheated;
     public bool HasAmmo => gunData.magSize == -1 || magAmmo > 0;
     public int GetMagAmmo => magAmmo;
     public int GetTotalAmmo => totalAmmo;
-    public float OverheatProgress => overheatValue / gunData.overheatMax;
+    public float OverheatProgress => overheatValue / (gunData.overheatMax * gunData.GetOverheatMaxMultiplier);
     public bool IsOverheated { get; private set; }
     
     public static Action<int, int> OnGunAmmoChanged;
@@ -41,8 +42,8 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
-        totalAmmo = gunData.startingAmmo - gunData.magSize;
-        magAmmo = gunData.magSize;
+        totalAmmo = gunData.startingAmmo - GetMagSize;
+        magAmmo = GetMagSize;
     }
 
     private void Update()
@@ -53,7 +54,7 @@ public class Gun : MonoBehaviour
 
     private void UpdateOverheat()
     {
-        float drainValue = IsOverheated ? gunData.overheatedDrainPerSecond : gunData.overheatDrainPerSecond;
+        float drainValue = (IsOverheated ? gunData.overheatedDrainPerSecond : gunData.overheatDrainPerSecond) * gunData.GetOverheatRegenMultiplier;
         overheatValue = Mathf.Max(0, overheatValue - (drainValue * Time.deltaTime));
         gunMaterial.SetFloat(OverheatProgress1, OverheatProgress);
         OnGunOverheatUpdate?.Invoke(OverheatProgress);
@@ -76,10 +77,11 @@ public class Gun : MonoBehaviour
         }
         else
         {
-            int shotsLeft = GunData.bulletsPerShot;
+            int shotsLeft = Mathf.RoundToInt(GunData.bulletsPerShot * gunData.GetBulletCountMultiplier);
             while (shotsLeft > 0)
             {
                 float spreadAngle = isAiming ? GunData.bulletAimingSpreadAngleMax : GunData.bulletHipfireSpreadAngleMax;
+                spreadAngle *= gunData.GetSpreadMultiplier;
                 ShootBullet(spreadAngle);
                 shotsLeft--;
             }
@@ -92,6 +94,7 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
         shootDelayTween = Tween.Delay(GunData.ShotDelay);
         StartCoroutine(nameof(ApplyRecoil));
+        
 
         return true;
         
@@ -192,13 +195,13 @@ public class Gun : MonoBehaviour
 
     private IEnumerator ApplyRecoil()
     {
-        float recoilDuration = Mathf.Max(GunData.recoilRecoveryTime, GunData.ShotDelay);
+        float recoilDuration = Mathf.Max(GunData.recoilRecoveryTime * gunData.GetRecoilMultiplier, GunData.ShotDelay);
         float recoilTime = 0;
 
         while(recoilTime < recoilDuration)
         {
             float t = recoilTime / recoilDuration;
-            float recoilPower = GunData.recoilCurve.Evaluate(t) * GunData.recoilVerticalAngle;
+            float recoilPower = GunData.recoilCurve.Evaluate(t) * (GunData.recoilVerticalAngle * gunData.GetRecoilMultiplier);
 
             // Apply current recoil this frame to tranform
             recoilRoot.localRotation = Quaternion.AngleAxis(recoilPower, Vector3.left);

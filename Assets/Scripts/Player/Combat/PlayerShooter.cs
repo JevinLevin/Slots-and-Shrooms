@@ -67,13 +67,14 @@ public class PlayerShooter : MonoBehaviour
         if (IsHoldingShoot && !IsReloading)
             TryShoot();
         
-        if(IsPressingReload && !IsReloading && currentGun.GetMagAmmo < currentGun.GunData.magSize)
+        if(IsPressingReload && !IsReloading && currentGun.GetMagAmmo < currentGun.GetMagSize)
             StartReload();
 
     }
 
     private void TryShoot()
     {
+
         // If they have ammo
         if(currentGun.HasAmmo)
         {
@@ -81,7 +82,9 @@ public class PlayerShooter : MonoBehaviour
 
             if (shootSuccessful)
             {
-                playerAnimator.PlayShoot(IsAiming);
+                
+                
+                playerAnimator.PlayShoot(IsAiming, currentGun.GunData.GetFireRateMultiplier);
                 EventManager.Instance.OnShoot(gameObject);
             }
         }
@@ -103,7 +106,7 @@ public class PlayerShooter : MonoBehaviour
 
         yield return new WaitForSeconds(currentGun.GunData.reloadStartDelay);
 
-        while (currentGun.GetMagAmmo < currentGun.GunData.magSize && currentGun.GetTotalAmmo > 0)
+        while (currentGun.GetMagAmmo < currentGun.GetMagSize && currentGun.GetTotalAmmo > 0)
         {
 
             yield return new WaitForSeconds(currentGun.GunData.reloadDuration * currentGun.GunData.reloadAddPercentage);

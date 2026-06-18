@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     public static readonly int IsRunning = Animator.StringToHash("IsRunning");
     public static readonly int IsSliding = Animator.StringToHash("IsSliding");
     private static readonly int IsReloading = Animator.StringToHash("IsReloading");
+    private static readonly int FireRate = Animator.StringToHash("FireRate");
 
     [SerializeField] private Animator pistolAnimator;
     [SerializeField] private Animator shotgunAnimator;
@@ -51,10 +52,11 @@ public class PlayerAnimator : MonoBehaviour
         legsAnimator.SetBool(IsSliding, value);
     }
 
-    public void PlayShoot(bool aiming)
+    public void PlayShoot(bool aiming, float fireRateMultiplier)
     {
         if(pistolAnimator.gameObject.activeInHierarchy)
         {
+            pistolAnimator.SetFloat(FireRate, 2-fireRateMultiplier);
             if (aiming)
                 pistolAnimator.CrossFadeInFixedTime("Shoot", 0.1f);
             else
@@ -62,6 +64,8 @@ public class PlayerAnimator : MonoBehaviour
         }
         if(shotgunAnimator.gameObject.activeInHierarchy)
         {
+            shotgunAnimator.SetFloat(FireRate, 2-fireRateMultiplier);
+
             if (aiming)
                 shotgunAnimator.CrossFadeInFixedTime("Shoot", 0.1f);
             else
