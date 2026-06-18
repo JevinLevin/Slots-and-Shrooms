@@ -75,14 +75,14 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &6927525892445829225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +104,11 @@ MonoBehaviour:
   deathDuration: 2
   agent: {fileID: 2597353116959406788}
   deathSound: {fileID: 8300000, guid: e0f5ba5175857f6469b497669c7cbbbc, type: 3}
-  attackCollider: {fileID: 4663767563014295419}
+  weaponBase: {fileID: 8664246067350091252}
+  attackDamage: 3
+  attackDuration: 1
+  attackImpact: 0.5
+  attackCooldown: 0.5
 --- !u!82 &8815531982870322572
 AudioSource:
   m_ObjectHideFlags: 0
@@ -227,6 +231,7 @@ GameObject:
   - component: {fileID: 7942652902626016378}
   - component: {fileID: 6690040402499911753}
   - component: {fileID: 8664246067350091252}
+  - component: {fileID: 8061805986589607561}
   m_Layer: 0
   m_Name: attackCollider
   m_TagString: Untagged
@@ -282,7 +287,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e0ca3eb0f47e74da0f1014104eab04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeaponBase
-  attackDamage: 3
+  mainEnemy: {fileID: 6927525892445829225}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  activeColliders: []
+--- !u!54 &8061805986589607561
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663767563014295419}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8823982551925390307
 PrefabInstance:
   m_ObjectHideFlags: 0

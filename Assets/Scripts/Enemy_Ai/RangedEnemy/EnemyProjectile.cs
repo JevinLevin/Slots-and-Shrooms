@@ -7,7 +7,8 @@ public class EnemyProjectile : MonoBehaviour
     private float speed;
     private int damage;
 
-    [SerializeField] float decayTime = 5f; 
+    [SerializeField] float decayTime = 5f;
+    [SerializeField] private LayerMask targetLayer;
 
     private void FixedUpdate()
     {
@@ -23,6 +24,10 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // If not target layer
+        if ((targetLayer & (1 << other.gameObject.layer)) == 0)
+            return;
+
         IHasHealth health = other.GetComponent<IHasHealth>();
         if (health != null && other.gameObject.CompareTag("Player"))
         {

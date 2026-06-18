@@ -1,14 +1,37 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyWeaponBase : MonoBehaviour
 {
-    [SerializeField] private int attackDamage;
+    [SerializeField] private MeleeEnemy mainEnemy;
+    [SerializeField] private LayerMask targetLayer;
+
+    public List<Collider> activeColliders = new();
+
     private void OnTriggerEnter(Collider other)
     {
-        IHasHealth playerHealth = other.GetComponent<IHasHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.OnHit(attackDamage, gameObject); 
-        }
+
+        // If not target layer
+        if ((targetLayer & (1 << other.gameObject.layer)) == 0)
+            return;
+
+        activeColliders.Add(other);
+
+        mainEnemy.TryAttack();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // If not target layer
+        if ((targetLayer & (1 << other.gameObject.layer)) == 0)
+            return;
+
+        mainEnemy.TryAttack();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (activeColliders.Contains(other))
+            activeColliders.Remove(other);
     }
 }

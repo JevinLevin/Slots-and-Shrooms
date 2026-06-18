@@ -8,7 +8,7 @@ public class RangedEnemy : EnemyBaseClass
     [SerializeField] private int projectileDamage; 
     [SerializeField] private float projectileSpeed;
 
-    protected override void Attack()
+    public override void TryAttack()
     {
         EnemyProjectile enemyProjectile = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<EnemyProjectile>();
         enemyProjectile.SetObjFiredFrom(gameObject); 

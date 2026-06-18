@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 {
-    [SerializeField] private EnemyAnimator enemyAnimator;
+    [SerializeField] protected EnemyAnimator enemyAnimator;
     [SerializeField] private PickupDropper pickupDropper;
     [SerializeField] private float health;
     [SerializeField] private float speed;
@@ -35,7 +35,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
             MoveTowardsPlayer(); 
         }
 
-        if (!inRange) return;
+        if (!inRange || !agent.isActiveAndEnabled || !agent.isOnNavMesh) return;
         agent.ResetPath();
 
         Vector3 towardsPlayer = player.position - transform.position;
@@ -46,7 +46,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         if(currentAttackCD >= attackCD)
         {
             if (!canAttack) return; 
-            Attack();
+            TryAttack();
             enemyAnimator.PlayAttack();
             currentAttackCD = 0; 
         }
@@ -60,7 +60,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         agent.SetDestination(player.position);
         enemyAnimator.SetMovement(true, 0);
     }
-    protected abstract void Attack(); 
+    public abstract void TryAttack(); 
 
     public virtual void OnHit(float damage, GameObject attacker)
     {
