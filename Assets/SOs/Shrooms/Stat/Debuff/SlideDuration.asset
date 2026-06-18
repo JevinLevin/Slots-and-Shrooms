@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f62a7240615380541958e5f0fd578ea2, type: 3}
-  m_Name: ShotgunAntiSpred
+  m_Name: SlideDuration
   m_EditorClassIdentifier: Assembly-CSharp::StatMushroomAttributesSO
-  attributeName: ShotgunAntiSpread
+  attributeName: SlideDuration
   type: 0
   description: 
   selectionCost: 5
-  weight: 10
-  isBuff: 1
-  statType: 16
+  weight: 5
+  isBuff: 0
+  statType: 5
   valueRange: {x: -10, y: -15}

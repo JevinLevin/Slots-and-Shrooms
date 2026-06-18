@@ -38,5 +38,24 @@ public class GunSO : ScriptableObject
     public float recoilRecoveryTime = 0.5f;
     public AnimationCurve recoilCurve;
 
-    public float ShotDelay => 1 / fireRate;
+    public float ShotDelay => (1 / fireRate ) * GetFireRateMultiplier;
+
+    [Header("Stats")] 
+    public PlayerStatsHolderSO playerStats;
+    public StatType damageStat;
+    public StatType fireRateStat;
+    public StatType recoilStat;
+    public StatType overheatMaxStat;
+    public StatType overheatRegenStat;
+    public StatType spreadStat;
+    public StatType bulletCountStat;
+    public StatType magStat;
+    public float GetDamageMultiplier => playerStats.GetStatAsMultiplier(damageStat);
+    public float GetFireRateMultiplier => playerStats.GetStatAsMultiplierInverse(fireRateStat);
+    public float GetRecoilMultiplier => playerStats.GetStatAsMultiplierInverse(recoilStat);
+    public float GetOverheatMaxMultiplier => playerStats.GetStatAsMultiplier(overheatMaxStat);
+    public float GetOverheatRegenMultiplier => playerStats.GetStatAsMultiplier(overheatRegenStat);
+    public float GetSpreadMultiplier => playerStats.GetStatAsMultiplierInverse(spreadStat);
+    public float GetBulletCountMultiplier => playerStats.GetStatAsMultiplier(bulletCountStat);
+    public float GetMagMultiplier => playerStats.GetStatAsMultiplier(magStat);
 }

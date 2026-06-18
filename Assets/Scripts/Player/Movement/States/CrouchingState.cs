@@ -14,7 +14,7 @@ public class CrouchingState : InputMoveState
     public CrouchingSettings Settings => stateMachine.CrouchingSettings;
     public override float GetSpeedMultiplier()
     {
-        return Settings.speedMultiplier;
+        return Settings.speedMultiplier * stateMachine.CrouchSpeedMultiplier;
     }
 
     public CrouchingState(StateMachine stateMachine) : base(stateMachine)

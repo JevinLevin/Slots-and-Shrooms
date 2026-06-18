@@ -117,7 +117,7 @@ public class InventoryUI : MonoBehaviour
         // If no mushrooms yet then nothing to replace
         if (inventoryMushrooms.Count == 0)
         {
-            AddMushroomUI(replacingMushroom);
+            mushroomInventory.AddMushroom(replacingMushroom);
             callback?.Invoke();
             return;
         }

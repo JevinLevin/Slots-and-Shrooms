@@ -5,7 +5,8 @@ public class PlayerMovement : StateMachine
 {
     private CharacterController cc;
 
-    [Header("References")]
+    [Header("References")] 
+    [SerializeField] private PlayerStatsHolderSO playerStats;
     [SerializeField] private PlayerCamera playerCamera;
     public PlayerCamera GetCamera => playerCamera;
     [SerializeField] private PlayerShooter playerShooter;
@@ -72,6 +73,15 @@ public class PlayerMovement : StateMachine
     public float BasePlayerHeight => playerHeight;
     public bool DisableSprinting => disableSprinting;
     public bool DisableJumping => disableJumping;
+
+    public float BaseSpeedMultiplier => playerStats.GetStatAsMultiplier(StatType.Speed);
+    public float JumpHeightMultiplier => playerStats.GetStatAsMultiplier(StatType.JumpHeight);
+    public float SprintSpeedMultiplier => playerStats.GetStatAsMultiplier(StatType.SprintSpeedMultiplier);
+    public float CrouchSpeedMultiplier => playerStats.GetStatAsMultiplier(StatType.CrouchSpeed);
+    public float SlideSpeedMultiplier => playerStats.GetStatAsMultiplier(StatType.SlideSpeed);
+    public float SlideDurationMultiplier => playerStats.GetStatAsMultiplier(StatType.SlideDuration);
+    public float GravityMultiplier => playerStats.GetStatAsMultiplier(StatType.Gravity);
+    public float AimingMultipler => playerStats.GetStatAsMultiplier(StatType.SpeedWhileAiming);
 
     protected override void Awake()
     {
@@ -158,7 +168,7 @@ public class PlayerMovement : StateMachine
     {
         // Add gravity
         if (!cc.isGrounded)
-            currentVelocity += Vector3.down * (gravity * Time.deltaTime);
+            currentVelocity += Vector3.down * (gravity * Time.deltaTime * GravityMultiplier);
 
         Vector3 finalVelocity = currentVelocity + externalVelocity;
         MovePlayer(finalVelocity * Time.deltaTime);

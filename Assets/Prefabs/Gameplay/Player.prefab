@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c20f8c364a62e489560c005c38fba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  playerStats: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
   playerCamera: {fileID: 4060266593726686953}
   playerShooter: {fileID: 6498387353240907504}
   playerAnimator: {fileID: 7383764531927764682}
@@ -617,7 +618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56b18af1ceeddb49a73e3e606e97574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  playerStats: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
   statHolder: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
+  baseMaxHealth: 25
+  baseRegenRate: 1
 --- !u!1 &8199245073456908854
 GameObject:
   m_ObjectHideFlags: 0

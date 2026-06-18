@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHasHealth
 {
-    [SerializeField] private PlayerStatsHolderSO statHolder; 
-    private float maxHealth;
-    private float regenRate;
+    [SerializeField] private PlayerStatsHolderSO playerStats;
+    [SerializeField] private PlayerStatsHolderSO statHolder;
+    [SerializeField] private float baseMaxHealth = 25;
+    [SerializeField] private float baseRegenRate = 1;
+    [SerializeField] private float baseRegenDelay = 1;
+    private float maxHealth => baseMaxHealth * playerStats.GetStatAsMultiplier(StatType.MaxHeath);
+    private float regenRate => baseRegenRate * playerStats.GetStatAsMultiplier(StatType.RegenRate);
+    private float regenDelay => baseRegenDelay * playerStats.GetStatAsMultiplierInverse(StatType.RegenStartDelay);
 
     public float HealthProgress => Health / maxHealth;
 
@@ -28,29 +33,16 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     private void Start()
     {
-        // maxHealth = statHolder.ReadStat(StatType.MaxHeath).value;
-        // regenRate = statHolder.ReadStat(StatType.RegenRate).value;
-
-        maxHealth = 25;
-        Health = 25;
-
-        //EventManager.Instance.statsUpdated += UpdateStats;
+        Health = maxHealth;
     }
-
-    private void UpdateStats(PlayerStat stat)
-    {
-        if(stat.type == StatType.MaxHeath) maxHealth = statHolder.ReadStat(StatType.MaxHeath).value;
-        if(stat.type == StatType.RegenRate) regenRate = statHolder.ReadStat(StatType.RegenRate).value;
-
-
-    }
+    
 
     private void Update()
     {
         regenTimer += Time.deltaTime; 
-        if(regenTimer > 1)
+        if(regenTimer > regenDelay)
         {
-            Health += regenRate;
+            Health = Mathf.Min(maxHealth, health + regenRate);
             regenTimer = 0;
         }
     }

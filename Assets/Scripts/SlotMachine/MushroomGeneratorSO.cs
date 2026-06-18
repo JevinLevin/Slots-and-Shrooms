@@ -26,8 +26,6 @@ public class MushroomGeneratorSO : ScriptableObject
 
     public Mushroom GetMushroom()
     {
-        Debug.Log("HERE");
-
         MushroomRarityStats pickedRarity = new MushroomRarityStats();
         int rarityRoll = Random.Range(0, maxWeight);
         int runningTotal = 0;
