@@ -418,7 +418,7 @@ MonoBehaviour:
     speedMultiplier: 1
     jumpHeight: 11.25
     groundingDelay: 0.1
-    rejumpDelay: 0.05
+    rejumpDelay: 0.2
   SprintingSettings:
     speedMultiplier: 2
     fovOffset: 15
@@ -622,6 +622,7 @@ MonoBehaviour:
   statHolder: {fileID: 11400000, guid: 7e525d29622ad884a9daa1747ae08a2d, type: 2}
   baseMaxHealth: 25
   baseRegenRate: 1
+  baseRegenDelay: 1
 --- !u!1 &8199245073456908854
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,8 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     public static Action<float> OnHealthUpdated;
     public static Action OnPlayerDie;
+    public static Action OnTakeDamage;
+
 
     private void Start()
     {
@@ -49,6 +51,7 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     public void Die()
     {
+        OnTakeDamage?.Invoke();
         OnPlayerDie?.Invoke();
         dead = true;
     }
@@ -60,5 +63,7 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
         Health -= damage;
         if (Health < 0) Die(); 
+        
+        OnTakeDamage?.Invoke();
     }
 }

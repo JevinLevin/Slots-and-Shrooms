@@ -262,6 +262,7 @@ MonoBehaviour:
   maxAlpha: 1
   showTime: 2
   changeBlockRaycasts: 0
+  ignoreTimeScale: 1
   fadeInTime: 0.25
   fadeInEase: 6
   fadeOutTime: 0.25
@@ -334,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -501,7 +502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3620140783222355374, guid: c3c86ab062962e344928616208943e9d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 595
+      value: 1239
       objectReference: {fileID: 0}
     - target: {fileID: 3620140783222355374, guid: c3c86ab062962e344928616208943e9d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -537,11 +538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3620140783222355374, guid: c3c86ab062962e344928616208943e9d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 297.5
+      value: 619.5
       objectReference: {fileID: 0}
     - target: {fileID: 3620140783222355374, guid: c3c86ab062962e344928616208943e9d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -67.5
+      value: -262.5
       objectReference: {fileID: 0}
     - target: {fileID: 3620140783222355374, guid: c3c86ab062962e344928616208943e9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -631,7 +632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 595
+      value: 1239
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -667,11 +668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 297.5
+      value: 619.5
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -101.25
+      value: -393.75
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -741,7 +742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 595
+      value: 1239
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -777,11 +778,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 297.5
+      value: 619.5
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -33.75
+      value: -131.25
       objectReference: {fileID: 0}
     - target: {fileID: 6028365121442540342, guid: ce41d29d94970ec46a4b39f7d6d6a0d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
