@@ -80,7 +80,6 @@ public abstract class InputMoveState : MovementState
             multiplier *= Settings.aimingSpeedMultiplier;
         
         velocity *= Settings.baseMoveSpeed * multiplier;
-        velocity *= Time.deltaTime;
 
         // Rotate velocity based on look direction
         velocity = stateMachine.GetCamera.transform.TransformDirection(velocity);

@@ -130,7 +130,7 @@ public class PlayerMovement : StateMachine
             currentVelocity += Vector3.down * (gravity * Time.deltaTime);
 
         Vector3 finalVelocity = currentVelocity + externalVelocity;
-        MovePlayer(finalVelocity);
+        MovePlayer(finalVelocity * Time.deltaTime);
 
         externalVelocity = Vector3.zero;
 
@@ -173,7 +173,7 @@ public class PlayerMovement : StateMachine
 
     private bool IsOnGround()
     {
-        return CheckSphere(-0.1f);
+        return CheckSphere((playerWidth/2) -0.1f);
     }
 
     public bool CheckSphere(float yOffset)

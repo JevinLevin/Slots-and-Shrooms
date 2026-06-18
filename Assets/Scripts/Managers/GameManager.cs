@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerStatsHolderSO playerStats;
     [SerializeField] private MushroomGeneratorSO mushroomGenerator;
     [SerializeField] private MushroomInventorySO mushroomInventory;
+    [SerializeField] private int maxFrameRate = 120;
 
     #region Singleton
     public static GameManager Instance { get; private set; }
@@ -32,7 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Application.targetFrameRate = maxFrameRate;
     }
 
     private void Initialise()

@@ -391,7 +391,7 @@ MonoBehaviour:
   playerCamera: {fileID: 4060266593726686953}
   playerShooter: {fileID: 6498387353240907504}
   playerAnimator: {fileID: 7383764531927764682}
-  gravity: 0.185
+  gravity: 27.75
   playerWidth: 0.35
   playerHeight: 2
   environmentLayer:
@@ -414,7 +414,7 @@ MonoBehaviour:
     speedMultiplier: 1
   JumpingSettings:
     speedMultiplier: 1
-    jumpHeight: 0.075
+    jumpHeight: 11.25
     groundingDelay: 0.1
     rejumpDelay: 0.05
   SprintingSettings:

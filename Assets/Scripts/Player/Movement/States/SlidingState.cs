@@ -88,7 +88,7 @@ public class SlidingState : MovementState
     public override void OnTick()
     {
         float currentT = Settings.slideCurve.Evaluate(slideProgress);
-        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.x, Settings.slideSpeedRange.y, 1-currentT) * Time.deltaTime;
+        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.x, Settings.slideSpeedRange.y, 1-currentT);
         Vector3 currentVelocity = slideDirection * currentSpeed;
         stateMachine.SetVelocity(currentVelocity);
 
