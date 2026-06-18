@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a968f60da0c33194fb8e9680bbb57da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  waveManager: {fileID: 0}
+  waveManager: {fileID: 1142478686}
   spawner: {fileID: 2369643}
 --- !u!114 &2369643
 MonoBehaviour:
@@ -6934,7 +6934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   slotMachine: {fileID: 658609906}
-  player: {fileID: 1754661570}
+  player: {fileID: 1754661571}
   gameOver: {fileID: 521187477}
   waveDuration: 60
   enemySpawnCountRange: {x: 10, y: 200}
@@ -6963,6 +6963,31 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   enemySpawnMaxWave: 20
+  killCountRange: {x: 5, y: 100}
+  killCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.8837842
+      outSlope: 0.8837842
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12232416
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.9332776
+      outSlope: 1.9332776
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07339448
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   gameOverDelay: 2
 --- !u!1 &1236055883 stripped
 GameObject:
@@ -8483,11 +8508,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
---- !u!1 &1754661570 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8132389690728269984, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
+--- !u!114 &1754661571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8638116190292496693, guid: 25dd545b6a3d94d428da4f5acb4cbc26, type: 3}
   m_PrefabInstance: {fileID: 1754661569}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56b18af1ceeddb49a73e3e606e97574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
 --- !u!1 &1808777605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4590525570840805224, guid: d7aba2f937d5b2e488a36e00a31e5fc8, type: 3}

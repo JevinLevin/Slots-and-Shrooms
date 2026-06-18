@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MushroomGeneratorSO
   attributes:
   - {fileID: 11400000, guid: 40cbbc84b4d87f44c9aba45af4d0a0dc, type: 2}
+  - {fileID: 11400000, guid: df2b7b452af5d8841a9ed2e0006cd2a7, type: 2}
   - {fileID: 11400000, guid: a66e95e25b564664da4600387bcb465a, type: 2}
   - {fileID: 11400000, guid: 0400bcb28edab4e4a957c22f6eb71540, type: 2}
+  - {fileID: 11400000, guid: d99d4832d064acd4fbdacf3b6867e960, type: 2}
   - {fileID: 11400000, guid: 210410987ed057642b4f32d8775332c1, type: 2}
   - {fileID: 11400000, guid: 51e30498815979449881787bf1ade003, type: 2}
   - {fileID: 11400000, guid: efb4827b92b0c14408e0fc085f2e0921, type: 2}
@@ -52,7 +54,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ba1a32052be78c4bac465bfb198039b, type: 2}
   - {fileID: 11400000, guid: 6ba389b2102b72345b83d1b49d7045e3, type: 2}
   - {fileID: 11400000, guid: a6e7957595872864ca1070d6986e3904, type: 2}
-  - {fileID: 11400000, guid: 47eba6acd4cd0554a88ab088ade84450, type: 2}
   rarityStats:
   - rarity: common
     weight: 10

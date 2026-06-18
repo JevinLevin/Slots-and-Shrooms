@@ -7,7 +7,7 @@ using PrimeTween;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private SlotMachine slotMachine;
-    [SerializeField] GameObject player;
+    [SerializeField] PlayerHealth player;
     [SerializeField] private GameOverUI gameOver;
 
     [Header("Time Attributes")] 
@@ -18,7 +18,11 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private AnimationCurve enemySpawnCountCurve;
     [Tooltip("Enemies dont stop spawning after this wave, the spawn count will just keep scaling after this point")] 
     [SerializeField] private int enemySpawnMaxWave = 20;
-
+    
+    [Header("Kill Requirement Attributes")]
+    [SerializeField] private Vector2Int killCountRange = new(5, 100);
+    [SerializeField] private AnimationCurve killCountCurve;
+    
     [Header("Ending")]
     [SerializeField] private float gameOverDelay = 2;
     
@@ -39,14 +43,23 @@ public class WaveManager : MonoBehaviour
 
     public static Action<int> OnWaveTimeChanged;
     public static Action<int> OnNewWave;
+    public static Action<int, int> OnKillsUpdated;
 
+    private int killCountTarget;
+    private int killCount;
+
+    public bool ReachedKillCount => killCount >= killCountTarget;
+    
     private void OnEnable()
     {
         PlayerHealth.OnPlayerDie += GameEnd;
+        EventManager.Instance.onEnemyDies += OnEnemyKilled;
     }
+
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDie -= GameEnd;
+        EventManager.Instance.onEnemyDies -= OnEnemyKilled;
     }
 
     void Start()
@@ -89,14 +102,24 @@ public class WaveManager : MonoBehaviour
         
         EnemyManager.Instance.StartWave(GetWaveEnemyCount());
 
+        killCountTarget = GetKillCount();
+
         OnNewWave?.Invoke(CurrentWave);
+        OnKillsUpdated?.Invoke(0,killCountTarget);
     }
 
     private void WaveEnd()
     {
-        EnemyManager.Instance.EndWave();
+        if(ReachedKillCount)
+        {
+            EnemyManager.Instance.EndWave();
 
-        SpawnSlotMachine();
+            SpawnSlotMachine();
+        }
+        else
+        {
+            player.Die();
+        }
     }
 
     private void WaveNext()
@@ -126,6 +149,29 @@ public class WaveManager : MonoBehaviour
     {
         float t = (float)CurrentWave / enemySpawnMaxWave;
         float adjustedT = enemySpawnCountCurve.Evaluate(t);
-        return (int)Mathf.Lerp(enemySpawnCountRange.x, enemySpawnCountRange.y, adjustedT);
+        // Anim curve clamps so after 1 just use linear
+        if (t > 1)
+            adjustedT = t;
+        return (int)Mathf.LerpUnclamped(enemySpawnCountRange.x, enemySpawnCountRange.y, adjustedT);
+    }
+    private int GetKillCount()
+    {
+        float t = (float)CurrentWave / enemySpawnMaxWave;
+        float adjustedT = killCountCurve.Evaluate(t);
+        // Anim curve clamps so after 1 just use linear
+        if (t > 1)
+            adjustedT = t;
+        return (int)Mathf.LerpUnclamped(killCountRange.x, killCountRange.y, adjustedT);
+    }
+    
+    private void OnEnemyKilled()
+    {
+        killCount++;
+        OnKillsUpdated?.Invoke(killCount, killCountTarget);
+        if (ReachedKillCount)
+        {
+            StopCoroutine(nameof(PlayWave));
+            WaveEnd();
+        }
     }
 }
