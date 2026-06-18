@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3f2cfe336774846a11a5c33a6b3875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
-  interactDist: 5
+  interactDist: 2.5
   layer:
     serializedVersion: 2
     m_Bits: 256

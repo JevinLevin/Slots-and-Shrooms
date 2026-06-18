@@ -6,6 +6,8 @@ public class TherapyChair : MonoBehaviour, IInteractable
 
     private bool activated = false;
 
+    public bool IsInteractable => activated;
+
     public void ToggleState(bool value)
     {
         outlinable.SetOutline(value);
@@ -20,5 +22,15 @@ public class TherapyChair : MonoBehaviour, IInteractable
         activated = false;
 
         GameManager.Instance.StartLoadGame();
+    }
+
+    public void OnHover()
+    {
+        InteractTextUI.OnShowInteract(" to therapise yourself");
+    }
+
+    public void OnUnhover()
+    {
+        InteractTextUI.OnHideInteract();
     }
 }

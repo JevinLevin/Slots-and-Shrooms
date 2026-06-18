@@ -49,6 +49,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     public int GetRandomStopDelay => Random.Range(spinStopDelayRange.x, spinStopDelayRange.y);
     public AnimationCurve GetStopCurve => spinStopCurve;
     public float StopTimeMultiplier => stopTimeMultiplier;
+    public bool IsInteractable => Activated && !IsSpinning && !IsChoosing;
 
     public static Action OnSlotMachineStartSpinning;
     public static Action OnSlotMachineStopSpinning;
@@ -227,6 +228,16 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         // Test repeating it
         // Tween.Delay(1, Activate);
+    }
+
+    public void OnHover()
+    {
+        InteractTextUI.OnShowInteract(" to spin da wheel!!!");
+    }
+
+    public void OnUnhover()
+    {
+        InteractTextUI.OnHideInteract();
     }
 }
  
