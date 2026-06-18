@@ -23,7 +23,7 @@ MonoBehaviour:
   overheat: 1
   overheatMax: 25
   overheatPerShot: 2.75
-  overheatDrainPerSecond: 2
+  overheatDrainPerSecond: 3.25
   overheatedDrainPerSecond: 3
   reloadStartDelay: 0.375
   reloadDuration: 1
