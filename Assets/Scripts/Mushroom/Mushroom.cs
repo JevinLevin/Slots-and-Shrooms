@@ -8,9 +8,22 @@ public class Mushroom
     private Texture2D mushroomTexture;
     public Texture2D MushroomTexture => mushroomTexture;
 
+    private List<PlayerStat> statsList = new List<PlayerStat>(); 
+    public List<PlayerStat> StatList => statsList;
+
     public Mushroom(List<MushroomAttributeSO> attributes)
     {
         this.attributes = attributes;
+
+        foreach(MushroomAttributeSO attribute in attributes)
+        {
+            if(attribute.Type == AttributeType.Stat)
+            {
+                StatMushroomAttributesSO statAttribute = (StatMushroomAttributesSO)attribute;
+                PlayerStat newStat = new PlayerStat(statAttribute.statType, statAttribute.SetValue);
+                statsList.Add(newStat);
+            }
+        }
     }
 
     public void SetTexture(Texture2D texture)

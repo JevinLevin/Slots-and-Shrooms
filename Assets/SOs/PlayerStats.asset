@@ -12,4 +12,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd3ea8cd41fd2d4480fb895acbfa5a0, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsHolderSO
-  playerBaseStats: []
+  playerBaseStats:
+  - type: 0
+    value: 0
+  - type: 1
+    value: 0
+  - type: 2
+    value: 0
+  - type: 3
+    value: 0
+  - type: 4
+    value: 0
+  - type: 5
+    value: 0
+  - type: 6
+    value: 0
+  - type: 7
+    value: 0
+  - type: 8
+    value: 0
+  - type: 9
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  playerStats:
+  - type: 0
+    value: 0
+  - type: 1
+    value: 0
+  - type: 2
+    value: 0
+  - type: 3
+    value: 0
+  - type: 4
+    value: 0
+  - type: 5
+    value: 0
+  - type: 6
+    value: 0
+  - type: 7
+    value: 0
+  - type: 8
+    value: 11.107056
+  - type: 9
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
+  - type: 10
+    value: 0
