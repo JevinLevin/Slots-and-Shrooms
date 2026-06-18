@@ -32,7 +32,7 @@ public class Outlinable : MonoBehaviour
         if (renderers == null)
             return;
         
-        if (enable)
+        if (enable && outlineColor != default)
             outlineSettings.Outlines[outlineIndex].color = outlineColor;
         
         foreach (var rend in renderers)  

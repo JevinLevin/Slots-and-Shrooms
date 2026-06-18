@@ -19,6 +19,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [SerializeField] private RenderingLayerMask outlineLayer;
     [SerializeField] private FreeOutlineSettings outlineSettings;
     [SerializeField] private Color outlineColor;
+    [SerializeField] private bool hideOnDisable = true;
 
 
     [Header("Spinning")] 
@@ -48,6 +49,7 @@ public class SlotMachine : MonoBehaviour, IInteractable
     public int GetRandomStopDelay => Random.Range(spinStopDelayRange.x, spinStopDelayRange.y);
     public AnimationCurve GetStopCurve => spinStopCurve;
     public float StopTimeMultiplier => stopTimeMultiplier;
+    public bool IsInteractable => Activated && !IsSpinning && !IsChoosing;
 
     public static Action OnSlotMachineStartSpinning;
     public static Action OnSlotMachineStopSpinning;
@@ -70,9 +72,14 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     public void Activate(Vector3 position, Vector3 direction, Action finishCallback = null)
     {
-        this.finishCallback = finishCallback;
         transform.position = position;
         transform.forward = direction;
+        Activate(finishCallback);
+    }
+    public void Activate(Action finishCallback = null)
+    {
+        this.finishCallback = finishCallback;
+
         gameObject.SetActive(true);
 
         OnSlotMachineActivate?.Invoke();
@@ -93,7 +100,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         finishCallback?.Invoke();
 
-        gameObject.SetActive(false);
+        if(hideOnDisable)
+            gameObject.SetActive(false);
 
         IsSlotMachineBeingUsed = false;
     }
@@ -220,6 +228,16 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         // Test repeating it
         // Tween.Delay(1, Activate);
+    }
+
+    public void OnHover()
+    {
+        InteractTextUI.OnShowInteract(" to spin da wheel!!!");
+    }
+
+    public void OnUnhover()
+    {
+        InteractTextUI.OnHideInteract();
     }
 }
  
