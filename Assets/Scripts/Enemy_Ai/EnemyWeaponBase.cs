@@ -17,7 +17,7 @@ public class EnemyWeaponBase : MonoBehaviour
 
         activeColliders.Add(other);
 
-        mainEnemy.TryAttack();
+        mainEnemy.TryAttack(other.transform);
     }
 
     private void OnTriggerStay(Collider other)
@@ -26,7 +26,7 @@ public class EnemyWeaponBase : MonoBehaviour
         if ((targetLayer & (1 << other.gameObject.layer)) == 0)
             return;
 
-        mainEnemy.TryAttack();
+        mainEnemy.TryAttack(other.transform);
     }
 
     private void OnTriggerExit(Collider other)

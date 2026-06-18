@@ -21,14 +21,18 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 
     private void Awake()
     {
-        currentAttackCD = 0;
+        currentAttackCD = attackCD;
         player = GameObject.FindWithTag("Player").transform; 
         agent.speed = speed;
     }
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, player.position) <= range) inRange = true;
+        if(Vector3.Distance(transform.position, player.position) <= range)
+        {
+            inRange = true;
+            enemyAnimator.SetMovement(false, 0);
+        }
         else
         {
             inRange = false;
@@ -46,7 +50,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         if(currentAttackCD >= attackCD)
         {
             if (!canAttack) return; 
-            TryAttack();
+            TryAttack(player.transform);
             enemyAnimator.PlayAttack();
             currentAttackCD = 0; 
         }
@@ -60,7 +64,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
         agent.SetDestination(player.position);
         enemyAnimator.SetMovement(true, 0);
     }
-    public abstract void TryAttack(); 
+    public abstract void TryAttack(Transform target); 
 
     public virtual void OnHit(float damage, GameObject attacker)
     {

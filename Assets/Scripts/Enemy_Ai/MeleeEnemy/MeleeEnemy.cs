@@ -11,7 +11,7 @@ public class MeleeEnemy : EnemyBaseClass
 
     public bool IsAttacking { get; private set; }
 
-    public override void TryAttack()
+    public override void TryAttack(Transform target)
     {
         if (IsAttacking)
             return;
