@@ -186,6 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2369641}
   - component: {fileID: 2369642}
+  - component: {fileID: 2369643}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -224,6 +225,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a968f60da0c33194fb8e9680bbb57da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
+  spawner: {fileID: 2369643}
+--- !u!114 &2369643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6790fe7fcf79dab49bb33fda6c46f17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefabs:
+  - {fileID: 176596268285746649, guid: 494c985a2beb5cf499685efd93cd0eb9, type: 3}
+  - {fileID: 176596268285746649, guid: f80000e0d8623dd4e8819f1b17d988ba, type: 3}
+  spawnRadius: {x: 25, y: 50}
 --- !u!1 &79652191
 GameObject:
   m_ObjectHideFlags: 0

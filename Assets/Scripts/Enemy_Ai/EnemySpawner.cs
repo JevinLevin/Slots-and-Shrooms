@@ -33,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
 
                 if (Vector3.Distance(player.transform.position, randomPos) < spawnRadius.x)
                     continue;
+
+                break;
             }
 
 
