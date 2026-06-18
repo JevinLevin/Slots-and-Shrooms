@@ -59,6 +59,7 @@ public class PlayerMovement : StateMachine
     private Vector3 currentVelocity;
     public Vector3 GetVelocity => currentVelocity;
     private Vector3 externalVelocity;
+    private bool cameraLocked;
 
     public bool IsGrounded => IsOnGround();
     public bool IsMoving => Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0 || Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0;
@@ -88,6 +89,16 @@ public class PlayerMovement : StateMachine
         currentState = IdleState;
     }
 
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDie += OnDie;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDie -= OnDie;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -109,8 +120,25 @@ public class PlayerMovement : StateMachine
         ApplyVelocity();
     }
 
+    private void OnDie()
+    {
+        playerAnimator.enabled = false;
+        playerShooter.enabled = false;
+        enabled = false;
+        LockCamera(true, 0f);
+    }
+
+    private void LockCamera(bool value, float verticalAngle)
+    {
+        cameraLocked = value;
+        cameraPivot.localEulerAngles = new Vector3(verticalAngle, cameraPivot.localEulerAngles.y, cameraPivot.localEulerAngles.z);
+    }
+
     private void ApplyRotation()
     {
+        if (cameraLocked)
+            return;
+
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
         cameraRotation.x += mouseX * sensitivity;

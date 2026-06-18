@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -12,7 +13,15 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Animator shotgunAnimator;
     [SerializeField] private Animator legsAnimator;
 
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDie += PlayDie;
+    }
 
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDie -= PlayDie;
+    }
     public void ToggleAiming(bool value)
     {
         if(pistolAnimator.gameObject.activeInHierarchy)
@@ -79,5 +88,14 @@ public class PlayerAnimator : MonoBehaviour
             pistolAnimator.SetBool(IsReloading, false);
         if(shotgunAnimator.gameObject.activeInHierarchy)
             shotgunAnimator.SetBool(IsReloading, false);
+    }
+
+
+    private void PlayDie()
+    {
+        if (pistolAnimator.gameObject.activeInHierarchy)
+            pistolAnimator.CrossFadeInFixedTime("Death", 0.1f);
+        if (shotgunAnimator.gameObject.activeInHierarchy)
+            shotgunAnimator.CrossFadeInFixedTime("Death", 0.1f);
     }
 }

@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using PrimeTween;
 
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private SlotMachine slotMachine;
     [SerializeField] GameObject player;
+    [SerializeField] private GameOverUI gameOver;
 
     [Header("Time Attributes")] 
     [SerializeField] private int waveDuration = 60;
@@ -16,6 +18,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private AnimationCurve enemySpawnCountCurve;
     [Tooltip("Enemies dont stop spawning after this wave, the spawn count will just keep scaling after this point")] 
     [SerializeField] private int enemySpawnMaxWave = 20;
+
+    [Header("Ending")]
+    [SerializeField] private float gameOverDelay = 2;
     
     public int CurrentWave { get; private set; }
 
@@ -32,6 +37,16 @@ public class WaveManager : MonoBehaviour
 
     public static Action<int> OnWaveTimeChanged;
     public static Action<int> OnNewWave;
+
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDie += GameEnd;
+    }
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDie -= GameEnd;
+    }
+
     void Start()
     {
         GameStart();
@@ -42,6 +57,13 @@ public class WaveManager : MonoBehaviour
         CurrentWave = 1;
         
         StartCoroutine(nameof(PlayWave));
+    }
+
+    public void GameEnd()
+    {
+        StopCoroutine(nameof(PlayWave));
+
+        Tween.Delay(gameOverDelay, () => gameOver.Show(CurrentWave));
     }
 
     private IEnumerator PlayWave()

@@ -16,6 +16,7 @@ public class MeleeEnemy : EnemyBaseClass
         if (IsAttacking)
             return;
 
+
         StartCoroutine(BaseAttack());
     }
 

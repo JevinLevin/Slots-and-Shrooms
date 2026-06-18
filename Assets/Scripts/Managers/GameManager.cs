@@ -1,6 +1,7 @@
 using UnityEngine;
 using PrimeTween;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerStatsHolderSO playerStats;
     [SerializeField] private MushroomGeneratorSO mushroomGenerator;
     [SerializeField] private MushroomInventorySO mushroomInventory;
+
+
     [SerializeField] private int maxFrameRate = 120;
 
     #region Singleton
@@ -88,6 +91,12 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = value;
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        StartLoadTherapy();
     }
 
     public void StartLoadTherapy()

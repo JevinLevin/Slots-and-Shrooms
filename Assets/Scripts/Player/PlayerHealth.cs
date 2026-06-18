@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     public float HealthProgress => Health / maxHealth;
 
+    private bool dead;
     private float health;
     public float Health
     {
@@ -23,14 +24,15 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
     private float regenTimer = 0;
 
     public static Action<float> OnHealthUpdated;
+    public static Action OnPlayerDie;
 
     private void Start()
     {
         // maxHealth = statHolder.ReadStat(StatType.MaxHeath).value;
         // regenRate = statHolder.ReadStat(StatType.RegenRate).value;
 
-        maxHealth = 100;
-        Health = 100;
+        maxHealth = 25;
+        Health = 25;
 
         //EventManager.Instance.statsUpdated += UpdateStats;
     }
@@ -55,11 +57,15 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
 
     public void Die()
     {
-        
+        OnPlayerDie?.Invoke();
+        dead = true;
     }
 
     public void OnHit(float damage, GameObject attacker)
     {
+        if (dead)
+            return;
+
         Health -= damage;
         if (Health < 0) Die(); 
     }
