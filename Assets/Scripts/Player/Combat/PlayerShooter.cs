@@ -133,7 +133,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void SwapWeapon(Gun newGun)
     {
-        if (newGun == currentGun)
+        if (newGun == currentGun || IsReloading)
             return;
         
         currentGun.ToggleGun(false);
