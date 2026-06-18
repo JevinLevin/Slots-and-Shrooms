@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad11532abed1c4caba64e05a537136b9
+guid: c82c6c73070186e4bb51088dc29153bb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -8,11 +8,6 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert2
-    second: {fileID: -4586444591600750072, guid: 871af491e32a0c24a88f8259f8aad240, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: typeOpenPBRSurface
     second: {fileID: -4586444591600750072, guid: 871af491e32a0c24a88f8259f8aad240, type: 3}
   materials:
     materialImportMode: 2
