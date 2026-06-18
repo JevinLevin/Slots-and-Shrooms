@@ -34,6 +34,8 @@ public class WaveManager : MonoBehaviour
             OnWaveTimeChanged?.Invoke(WaveTime);
         }
     }
+    
+    public bool WaveActive {get; private set;}
 
     public static Action<int> OnWaveTimeChanged;
     public static Action<int> OnNewWave;
@@ -84,7 +86,7 @@ public class WaveManager : MonoBehaviour
     private void WaveStart()
     {
         WaveTime = waveDuration;
-
+        
         EnemyManager.Instance.StartWave(GetWaveEnemyCount());
 
         OnNewWave?.Invoke(CurrentWave);

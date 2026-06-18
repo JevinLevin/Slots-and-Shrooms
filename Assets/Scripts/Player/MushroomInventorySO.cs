@@ -51,14 +51,21 @@ public class MushroomInventorySO : ScriptableObject
     }
     public void RemoveMushroom(int index)
     {
-        foreach(var attribute in mushroomList[index].Attributes)
+        var mushroomToRemove = mushroomList[index];
+        foreach(var attribute in mushroomToRemove.Attributes)
         {
+            Debug.Log("removing");
             switch (attribute)
             {
                 case StatMushroomAttributesSO stat:
-                    foreach (PlayerStat playerStat in mushroomList[index].StatList)
+                    foreach (PlayerStat playerStat in mushroomToRemove.StatList)
                     {
-                        PlayerStat reverseStat = new PlayerStat(playerStat.type, playerStat.value); 
+                        if (stat.statType != playerStat.type) 
+                            continue;
+                        
+                        Debug.Log("removing stat");
+
+                        PlayerStat reverseStat = new PlayerStat(playerStat.type, -playerStat.value); 
                         playerStats.AddStat(reverseStat);
                     }
 
@@ -73,8 +80,8 @@ public class MushroomInventorySO : ScriptableObject
                     break;
             }
         }
-        mushroomList.Remove(mushroomList[index]);
-        OnMushroomRemoved?.Invoke(mushroomList[index]);
+        OnMushroomRemoved?.Invoke(mushroomToRemove);
+        mushroomList.Remove(mushroomToRemove);
     }
 
     private void UnpackMushRoom(Mushroom mushroom)

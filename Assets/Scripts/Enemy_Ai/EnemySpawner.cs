@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour
         
 
         List<EnemyBaseClass> newEnemies = new(); 
-        int j = 0;
         for(int i = 0; i < enemiesToSpawn; i++)
         {
             // Random nav mesh position in range
@@ -41,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
             int roll = UnityEngine.Random.Range(0, enemyPrefabs.Length);
             GameObject newEnemy = Instantiate(enemyPrefabs[roll], randomPos, Quaternion.identity);
             newEnemies.Add(newEnemy.GetComponent<EnemyBaseClass>());
-            j++;
         }
 
         return newEnemies;
