@@ -52,10 +52,10 @@ public class GunSO : ScriptableObject
     public StatType magStat;
     public float GetDamageMultiplier => playerStats.GetStatAsMultiplier(damageStat);
     public float GetFireRateMultiplier => playerStats.GetStatAsMultiplierInverse(fireRateStat);
-    public float GetRecoilMultiplier => playerStats.GetStatAsMultiplier(recoilStat);
+    public float GetRecoilMultiplier => playerStats.GetStatAsMultiplierInverse(recoilStat);
     public float GetOverheatMaxMultiplier => playerStats.GetStatAsMultiplier(overheatMaxStat);
     public float GetOverheatRegenMultiplier => playerStats.GetStatAsMultiplier(overheatRegenStat);
-    public float GetSpreadMultiplier => playerStats.GetStatAsMultiplier(spreadStat);
+    public float GetSpreadMultiplier => playerStats.GetStatAsMultiplierInverse(spreadStat);
     public float GetBulletCountMultiplier => playerStats.GetStatAsMultiplier(bulletCountStat);
     public float GetMagMultiplier => playerStats.GetStatAsMultiplier(magStat);
 }
