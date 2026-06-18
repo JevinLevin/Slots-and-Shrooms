@@ -30,4 +30,9 @@ public class EnemyAnimator : MonoBehaviour
         animator.CrossFadeInFixedTime("None", 0.1f, 2);
 
     }
+
+    public void SetSpeed(float speed)
+    {
+        animator.speed = speed;
+    }
 }

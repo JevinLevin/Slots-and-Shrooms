@@ -6,7 +6,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     [SerializeField] protected EnemyAnimator enemyAnimator;
     [SerializeField] private PickupDropper pickupDropper;
     [SerializeField] private float health;
-    [SerializeField] private float speed;
+    [SerializeField] private Vector2 speedRange;
+    [SerializeField] private Vector2 speedAnimRange;
     [SerializeField] private float range;
     private bool inRange; 
     [SerializeField] private float attackCD;
@@ -19,11 +20,15 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 
     [SerializeField] private AudioClip deathSound; 
 
+    private float speed;
+    
     private void Awake()
     {
         currentAttackCD = attackCD;
-        player = GameObject.FindWithTag("Player").transform; 
+        player = GameObject.FindWithTag("Player").transform;
+        speed = Random.Range(speedRange.x, speedRange.y);
         agent.speed = speed;
+        enemyAnimator.SetSpeed(Random.Range(speedAnimRange.x, speedAnimRange.y));
     }
 
     private void Update()

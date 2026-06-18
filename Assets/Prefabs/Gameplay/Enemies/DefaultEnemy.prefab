@@ -98,7 +98,8 @@ MonoBehaviour:
   enemyAnimator: {fileID: 6925919460531587025}
   pickupDropper: {fileID: 9065099922021121690}
   health: 8
-  speed: 3
+  speedRange: {x: 2.25, y: 3}
+  speedAnimRange: {x: 0.95, y: 1.05}
   range: 1
   attackCD: 2
   deathDuration: 2
