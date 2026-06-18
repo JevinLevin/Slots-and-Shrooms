@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,7 +36,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
             MoveTowardsPlayer(); 
         }
 
-        if (!inRange) return;
+        if (!inRange || !agent.isActiveAndEnabled) return;
         agent.ResetPath();
 
         Vector3 towardsPlayer = player.position - transform.position;
@@ -79,7 +80,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
     {
         if(pickupDropper)
             pickupDropper.Trigger();
-        
+
+        EventManager.Instance.OnEnemyDies();
+
         canAttack = false;
         GetComponent<Collider>().enabled = false;
         agent.enabled = false;
