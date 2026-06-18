@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 1
   description: Small chance to create LETHAL chain lighning on hit
   selectionCost: 10
-  weight: 3
+  weight: 2
   isBuff: 1
   radius: 10
   damage: 1000

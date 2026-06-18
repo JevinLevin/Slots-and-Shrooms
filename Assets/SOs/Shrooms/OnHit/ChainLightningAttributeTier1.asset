@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 1
   description: Chance to create chain lighning on hit
   selectionCost: 10
-  weight: 10
+  weight: 5
   isBuff: 1
   radius: 30
   damage: 2
