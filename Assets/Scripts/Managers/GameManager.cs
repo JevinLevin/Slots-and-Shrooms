@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         playerStats.Initialise();
         mushroomGenerator.Initialise();
         mushroomInventory.Initialise();
+
+        SensitivityOption.SensMultiplier = 1f;
     }
 
     private void OnDestroy()

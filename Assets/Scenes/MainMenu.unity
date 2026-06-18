@@ -1920,6 +1920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 619741963}
+  - component: {fileID: 619741965}
   - component: {fileID: 619741964}
   m_Layer: 5
   m_Name: Slider (2)
@@ -1997,10 +1998,35 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 619741965}
+        m_TargetAssemblyTypeName: SensitivityOption, Assembly-CSharp
+        m_MethodName: SetValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &619741965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619741962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926c7e7099f412b4fbe1861ea1213048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SensitivityOption
+  range: {x: 0.5, y: 1.5}
 --- !u!1 &684452988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,6 +5004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498774127}
   - component: {fileID: 1498774129}
+  - component: {fileID: 1498774130}
   - component: {fileID: 1498774128}
   m_Layer: 5
   m_Name: Title (2)
@@ -5104,6 +5131,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498774126}
   m_CullTransparentMesh: 1
+--- !u!114 &1498774130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498774126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b11f8f6a601cd4e8b6a445785b9076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MasterOption
+  range: {x: -20, y: 0}
+  mixer: {fileID: 24100000, guid: 59255de82faa8254ba5f9df0a4ffc913, type: 2}
 --- !u!1 &1577438516
 GameObject:
   m_ObjectHideFlags: 0
@@ -5500,6 +5541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1774133531}
+  - component: {fileID: 1774133533}
   - component: {fileID: 1774133532}
   m_Layer: 5
   m_Name: Slider (1)
@@ -5577,10 +5619,36 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1774133533}
+        m_TargetAssemblyTypeName: MasterOption, Assembly-CSharp
+        m_MethodName: SetValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1774133533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774133530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b11f8f6a601cd4e8b6a445785b9076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MasterOption
+  range: {x: -40, y: 0}
+  mixer: {fileID: 24100000, guid: 59255de82faa8254ba5f9df0a4ffc913, type: 2}
 --- !u!1 &1800652313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6051,10 +6119,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2099904459}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &674546435255286696
 PrefabInstance:
   m_ObjectHideFlags: 0

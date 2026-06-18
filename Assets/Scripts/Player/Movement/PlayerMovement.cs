@@ -149,8 +149,8 @@ public class PlayerMovement : StateMachine
         if (cameraLocked)
             return;
 
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * SensitivityOption.SensMultiplier;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * SensitivityOption.SensMultiplier;
         cameraRotation.x += mouseX * sensitivity;
         cameraRotation.y += mouseY * sensitivity;
         cameraRotation.y = Mathf.Clamp(cameraRotation.y, -verticalClamp, verticalClamp);
