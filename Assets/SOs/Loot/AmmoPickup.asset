@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30433e6bf7f404bb2db507bdae6ce2, type: 3}
   m_Name: AmmoPickup
   m_EditorClassIdentifier: Assembly-CSharp::LootSO
-  lootName: 
-  lootModel: {fileID: 0}
+  lootName: Ammo
+  lootModel: {fileID: 8313429812198662246, guid: db1dc572456724450bbb103969b340b9, type: 3}

@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a2b97aaaa4daf4c80aae7b0ee3c15e, type: 3}
   m_Name: EnemyLootTable
   m_EditorClassIdentifier: Assembly-CSharp::LootTableSO
-  Pools: []
+  Pools:
+  - rollCount: 1
+    rolls:
+    - loot: {fileID: 11400000, guid: 81b3dbc41c19e4749a265e37be8849a5, type: 2}
+      weight: 1
+      count: {x: 2, y: 7}
+      randomChance: 1
+    totalWeight: 0
