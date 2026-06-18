@@ -42,7 +42,7 @@ public class GunDisplayUI : MonoBehaviour
 
     private void UpdateText()
     {
-        if(maxAmmo > 0)
+        if(ammoCount >= 0)
         {
             textObject.text = string.Format(textFormat, gunName, ammoCount, maxAmmo);
             infiniteSymbol.enabled = false;
@@ -54,16 +54,17 @@ public class GunDisplayUI : MonoBehaviour
         }
     }
 
-    private void UpdateGunText(Gun gun, int ammo)
+    private void UpdateGunText(Gun gun, int magAmmo, int totalAmmo)
     {
         gunName = gun.GunData.gunName;
-        maxAmmo = gun.GunData.magSize;
-        ammoCount = ammo;
+        maxAmmo = totalAmmo;
+        ammoCount = magAmmo;
         UpdateText();
     }
-    private void UpdateAmmoText(int ammo)
+    private void UpdateAmmoText(int magAmmo, int totalAmmo)
     {
-        ammoCount = ammo;
+        maxAmmo = totalAmmo;
+        ammoCount = magAmmo;
         UpdateText();
     }
 }

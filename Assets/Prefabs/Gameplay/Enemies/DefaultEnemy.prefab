@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2597353116959406788}
   - component: {fileID: 6927525892445829225}
   - component: {fileID: 8815531982870322572}
+  - component: {fileID: 9065099922021121690}
   m_Layer: 7
   m_Name: DefaultEnemy
   m_TagString: Enemy
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   enemyAnimator: {fileID: 6925919460531587025}
+  pickupDropper: {fileID: 9065099922021121690}
   health: 8
   speed: 3
   range: 1
@@ -200,6 +202,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9065099922021121690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176596268285746649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77026e56d666a014dba17c54ec48c0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupDropper
+  lootTable: {fileID: 11400000, guid: e16c81600db528e45baba80b1bcc350e, type: 2}
+  pickupPrefab: {fileID: 1365031371938731839, guid: 189d2de99037b514d91c2e9943527154, type: 3}
 --- !u!1 &4663767563014295419
 GameObject:
   m_ObjectHideFlags: 0

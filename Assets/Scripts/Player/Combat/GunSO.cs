@@ -18,6 +18,8 @@ public class GunSO : ScriptableObject
     public float baseDamage = 1;
     [Tooltip("Bullets fired per second")]
     public float fireRate = 10;
+
+    public int startingAmmo = 15;
     public int magSize = -1;
     public bool overheat;
     [ShowField(nameof(overheat))] public float overheatMax = 20;

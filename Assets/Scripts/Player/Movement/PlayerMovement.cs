@@ -198,6 +198,6 @@ public class PlayerMovement : StateMachine
     public void ResetHeight()
     {
         SetHeight(playerHeight);
-
     }
+    
 }

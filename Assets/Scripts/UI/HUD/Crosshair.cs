@@ -66,7 +66,7 @@ public class Crosshair : MonoBehaviour
 
     }
     
-    private void GunSwapped(Gun gun, int ammo)
+    private void GunSwapped(Gun gun, int magAmmo, int totalAmmo)
     {
         if(gun.IsOverheated)
             ToggleCrosshair(false);

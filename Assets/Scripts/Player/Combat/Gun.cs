@@ -20,24 +20,27 @@ public class Gun : MonoBehaviour
      
 
     private Tween shootDelayTween;
-    private int ammoRemaining;
+    private int magAmmo;
+    private int totalAmmo;
     private float overheatValue;
     
     public float GetCurrentWeaponDamage => GunData.baseDamage;
     public bool CanShoot => !shootDelayTween.isAlive && !IsOverheated;
-    public bool HasAmmo => gunData.magSize == -1 || ammoRemaining > 0;
-    public int GetAmmoLeft => ammoRemaining;
+    public bool HasAmmo => gunData.magSize == -1 || magAmmo > 0;
+    public int GetMagAmmo => magAmmo;
+    public int GetTotalAmmo => totalAmmo;
     public float OverheatProgress => overheatValue / gunData.overheatMax;
     public bool IsOverheated { get; private set; }
     
-    public static Action<int> OnGunAmmoChanged;
+    public static Action<int, int> OnGunAmmoChanged;
     public static Action OnGunOverheatStart;
     public static Action OnGunOverheatEnd;
     public static Action<float> OnGunOverheatUpdate;
 
     private void Awake()
     {
-        ammoRemaining = gunData.magSize;
+        totalAmmo = gunData.startingAmmo - gunData.magSize;
+        magAmmo = gunData.magSize;
     }
 
     private void Update()
@@ -81,7 +84,7 @@ public class Gun : MonoBehaviour
         }
 
         if(!gunData.overheat)
-            AdjustAmmo(-1);
+            AdjustMagAmmo(-1);
         else
             AddOverheat();
         muzzleFlash.Play();
@@ -92,10 +95,33 @@ public class Gun : MonoBehaviour
         
     }
 
-    public void AdjustAmmo(int amount)
+    public void AdjustMagAmmo(int amount)
     {
-        ammoRemaining += amount;
-        OnGunAmmoChanged?.Invoke(ammoRemaining);
+        if (amount < 0)
+        {
+            magAmmo += amount;
+        }
+        else
+        {
+            if (amount > totalAmmo)
+            {
+                magAmmo += totalAmmo;
+                totalAmmo -= totalAmmo;
+            }
+            else
+            {
+                magAmmo += amount;
+                totalAmmo -= amount;
+            }
+        }
+        OnGunAmmoChanged?.Invoke(magAmmo, totalAmmo);
+    }
+
+    public void AddTotalAmmo(int amount)
+    {
+        totalAmmo += amount;
+        OnGunAmmoChanged?.Invoke(magAmmo, totalAmmo);
+
     }
 
     public void AddOverheat()

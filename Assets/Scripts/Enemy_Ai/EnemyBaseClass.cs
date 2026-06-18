@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 {
     [SerializeField] private EnemyAnimator enemyAnimator;
+    [SerializeField] private PickupDropper pickupDropper;
     [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float range;
@@ -76,6 +77,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IHasHealth
 
     public virtual void Die()
     {
+        if(pickupDropper)
+            pickupDropper.Trigger();
+        
         canAttack = false;
         GetComponent<Collider>().enabled = false;
         agent.enabled = false;

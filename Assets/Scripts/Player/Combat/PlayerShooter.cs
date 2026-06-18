@@ -27,7 +27,7 @@ public class PlayerShooter : MonoBehaviour
 
     public bool HandsDisabled { get; private set; }
 
-    public static Action<Gun, int> OnGunSwapped;
+    public static Action<Gun, int, int> OnGunSwapped;
     
 
 
@@ -36,7 +36,7 @@ public class PlayerShooter : MonoBehaviour
         pistol.ToggleGun(false);
         shotgun.ToggleGun(true);
         currentGun = shotgun;
-        OnGunSwapped?.Invoke(currentGun, currentGun.GetAmmoLeft);
+        OnGunSwapped?.Invoke(currentGun, currentGun.GetMagAmmo, currentGun.GetTotalAmmo);
     }
 
     private void OnEnable()
@@ -67,7 +67,7 @@ public class PlayerShooter : MonoBehaviour
         if (IsHoldingShoot && !IsReloading)
             TryShoot();
         
-        if(IsPressingReload && !IsReloading && currentGun.GetAmmoLeft < currentGun.GunData.magSize)
+        if(IsPressingReload && !IsReloading && currentGun.GetMagAmmo < currentGun.GunData.magSize)
             StartReload();
 
     }
@@ -103,12 +103,12 @@ public class PlayerShooter : MonoBehaviour
 
         yield return new WaitForSeconds(currentGun.GunData.reloadStartDelay);
 
-        while (currentGun.GetAmmoLeft < currentGun.GunData.magSize)
+        while (currentGun.GetMagAmmo < currentGun.GunData.magSize && currentGun.GetTotalAmmo > 0)
         {
 
             yield return new WaitForSeconds(currentGun.GunData.reloadDuration * currentGun.GunData.reloadAddPercentage);
             
-            currentGun.AdjustAmmo(1);
+            currentGun.AdjustMagAmmo(1);
             
             yield return new WaitForSeconds(currentGun.GunData.reloadDuration * (1-currentGun.GunData.reloadAddPercentage));
         }
@@ -140,7 +140,7 @@ public class PlayerShooter : MonoBehaviour
 
         currentGun = newGun;
         currentGun.ToggleGun(true);
-        OnGunSwapped?.Invoke(currentGun, currentGun.GetAmmoLeft);
+        OnGunSwapped?.Invoke(currentGun, currentGun.GetMagAmmo, currentGun.GetTotalAmmo);
     }
 
     private void DisableHands()
@@ -155,6 +155,17 @@ public class PlayerShooter : MonoBehaviour
         if(currentGun)
             currentGun.ToggleGun(true);
         HandsDisabled = false;
+    }
+
+    private void AddAmmo(int count)
+    {
+        shotgun.AddTotalAmmo(count);
+    }
+    
+    // This should NOT be here but game jam moment
+    public void PickupLoot(PickupPrefab pickup)
+    {
+        AddAmmo(pickup.GetCount);
     }
 
 
