@@ -18,6 +18,7 @@ MonoBehaviour:
   shootSoundEffect: {fileID: 8300000, guid: adffc827130a0e04f9101a1326c53fc4, type: 3}
   baseDamage: 2
   fireRate: 3
+  startingAmmo: 15
   magSize: -1
   overheat: 1
   overheatMax: 20
@@ -31,8 +32,8 @@ MonoBehaviour:
   bulletHipfireSpreadAngleMax: 0
   bulletAimingSpreadAngleMax: 0
   bulletMaxRange: 100
-  recoilVerticalAngle: 10
-  recoilRecoveryTime: 0.25
+  recoilVerticalAngle: 5
+  recoilRecoveryTime: 0.15
   recoilCurve:
     serializedVersion: 2
     m_Curve:

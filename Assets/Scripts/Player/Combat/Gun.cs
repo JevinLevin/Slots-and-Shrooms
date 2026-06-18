@@ -17,7 +17,9 @@ public class Gun : MonoBehaviour
     [SerializeField] private LayerMask shotHitLayer;
     [SerializeField] private GameObject cameraTarget;
     [SerializeField] private Material gunMaterial;
-     
+    [SerializeField] private ParticleSystem overheatParticle;
+    [SerializeField] private ParticleSystem bulletImpactParticle;
+
 
     private Tween shootDelayTween;
     private int magAmmo;
@@ -138,6 +140,8 @@ public class Gun : MonoBehaviour
         IsOverheated = true;
         OnGunOverheatStart?.Invoke();
 
+        overheatParticle.Play();
+
         while (overheatValue > 0)
         {
             yield return null;
@@ -181,6 +185,7 @@ public class Gun : MonoBehaviour
             if (bulletHit.collider.TryGetComponent<IHasHealth>(out var enemyHealth))
             {
                 enemyHealth.OnHit(GetCurrentWeaponDamage, playerCamera.gameObject);
+                Instantiate(bulletImpactParticle, bulletHit.point, Quaternion.identity, null);
             }
         }
     }
