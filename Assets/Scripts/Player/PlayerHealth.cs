@@ -7,8 +7,10 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
     [SerializeField] private PlayerStatsHolderSO statHolder;
     [SerializeField] private float baseMaxHealth = 25;
     [SerializeField] private float baseRegenRate = 1;
+    [SerializeField] private float baseRegenDelay = 1;
     private float maxHealth => baseMaxHealth * playerStats.GetStatAsMultiplier(StatType.MaxHeath);
     private float regenRate => baseRegenRate * playerStats.GetStatAsMultiplier(StatType.RegenRate);
+    private float regenDelay => baseRegenDelay * playerStats.GetStatAsMultiplierInverse(StatType.RegenStartDelay);
 
     public float HealthProgress => Health / maxHealth;
 
@@ -38,7 +40,7 @@ public class PlayerHealth : MonoBehaviour, IHasHealth
     private void Update()
     {
         regenTimer += Time.deltaTime; 
-        if(regenTimer > 1)
+        if(regenTimer > regenDelay)
         {
             Health = Mathf.Min(maxHealth, health + regenRate);
             regenTimer = 0;

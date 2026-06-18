@@ -81,6 +81,7 @@ public class PlayerMovement : StateMachine
     public float SlideSpeedMultiplier => playerStats.GetStatAsMultiplier(StatType.SlideSpeed);
     public float SlideDurationMultiplier => playerStats.GetStatAsMultiplier(StatType.SlideDuration);
     public float GravityMultiplier => playerStats.GetStatAsMultiplier(StatType.Gravity);
+    public float AimingMultipler => playerStats.GetStatAsMultiplier(StatType.SpeedWhileAiming);
 
     protected override void Awake()
     {
