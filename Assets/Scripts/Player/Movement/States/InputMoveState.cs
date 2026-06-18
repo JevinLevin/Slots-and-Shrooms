@@ -78,6 +78,8 @@ public abstract class InputMoveState : MovementState
         float multiplier = GetSpeedMultiplier();
         if (stateMachine.PlayerShooter.IsAiming)
             multiplier *= Settings.aimingSpeedMultiplier;
+
+        multiplier *= stateMachine.BaseSpeedMultiplier;
         
         velocity *= Settings.baseMoveSpeed * multiplier;
 

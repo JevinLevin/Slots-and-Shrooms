@@ -6936,7 +6936,7 @@ MonoBehaviour:
   slotMachine: {fileID: 658609906}
   player: {fileID: 1754661570}
   gameOver: {fileID: 521187477}
-  waveDuration: 3
+  waveDuration: 60
   enemySpawnCountRange: {x: 10, y: 200}
   enemySpawnCountCurve:
     serializedVersion: 2

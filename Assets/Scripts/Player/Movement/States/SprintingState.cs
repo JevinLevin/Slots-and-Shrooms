@@ -13,7 +13,7 @@ public class SprintingState : InputMoveState
     public SprintingSettings Settings => stateMachine.SprintingSettings;
     public override float GetSpeedMultiplier()
     {
-        return Settings.speedMultiplier;
+        return Settings.speedMultiplier * stateMachine.SprintSpeedMultiplier;
     }
 
     public SprintingState(StateMachine stateMachine) : base(stateMachine)

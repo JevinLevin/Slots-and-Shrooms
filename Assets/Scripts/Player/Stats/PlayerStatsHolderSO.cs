@@ -41,4 +41,18 @@ public class PlayerStatsHolderSO : ScriptableObject
         Debug.LogError($"StatType: {statType} not found");
         return null;
     }
+
+    public float GetStatAsMultiplier(StatType statType)
+    {
+        foreach (PlayerStat playerStat in playerStats)
+        {
+            float multiplier = 1 + (playerStat.value / 100);
+            // Dont let multiplier go below 0.1 or else stuff breaks
+            multiplier = Mathf.Max(0.1f, multiplier);
+            if (playerStat.type == statType) return multiplier; 
+        }
+        
+        Debug.LogError($"StatType: {statType} not found");
+        return 1;
+    }
 }

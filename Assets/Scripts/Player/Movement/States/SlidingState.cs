@@ -24,6 +24,7 @@ public class SlidingState : MovementState
     private float slideTimer;
     private float slideProgress;
     private Tween reslideTween;
+    public float GetSlideDuration => Settings.slideDuration * stateMachine.SlideDurationMultiplier;
 
     public override bool CanEnter()
     {
@@ -88,12 +89,12 @@ public class SlidingState : MovementState
     public override void OnTick()
     {
         float currentT = Settings.slideCurve.Evaluate(slideProgress);
-        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.x, Settings.slideSpeedRange.y, 1-currentT);
+        float currentSpeed = Mathf.Lerp(Settings.slideSpeedRange.x, Settings.slideSpeedRange.y, 1-currentT) * stateMachine.SlideSpeedMultiplier;
         Vector3 currentVelocity = slideDirection * currentSpeed;
         stateMachine.SetVelocity(currentVelocity);
 
         slideTimer += Time.deltaTime;
-        slideProgress = slideTimer / Settings.slideDuration;
+        slideProgress = slideTimer / GetSlideDuration;
 
         // Lock legs pivot world direction to stay the same
         stateMachine.GetLegsPivot.transform.forward = slideDirection;

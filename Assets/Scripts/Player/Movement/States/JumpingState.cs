@@ -40,7 +40,7 @@ public class JumpingState : InputMoveState
 
         Vector3 jumpVelocity = Vector3.zero;
         jumpVelocity.y = Settings.jumpHeight;
-        stateMachine.ImpulseVelocity(jumpVelocity);
+        stateMachine.ImpulseVelocity(jumpVelocity * stateMachine.JumpHeightMultiplier);
 
         groundedTween = Tween.Delay(Settings.groundingDelay);
         AudioSource movementAudio = stateMachine.GetComponent<AudioSource>();
