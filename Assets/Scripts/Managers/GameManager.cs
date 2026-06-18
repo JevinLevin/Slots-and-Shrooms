@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private CanvasFader transitionCanvas;
+    [SerializeField] private string therapySceneName;
     [SerializeField] private string gameSceneName;
     [SerializeField] private PlayerStatsHolderSO playerStats;
     [SerializeField] private MushroomGeneratorSO mushroomGenerator;
@@ -89,6 +90,17 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
+    public void StartLoadTherapy()
+    {
+        transitionCanvas.OnFadeInEnd += LoadTherapy;
+        transitionCanvas.PlayIn();
+    }
+    private void LoadTherapy()
+    {
+        transitionCanvas.OnFadeInEnd -= LoadTherapy;
+        SceneManager.LoadScene(therapySceneName);
+        transitionCanvas.PlayOut();
+    }
     public void StartLoadGame()
     {
         transitionCanvas.OnFadeInEnd += LoadGame;

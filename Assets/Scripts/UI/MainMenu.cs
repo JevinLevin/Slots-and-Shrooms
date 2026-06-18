@@ -5,6 +5,6 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickPlay()
     {
-        GameManager.Instance.StartLoadGame();
+        GameManager.Instance.StartLoadTherapy();
     }
 }

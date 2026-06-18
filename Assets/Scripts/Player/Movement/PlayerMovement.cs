@@ -94,8 +94,11 @@ public class PlayerMovement : StateMachine
 
         ResetWidth();
         ResetHeight();
+        cameraRotation.x = 90;
+        cameraRotation.y = -25;
 
         playerCamera.SetFOV(baseFOV);
+
     }
 
     protected override void Update()
