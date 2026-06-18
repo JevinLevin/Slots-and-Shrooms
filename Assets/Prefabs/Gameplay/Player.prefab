@@ -508,7 +508,7 @@ MonoBehaviour:
   interactDist: 2.5
   layer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
 --- !u!82 &-1956986149368029419
 AudioSource:
   m_ObjectHideFlags: 0

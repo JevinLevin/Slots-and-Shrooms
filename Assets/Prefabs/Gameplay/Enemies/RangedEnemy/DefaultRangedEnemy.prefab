@@ -101,14 +101,14 @@ MonoBehaviour:
   speedRange: {x: 1.5, y: 2.2}
   speedAnimRange: {x: 0.95, y: 1.05}
   range: 10
-  attackCD: 3
+  attackCD: 4
   deathDuration: 1
   agent: {fileID: 2597353116959406788}
   deathSound: {fileID: 8300000, guid: e0f5ba5175857f6469b497669c7cbbbc, type: 3}
   projectile: {fileID: 1530739407838434846, guid: bf7bd93dfadb7dc459b7e61e8d7c16ee, type: 3}
   shootPoint: {fileID: 1259051471326927930}
   projectileDamage: 3
-  projectileSpeed: {x: 3, y: 6}
+  projectileSpeed: {x: 2, y: 4}
 --- !u!82 &5772017400585943787
 AudioSource:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

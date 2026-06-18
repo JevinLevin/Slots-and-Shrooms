@@ -18,6 +18,8 @@ public class HealthUI : MonoBehaviour
     private void OnDisable()
     {
         PlayerHealth.OnHealthUpdated -= UpdateHealthbar;
+        if(updateTween.isAlive)
+            updateTween.Stop();
     }
 
     private void UpdateHealthbar(float healthProgress)
@@ -25,6 +27,7 @@ public class HealthUI : MonoBehaviour
         if (updateTween.isAlive)
             updateTween.Stop();
 
-        updateTween = Tween.Custom(fillImage.fillAmount, healthProgress, updateBarDuration, newValue => fillImage.fillAmount = newValue, updateBarEase);
+        if(fillImage != null)
+            updateTween = Tween.Custom(fillImage.fillAmount, healthProgress, updateBarDuration, newValue => fillImage.fillAmount = newValue, updateBarEase); 
     }
 }

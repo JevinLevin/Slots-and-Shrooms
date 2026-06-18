@@ -1,5 +1,7 @@
+using System;
 using PrimeTween;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RangedEnemy : EnemyBaseClass
 {
@@ -9,9 +11,17 @@ public class RangedEnemy : EnemyBaseClass
     [SerializeField] private int projectileDamage; 
     [SerializeField] private Vector2 projectileSpeed = new Vector2(3,6);
 
+    private Tween delayTween;
+
+    private void OnDisable()
+    {
+        if(delayTween.isAlive)
+            delayTween.Stop();
+    }
+
     public override void TryAttack(Transform target)
     {
-        Tween.Delay(0.4f, () =>
+        delayTween = Tween.Delay(0.4f, () =>
         {
             EnemyProjectile enemyProjectile = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<EnemyProjectile>();
             enemyProjectile.SetObjFiredFrom(gameObject);

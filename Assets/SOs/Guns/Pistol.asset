@@ -21,7 +21,7 @@ MonoBehaviour:
   startingAmmo: 15
   magSize: -1
   overheat: 1
-  overheatMax: 20
+  overheatMax: 25
   overheatPerShot: 2.75
   overheatDrainPerSecond: 2
   overheatedDrainPerSecond: 3

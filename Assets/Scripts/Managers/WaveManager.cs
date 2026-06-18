@@ -25,6 +25,9 @@ public class WaveManager : MonoBehaviour
     
     [Header("Ending")]
     [SerializeField] private float gameOverDelay = 2;
+
+    public AudioSource waveStart;
+    public AudioSource waveEnd;
     
     public int CurrentWave { get; private set; }
 
@@ -99,6 +102,7 @@ public class WaveManager : MonoBehaviour
     private void WaveStart()
     {
         WaveTime = waveDuration;
+        killCount = 0;
         
         EnemyManager.Instance.StartWave(GetWaveEnemyCount());
 
@@ -106,6 +110,8 @@ public class WaveManager : MonoBehaviour
 
         OnNewWave?.Invoke(CurrentWave);
         OnKillsUpdated?.Invoke(0,killCountTarget);
+        
+        waveStart.Play();
     }
 
     private void WaveEnd()
@@ -120,6 +126,8 @@ public class WaveManager : MonoBehaviour
         {
             player.Die();
         }
+        
+        waveEnd.Play();
     }
 
     private void WaveNext()

@@ -8,12 +8,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private Vector2 spawnRadius = new Vector2(10, 25);
-    private GameObject player; 
-
-    private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player"); 
-    }
+    [SerializeField] private GameObject player; 
 
     public List<EnemyBaseClass> SpawnEnemy(int enemiesToSpawn)
     {

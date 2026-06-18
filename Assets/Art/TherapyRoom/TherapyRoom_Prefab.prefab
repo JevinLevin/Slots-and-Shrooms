@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 939879615563047024}
   - component: {fileID: 6427337723429422818}
   - component: {fileID: 8707508872657630017}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TherapyCouch_Mdl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

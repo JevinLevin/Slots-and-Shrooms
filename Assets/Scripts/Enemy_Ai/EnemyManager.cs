@@ -16,7 +16,16 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable()
+    { 
         EventManager.Instance.onEnemyDies += OnEnemyDies;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.onEnemyDies -= OnEnemyDies;
     }
 
     private void OnEnemyDies() => SpawnEnemies(1); 

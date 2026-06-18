@@ -21,6 +21,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
     [SerializeField] private Color outlineColor;
     [SerializeField] private bool hideOnDisable = true;
 
+    public AudioSource spinAudio;
+    public AudioSource getAudio;
+
 
     [Header("Spinning")] 
     [Tooltip("How many slots to pass per second")]
@@ -140,6 +143,8 @@ public class SlotMachine : MonoBehaviour, IInteractable
         camera.Priority = 1000;
         ToggleOutline(false);
         GameManager.Instance.ToggleCursor(true);
+        
+        spinAudio.Play();
 
         spinningDiscs = new();   
         foreach (var disc in discs)
@@ -190,6 +195,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
         IsSpinning = false;
         IsChoosing = true;
+        
+        spinAudio.Stop();
+        getAudio.Play();
 
         //Deactivate();
     }
@@ -223,6 +231,9 @@ public class SlotMachine : MonoBehaviour, IInteractable
 
     private void StopReplacing()
     {
+        
+        getAudio.Play();
+
         IsReplacing = false;
         Deactivate();
 

@@ -18,5 +18,5 @@ MonoBehaviour:
     - loot: {fileID: 11400000, guid: 81b3dbc41c19e4749a265e37be8849a5, type: 2}
       weight: 1
       count: {x: 2, y: 7}
-      randomChance: 1
-    totalWeight: 0
+      randomChance: 0.25
+    totalWeight: 1

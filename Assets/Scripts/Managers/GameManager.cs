@@ -97,6 +97,11 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        mushroomInventory.Deinitialise();
+        playerStats.Initialise();
+        mushroomGenerator.Initialise();
+        mushroomInventory.Initialise();
+        
         Time.timeScale = 1;
         StartLoadTherapy();
     }
