@@ -6971,7 +6971,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   enemySpawnMaxWave: 20
-  killCountRange: {x: 5, y: 100}
+  killCountRange: {x: 1, y: 100}
   killCountCurve:
     serializedVersion: 2
     m_Curve:
